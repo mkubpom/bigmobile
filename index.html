@@ -10,7 +10,6 @@
 body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:100vh}
 #app{max-width:1200px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
 
-/* HEADER */
 .hdr{background:#0f172a;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:50}
 .hdr-logo{display:flex;align-items:center;gap:8px}
 .dot{width:8px;height:8px;border-radius:50%}
@@ -18,34 +17,24 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .hdr-name em{color:#0ea5e9;font-style:normal}
 .hdr-right{display:flex;align-items:center;gap:8px}
 .stat-pill{background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 10px;border-radius:100px;border:.5px solid #334155}
-.admin-btn{background:none;border:.5px solid #334155;color:#94a3b8;font-size:12px;padding:6px 13px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s}
+.admin-btn{background:none;border:.5px solid #334155;color:#94a3b8;font-size:12px;padding:6px 13px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s;font-family:inherit}
 .admin-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
 .admin-btn.active{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
 
-/* CONFIG BAR */
-.cfg-bar{background:#eff6ff;border-bottom:.5px solid #bfdbfe;padding:9px 20px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.cfg-bar input{flex:1;min-width:200px;padding:7px 10px;border:.5px solid #93c5fd;border-radius:7px;font-size:12px;font-family:monospace;color:#1e3a8a;background:#fff}
-.cfg-bar input:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 2px #bfdbfe}
-.cfg-save{padding:7px 16px;background:#2563eb;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap}
-.cfg-save:hover{background:#1d4ed8}
-.cfg-msg{font-size:11px;color:#15803d}
-
-/* ADD PANEL */
 .add-panel{background:#fffbeb;border-bottom:1px solid #fde68a;padding:12px 20px}
 .add-panel h3{font-size:12px;font-weight:600;color:#92400e;margin-bottom:10px;display:flex;align-items:center;gap:5px}
 .fg{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
 .fg-group{display:flex;flex-direction:column;gap:3px}
 .fg-group label{font-size:10px;color:#78716c;font-weight:600}
-.fg-group input,.fg-group select{padding:7px 9px;border:.5px solid #d6d3d1;border-radius:7px;font-size:12px;color:#1c1917;background:#fff;min-width:100px}
+.fg-group input,.fg-group select{padding:7px 9px;border:.5px solid #d6d3d1;border-radius:7px;font-size:12px;color:#1c1917;background:#fff;font-family:inherit}
 .fg-group input:focus,.fg-group select:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
-.save-btn{padding:7px 18px;background:#f97316;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;margin-bottom:0}
+.save-btn{padding:8px 18px;background:#f97316;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit}
 .save-btn:hover{background:#ea580c}
 .save-btn:disabled{background:#d6d3d1;cursor:not-allowed}
 .smsg{font-size:11px;margin-top:6px}
 .smsg.ok{color:#15803d}
 .smsg.err{color:#dc2626}
 
-/* TABS */
 .tabs-row{display:flex;gap:2px;padding:10px 20px 0;background:#f8fafc;border-bottom:.5px solid #e2e8f0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
 .tabs-row::-webkit-scrollbar{height:3px}
 .tabs-row::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
@@ -53,14 +42,12 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .tab:hover{background:#e2e8f0;color:#1e293b}
 .tab.on{background:#fff;border-color:#e2e8f0;border-bottom-color:#fff;color:#0ea5e9;font-weight:600}
 
-/* TOOLBAR */
 .toolbar{display:flex;gap:8px;padding:10px 20px;background:#fff;border-bottom:.5px solid #e2e8f0;align-items:center}
 .srch{flex:1;padding:9px 12px 9px 36px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#1e293b;font-family:inherit;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center}
 .srch:focus{outline:none;border-color:#0ea5e9;background-color:#fff;box-shadow:0 0 0 2px #bfdbfe}
 .ref-btn{display:flex;align-items:center;gap:5px;padding:8px 14px;border:.5px solid #e2e8f0;border-radius:8px;font-size:12px;color:#475569;background:#f8fafc;cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap}
 .ref-btn:hover{border-color:#0ea5e9;color:#0ea5e9;background:#eff6ff}
 
-/* STATUS */
 .sbar{padding:6px 20px;font-size:11px;color:#64748b;background:#f8fafc;border-bottom:.5px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
 .sdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
 .sdot.ok{background:#22c55e}
@@ -70,10 +57,9 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinning{animation:spin 1s linear infinite;display:inline-block}
 
-/* TABLE */
 .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl th{padding:9px 16px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap;position:sticky;top:0}
+.tbl th{padding:9px 16px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap}
 .tbl td{padding:9px 16px;border-bottom:.5px solid #f1f5f9;color:#1e293b;white-space:nowrap}
 .tbl tr:hover td{background:#f0f9ff}
 .pv{color:#0369a1;font-weight:600}
@@ -83,7 +69,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
 .empty-row i{font-size:32px;display:block;margin-bottom:8px;opacity:.4}
 
-/* LOGIN */
 .login-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .login-card{background:#fff;border-radius:14px;border:.5px solid #e2e8f0;padding:30px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .login-card h2{font-size:16px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
@@ -98,11 +83,10 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .lbgo{flex:1;padding:9px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .lbgo:hover{background:#0284c7}
 
-/* RESPONSIVE */
 @media(max-width:600px){
   .hdr-name{font-size:14px}
   .tbl th,.tbl td{padding:8px 10px;font-size:12px}
-  .add-panel .fg{flex-direction:column}
+  .fg{flex-direction:column}
   .fg-group input,.fg-group select{width:100%}
 }
 </style>
@@ -110,7 +94,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 <body>
 <div id="app">
 
-<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-logo">
     <div class="dot" style="background:#0ea5e9"></div>
@@ -127,30 +110,19 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- CONFIG BAR (admin only) -->
-<div id="cfg-bar" class="cfg-bar" style="display:none">
-  <i class="ti ti-link" style="font-size:15px;color:#2563eb;flex-shrink:0"></i>
-  <input id="gas-input" placeholder="https://script.google.com/macros/s/xxx/exec" />
-  <button class="cfg-save" onclick="saveUrl()"><i class="ti ti-check"></i> บันทึก URL</button>
-  <span class="cfg-msg" id="cfg-msg"></span>
-</div>
-
-<!-- ADD PANEL (admin only) -->
 <div id="add-panel" class="add-panel" style="display:none">
   <h3><i class="ti ti-plus"></i> เพิ่มสินค้าใหม่ → บันทึกไปยัง Google Sheets</h3>
   <div class="fg">
     <div class="fg-group"><label>คอลัมน์ราคา</label><select id="f-col"></select></div>
     <div class="fg-group"><label>ชื่อรุ่น</label><input id="f-model" placeholder="เช่น iPhone 17 Pro" /></div>
-    <div class="fg-group"><label>ราคา (฿)</label><input id="f-price" type="number" placeholder="0" style="width:100px" /></div>
+    <div class="fg-group"><label>ราคา (฿)</label><input id="f-price" type="number" placeholder="0" style="width:110px" /></div>
     <button class="save-btn" id="save-btn" onclick="addProduct()"><i class="ti ti-device-floppy"></i> บันทึก</button>
   </div>
   <div class="smsg" id="smsg"></div>
 </div>
 
-<!-- TABS -->
 <div class="tabs-row" id="tabs-row"></div>
 
-<!-- TOOLBAR -->
 <div class="toolbar">
   <input class="srch" id="srch" placeholder="ค้นหารุ่น..." oninput="renderTable()" />
   <button class="ref-btn" onclick="loadTab(currentTab)">
@@ -158,13 +130,11 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </button>
 </div>
 
-<!-- STATUS BAR -->
 <div class="sbar">
   <div><span class="sdot ld" id="sdot"></span><span id="stxt">กำลังโหลด...</span></div>
   <span id="rcnt"></span>
 </div>
 
-<!-- TABLE -->
 <div class="tbl-wrap">
   <table class="tbl">
     <thead id="thead"></thead>
@@ -172,7 +142,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </table>
 </div>
 
-<!-- LOGIN OVERLAY -->
 <div id="login-overlay" class="login-overlay" style="display:none">
   <div class="login-card">
     <h2><i class="ti ti-lock"></i>เข้าสู่ระบบแอดมิน</h2>
@@ -181,8 +150,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
       <label>ชื่อผู้ใช้</label>
       <input id="l-user" type="text" placeholder="admin" />
       <label>รหัสผ่าน</label>
-      <input id="l-pass" type="password" placeholder="••••••••"
-             onkeydown="if(event.key==='Enter')doLogin()" />
+      <input id="l-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
     </div>
     <div class="lerr" id="lerr" style="display:none">
       <i class="ti ti-alert-circle"></i> ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
@@ -194,13 +162,15 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-</div><!-- #app -->
+</div>
 
 <script>
+// ========== CONFIG ==========
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
 const ADMIN_USER = 'admin';
 const ADMIN_PASS = 'bigmobile4503';
+// ============================
 
-// mapping ชื่อ column รุ่น ของแต่ละ tab
 const MODEL_KEY = {
   'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น',
   'Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น',
@@ -212,240 +182,190 @@ const MODEL_KEY = {
   'ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น'
 };
 
-let isAdmin = false;
-let currentTab = '';
-let allTabs = [];
-let products = [];
-let currentHeaders = [];
-let gasUrl = '';
+let isAdmin=false, currentTab='', allTabs=[], products=[], currentHeaders=[];
 
-function modelKey(tab) {
-  return MODEL_KEY[tab] || MODEL_KEY[tab.trim()] || 'รุ่น';
+function modelKey(tab){ return MODEL_KEY[tab]||MODEL_KEY[tab.trim()]||'รุ่น'; }
+
+function setSync(state,msg){
+  document.getElementById('sdot').className='sdot '+(state==='ok'?'ok':state==='err'?'err':'ld');
+  document.getElementById('stxt').textContent=msg;
 }
 
-function setSync(state, msg) {
-  const d = document.getElementById('sdot');
-  const t = document.getElementById('stxt');
-  d.className = 'sdot ' + (state === 'ok' ? 'ok' : state === 'err' ? 'err' : 'ld');
-  t.textContent = msg;
+function fmt(v){
+  if(v===''||v===null||v===undefined)return '';
+  const n=parseFloat(v);
+  if(isNaN(n)||n===0)return '';
+  return '฿'+Math.round(n).toLocaleString('th-TH');
 }
 
-function fmt(v) {
-  if (v === '' || v === null || v === undefined) return '';
-  const n = parseFloat(v);
-  if (isNaN(n) || n === 0) return '';
-  return '฿' + Math.round(n).toLocaleString('th-TH');
-}
-
-function buildTabs(tabs) {
-  allTabs = tabs;
-  const row = document.getElementById('tabs-row');
-  row.innerHTML = tabs.map((t, i) =>
-    `<button class="tab${i === 0 ? ' on' : ''}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
+function buildTabs(tabs){
+  allTabs=tabs;
+  document.getElementById('tabs-row').innerHTML=tabs.map((t,i)=>
+    `<button class="tab${i===0?' on':''}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
   ).join('');
 }
 
-function switchTab(name) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  const btns = document.querySelectorAll('.tab');
-  btns.forEach(b => { if (b.textContent.trim() === name.trim()) b.classList.add('on'); });
+function switchTab(name){
+  document.querySelectorAll('.tab').forEach(t=>{
+    t.classList.toggle('on', t.textContent.trim()===name.trim());
+  });
   loadTab(name);
 }
 
-function renderHeaders() {
-  const mk = modelKey(currentTab);
-  const pks = currentHeaders.filter(h => h && h !== mk && String(h).trim() !== '');
-  const thead = document.getElementById('thead');
-  thead.innerHTML = '<tr><th>' + mk + '</th>' +
-    pks.map(h => '<th>' + h + '</th>').join('') +
-    (isAdmin ? '<th style="width:50px">ลบ</th>' : '') +
+function renderHeaders(){
+  const mk=modelKey(currentTab);
+  const pks=currentHeaders.filter(h=>h&&h!==mk&&String(h).trim()!=='');
+  document.getElementById('thead').innerHTML=
+    '<tr><th>'+mk+'</th>'+
+    pks.map(h=>'<th>'+h+'</th>').join('')+
+    (isAdmin?'<th style="width:50px">ลบ</th>':'')+
     '</tr>';
-  if (isAdmin) {
-    const sel = document.getElementById('f-col');
-    sel.innerHTML = pks.map(h => `<option value="${h}">${h}</option>`).join('');
+  if(isAdmin){
+    document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
   }
 }
 
-function renderTable() {
-  const q = document.getElementById('srch').value.toLowerCase();
-  const mk = modelKey(currentTab);
-  const pks = currentHeaders.filter(h => h && h !== mk && String(h).trim() !== '');
-  let rows = products;
-  if (q) rows = rows.filter(p => String(p[mk] || '').toLowerCase().includes(q));
+function renderTable(){
+  const q=document.getElementById('srch').value.toLowerCase();
+  const mk=modelKey(currentTab);
+  const pks=currentHeaders.filter(h=>h&&h!==mk&&String(h).trim()!=='');
+  let rows=products;
+  if(q) rows=rows.filter(p=>String(p[mk]||'').toLowerCase().includes(q));
 
-  document.getElementById('stat-pill').textContent = rows.length + ' รายการ';
-  document.getElementById('rcnt').textContent = 'แสดง ' + rows.length + ' จาก ' + products.length + ' รายการ';
+  document.getElementById('stat-pill').textContent=rows.length+' รายการ';
+  document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
 
-  const tb = document.getElementById('tbody');
-  if (!rows.length) {
-    const cols = pks.length + 1 + (isAdmin ? 1 : 0);
-    tb.innerHTML = `<tr class="empty-row"><td colspan="${cols}"><i class="ti ti-mood-empty"></i>ไม่พบข้อมูลในแท็บนี้</td></tr>`;
+  const tb=document.getElementById('tbody');
+  if(!rows.length){
+    tb.innerHTML=`<tr class="empty-row"><td colspan="${pks.length+1+(isAdmin?1:0)}"><i class="ti ti-mood-empty"></i>ไม่พบข้อมูล</td></tr>`;
     return;
   }
-  tb.innerHTML = rows.map(p => {
-    const ri = products.indexOf(p);
-    const modelVal = String(p[mk] || '').replace(/^-\s*/, '');
-    const priceCells = pks.map(h => {
-      const v = fmt(p[h]);
-      return '<td>' + (v ? '<span class="pv">' + v + '</span>' : '<span class="nt">—</span>') + '</td>';
+  tb.innerHTML=rows.map(p=>{
+    const ri=products.indexOf(p);
+    const modelVal=String(p[mk]||'').replace(/^-\s*/,'');
+    const cells=pks.map(h=>{
+      const v=fmt(p[h]);
+      return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';
     }).join('');
-    const delCell = isAdmin
-      ? `<td><button class="del-btn" onclick="delProduct(${ri})" title="ลบ"><i class="ti ti-trash"></i></button></td>`
-      : '';
-    return `<tr><td style="font-weight:600">${modelVal}</td>${priceCells}${delCell}</tr>`;
+    const del=isAdmin?`<td><button class="del-btn" onclick="delProduct(${ri})"><i class="ti ti-trash"></i></button></td>`:'';
+    return `<tr><td style="font-weight:600">${modelVal}</td>${cells}${del}</tr>`;
   }).join('');
 }
 
-async function loadTab(tab) {
-  const url = gasUrl || localStorage.getItem('bm_gas_url') || '';
-  if (!url) { setSync('err', 'กรุณาใส่ Apps Script URL (ล็อกอินแอดมิน)'); return; }
-  currentTab = tab;
-  const icon = document.getElementById('ref-icon');
+async function loadTab(tab){
+  currentTab=tab;
+  const icon=document.getElementById('ref-icon');
   icon.classList.add('spinning');
-  setSync('ld', 'กำลังโหลด ' + tab.trim() + '...');
-  try {
-    const res = await fetch(url + '?tab=' + encodeURIComponent(tab));
-    const json = await res.json();
-    if (json.error) { setSync('err', 'Error: ' + json.error); icon.classList.remove('spinning'); return; }
-    if (json.tabs && !allTabs.length) buildTabs(json.tabs);
-    const mk = modelKey(tab);
-    currentHeaders = json.data && json.data.length > 0
-      ? Object.keys(json.data[0]).filter(k => k !== 'cat') : [];
-    products = (json.data || []).filter(r => {
-      const v = r[mk];
-      return v !== undefined && String(v).trim() !== '' && String(v).trim() !== '-';
+  setSync('ld','กำลังโหลด '+tab.trim()+'...');
+  try{
+    const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(tab));
+    const json=await res.json();
+    if(json.tabs&&!allTabs.length) buildTabs(json.tabs);
+    const mk=modelKey(tab);
+    currentHeaders=json.data&&json.data.length>0
+      ?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+    products=(json.data||[]).filter(r=>{
+      const v=r[mk];
+      return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
     });
     renderHeaders();
     renderTable();
-    setSync('ok', 'ซิงค์แล้ว · ' + tab.trim() + ' · ' + new Date().toLocaleTimeString('th-TH'));
-  } catch (e) {
-    setSync('err', 'โหลดไม่ได้: ' + e.message);
+    setSync('ok','ซิงค์แล้ว · '+tab.trim()+' · '+new Date().toLocaleTimeString('th-TH'));
+  }catch(e){
+    setSync('err','โหลดไม่ได้: '+e.message);
   }
   icon.classList.remove('spinning');
 }
 
-async function initLoad() {
-  const url = localStorage.getItem('bm_gas_url') || '';
-  const defaultTabs = ['iPhone','IPad','Apple Watch ','Samsung','TAB','จอพับ Filp-Fold',
-    'ViVo','OPPO','Huawei','แพรชาร์จแท้แกะ','สายแพร SAMSUNG Filp-Fold แท้',
-    'กล้องหลังแท้แกะ','แพร Face ID config ได้','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)',
-    'แบตแท้ Config ได้ (ขึ้น ของแท้) ','ฝาหลังแท้แกะ SAMSUNG','OCA + Touch IPad '];
-  if (!url) {
-    setSync('err', 'กรุณาล็อกอินแอดมินและใส่ Apps Script URL');
-    buildTabs(defaultTabs);
-    currentTab = 'iPhone';
-    return;
-  }
-  gasUrl = url;
-  document.getElementById('gas-input').value = url;
-  const icon = document.getElementById('ref-icon');
+async function initLoad(){
+  setSync('ld','กำลังโหลดข้อมูลจาก Google Sheets...');
+  const icon=document.getElementById('ref-icon');
   icon.classList.add('spinning');
-  setSync('ld', 'กำลังโหลด...');
-  try {
-    const res = await fetch(url + '?tab=iPhone');
-    const json = await res.json();
-    if (json.tabs) buildTabs(json.tabs);
-    currentTab = 'iPhone';
-    currentHeaders = json.data && json.data.length > 0
-      ? Object.keys(json.data[0]).filter(k => k !== 'cat') : [];
-    products = (json.data || []).filter(r => {
-      const mk = modelKey('iPhone');
-      return r[mk] !== undefined && String(r[mk]).trim() !== '' && String(r[mk]).trim() !== '-';
+  try{
+    const res=await fetch(GAS_URL+'?tab=iPhone');
+    const json=await res.json();
+    if(json.tabs) buildTabs(json.tabs);
+    currentTab='iPhone';
+    currentHeaders=json.data&&json.data.length>0
+      ?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+    products=(json.data||[]).filter(r=>{
+      const mk=modelKey('iPhone');
+      return r[mk]!==undefined&&String(r[mk]).trim()!==''&&String(r[mk]).trim()!=='-';
     });
     renderHeaders();
     renderTable();
-    setSync('ok', 'ซิงค์กับ Google Sheets แล้ว · ' + new Date().toLocaleTimeString('th-TH'));
-  } catch (e) {
-    setSync('err', 'โหลดไม่ได้ — ตรวจสอบ URL');
-    buildTabs(defaultTabs);
-    currentTab = 'iPhone';
+    setSync('ok','ซิงค์กับ Google Sheets แล้ว · '+new Date().toLocaleTimeString('th-TH'));
+  }catch(e){
+    setSync('err','โหลดไม่ได้ — '+e.message);
   }
   icon.classList.remove('spinning');
 }
 
-function saveUrl() {
-  const url = document.getElementById('gas-input').value.trim();
-  if (!url) return;
-  localStorage.setItem('bm_gas_url', url);
-  gasUrl = url;
-  const m = document.getElementById('cfg-msg');
-  m.textContent = '✓ บันทึกแล้ว';
-  setTimeout(() => m.textContent = '', 3000);
-  initLoad();
-}
-
-function handleAdminBtn() {
-  if (isAdmin) {
-    isAdmin = false;
+function handleAdminBtn(){
+  if(isAdmin){
+    isAdmin=false;
     document.getElementById('admin-btn').classList.remove('active');
-    document.getElementById('admin-txt').textContent = 'แอดมิน';
-    document.getElementById('add-panel').style.display = 'none';
-    document.getElementById('cfg-bar').style.display = 'none';
-    renderHeaders();
-    renderTable();
-  } else {
-    document.getElementById('login-overlay').style.display = 'flex';
-    setTimeout(() => document.getElementById('l-user').focus(), 100);
+    document.getElementById('admin-txt').textContent='แอดมิน';
+    document.getElementById('add-panel').style.display='none';
+    renderHeaders(); renderTable();
+  }else{
+    document.getElementById('login-overlay').style.display='flex';
+    setTimeout(()=>document.getElementById('l-user').focus(),100);
   }
 }
 
-function closeLogin() {
-  document.getElementById('login-overlay').style.display = 'none';
-  document.getElementById('l-user').value = '';
-  document.getElementById('l-pass').value = '';
-  document.getElementById('lerr').style.display = 'none';
+function closeLogin(){
+  document.getElementById('login-overlay').style.display='none';
+  document.getElementById('l-user').value='';
+  document.getElementById('l-pass').value='';
+  document.getElementById('lerr').style.display='none';
 }
 
-function doLogin() {
-  const u = document.getElementById('l-user').value.trim();
-  const p = document.getElementById('l-pass').value;
-  if (u === ADMIN_USER && p === ADMIN_PASS) {
-    isAdmin = true;
+function doLogin(){
+  const u=document.getElementById('l-user').value.trim();
+  const p=document.getElementById('l-pass').value;
+  if(u===ADMIN_USER&&p===ADMIN_PASS){
+    isAdmin=true;
     closeLogin();
     document.getElementById('admin-btn').classList.add('active');
-    document.getElementById('admin-txt').textContent = 'ออกจากระบบ';
-    document.getElementById('add-panel').style.display = '';
-    document.getElementById('cfg-bar').style.display = '';
-    document.getElementById('gas-input').value = localStorage.getItem('bm_gas_url') || '';
-    renderHeaders();
-    renderTable();
-  } else {
-    document.getElementById('lerr').style.display = 'flex';
+    document.getElementById('admin-txt').textContent='ออกจากระบบ';
+    document.getElementById('add-panel').style.display='';
+    renderHeaders(); renderTable();
+  }else{
+    document.getElementById('lerr').style.display='flex';
   }
 }
 
-async function addProduct() {
-  const model = document.getElementById('f-model').value.trim();
-  const col = document.getElementById('f-col').value;
-  const price = document.getElementById('f-price').value;
-  if (!model || !price) return;
-  const btn = document.getElementById('save-btn');
-  const msg = document.getElementById('smsg');
-  btn.disabled = true;
-  msg.className = 'smsg'; msg.textContent = 'กำลังบันทึก...';
-  const mk = modelKey(currentTab);
-  const payload = { action: 'add', tab: currentTab, modelKey: mk, model, priceCol: col, price };
-  try {
-    await fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify(payload) });
-    msg.className = 'smsg ok';
-    msg.textContent = '✓ บันทึก "' + model + '" สำเร็จ — กดโหลดใหม่เพื่อดูข้อมูล';
-    document.getElementById('f-model').value = '';
-    document.getElementById('f-price').value = '';
-  } catch (e) {
-    msg.className = 'smsg err'; msg.textContent = 'ข้อผิดพลาด: ' + e.message;
+async function addProduct(){
+  const model=document.getElementById('f-model').value.trim();
+  const col=document.getElementById('f-col').value;
+  const price=document.getElementById('f-price').value;
+  if(!model||!price)return;
+  const btn=document.getElementById('save-btn');
+  const msg=document.getElementById('smsg');
+  btn.disabled=true;
+  msg.className='smsg'; msg.textContent='กำลังบันทึก...';
+  const mk=modelKey(currentTab);
+  try{
+    await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:currentTab,modelKey:mk,model,priceCol:col,price})});
+    msg.className='smsg ok';
+    msg.textContent='✓ บันทึก "'+model+'" สำเร็จ — กดโหลดใหม่เพื่อดูข้อมูล';
+    document.getElementById('f-model').value='';
+    document.getElementById('f-price').value='';
+  }catch(e){
+    msg.className='smsg err'; msg.textContent='ข้อผิดพลาด: '+e.message;
   }
-  btn.disabled = false;
+  btn.disabled=false;
 }
 
-async function delProduct(idx) {
-  const p = products[idx];
-  const mk = modelKey(currentTab);
-  const name = String(p[mk] || '').replace(/^-\s*/, '');
-  if (!confirm('ลบ "' + name + '" ออกจาก Google Sheets?')) return;
-  try {
-    await fetch(gasUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ action: 'delete', tab: currentTab, modelKey: mk, model: p[mk] }) });
+async function delProduct(idx){
+  const p=products[idx];
+  const mk=modelKey(currentTab);
+  if(!confirm('ลบ "'+String(p[mk]||'').replace(/^-\s*/,'')+'" ออกจาก Google Sheets?'))return;
+  try{
+    await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:currentTab,modelKey:mk,model:p[mk]})});
     await loadTab(currentTab);
-  } catch (e) { alert('ลบไม่สำเร็จ: ' + e.message); }
+  }catch(e){alert('ลบไม่สำเร็จ: '+e.message);}
 }
 
 initLoad();
