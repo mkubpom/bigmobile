@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Bigmobile ราคาอะไหล่แท้</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:100vh}
@@ -38,6 +38,21 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .smsg.err{color:#dc2626}
 .smsg.wait{color:#92400e}
 
+/* GLOBAL SEARCH BAR */
+.gsearch-wrap{padding:12px 20px;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border-bottom:.5px solid #1e3a5f}
+.gsearch-label{font-size:10px;font-weight:600;color:#7dd3fc;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.gsearch-row{display:flex;gap:8px;align-items:center}
+.gsearch-input{flex:1;padding:10px 14px 10px 38px;border:1.5px solid #334155;border-radius:10px;font-size:14px;color:#0f172a;font-family:inherit;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center;transition:border-color .15s}
+.gsearch-input:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.2)}
+.gsearch-btn{padding:10px 20px;background:#0ea5e9;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background .15s}
+.gsearch-btn:hover{background:#0284c7}
+.gsearch-btn:disabled{background:#334155;cursor:not-allowed}
+.gclear-btn{padding:10px 14px;background:none;border:1.5px solid #475569;color:#94a3b8;border-radius:10px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s}
+.gclear-btn:hover{border-color:#94a3b8;color:#e2e8f0}
+.gload-bar{margin-top:8px;height:3px;background:#1e3a5f;border-radius:100px;overflow:hidden;display:none}
+.gload-bar.show{display:block}
+.gload-fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);border-radius:100px;width:0%;transition:width .3s}
+
 /* TABS */
 .tabs-row{display:flex;gap:2px;padding:10px 20px 0;background:#f8fafc;border-bottom:.5px solid #e2e8f0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
 .tabs-row::-webkit-scrollbar{height:3px}
@@ -45,6 +60,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .tab{padding:7px 13px;border-radius:6px 6px 0 0;font-size:12px;cursor:pointer;border:.5px solid transparent;color:#64748b;background:none;white-space:nowrap;font-weight:500;transition:all .15s;font-family:inherit}
 .tab:hover{background:#e2e8f0;color:#1e293b}
 .tab.on{background:#fff;border-color:#e2e8f0;border-bottom-color:#fff;color:#0ea5e9;font-weight:600}
+.tab-search-mode{background:#fef9c3;border-color:#fde68a;color:#92400e;font-weight:600}
+.tab-search-mode.on{background:#fef08a;border-color:#ca8a04;color:#713f12}
 
 /* TOOLBAR */
 .toolbar{display:flex;gap:8px;padding:10px 20px;background:#fff;border-bottom:.5px solid #e2e8f0;align-items:center}
@@ -63,41 +80,31 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinning{animation:spin 1s linear infinite;display:inline-block}
 
-/* TABLE WRAP — fixed height with scroll, sticky header inside */
-.tbl-outer{overflow:auto;max-height:calc(100vh - 230px);-webkit-overflow-scrolling:touch}
+/* GLOBAL SEARCH RESULTS */
+.gsearch-results{padding:16px 20px}
+.gsearch-summary{font-size:13px;color:#475569;margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gsearch-summary strong{color:#0f172a}
+.found-pill{background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:2px 10px;border-radius:100px}
+.tab-section{margin-bottom:20px}
+.tab-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-bottom:6px;border-bottom:1.5px solid #e2e8f0}
+.tab-badge{display:inline-flex;align-items:center;gap:5px;background:#0f172a;color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px}
+.tab-badge-count{background:#0ea5e9;color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:100px}
+.goto-tab-btn{margin-left:auto;font-size:11px;color:#0ea5e9;background:none;border:.5px solid #bfdbfe;padding:3px 10px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s}
+.goto-tab-btn:hover{background:#eff6ff;border-color:#0ea5e9}
+
+/* TABLE */
+.tbl-outer{overflow:auto;max-height:calc(100vh - 240px);-webkit-overflow-scrolling:touch}
+.tbl-outer.search-mode{max-height:none;overflow:visible}
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
-
-/* Sticky column headers */
-.tbl thead th{
-  position:sticky;
-  top:0;
-  z-index:10;
-  padding:9px 16px;
-  text-align:left;
-  color:#64748b;
-  font-weight:600;
-  font-size:11px;
-  border-bottom:1.5px solid #e2e8f0;
-  background:#f8fafc;
-  white-space:nowrap;
-  box-shadow:0 1px 0 #e2e8f0;
-}
-/* First column also sticky horizontally */
-.tbl thead th:first-child,
-.tbl tbody td:first-child{
-  position:sticky;
-  left:0;
-  z-index:5;
-  background:#f8fafc;
-}
-.tbl thead th:first-child{z-index:15;}
-.tbl tbody td:first-child{background:#fff;}
-.tbl tr:hover td:first-child{background:#f0f9ff;}
-
+.tbl thead th{position:sticky;top:0;z-index:10;padding:9px 16px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap;box-shadow:0 1px 0 #e2e8f0}
+.tbl thead th:first-child{position:sticky;left:0;z-index:15;background:#f8fafc}
+.tbl tbody td:first-child{position:sticky;left:0;z-index:5;background:#fff}
+.tbl tr:hover td:first-child{background:#f0f9ff}
 .tbl td{padding:9px 16px;border-bottom:.5px solid #f1f5f9;color:#1e293b;white-space:nowrap}
 .tbl tr:hover td{background:#f0f9ff}
 .pv{color:#0369a1;font-weight:600}
 .nt{color:#cbd5e1;font-size:12px}
+.hl{background:#fef08a;border-radius:3px;padding:0 2px;font-weight:600;color:#713f12}
 .del-btn{background:none;border:none;color:#fca5a5;cursor:pointer;font-size:15px;padding:3px 6px;border-radius:5px;opacity:.7;transition:all .15s}
 .del-btn:hover{opacity:1;background:#fee2e2;color:#dc2626}
 .empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
@@ -117,7 +124,9 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .lbcancel{padding:9px 16px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
 .lbgo{flex:1;padding:9px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .lbgo:hover{background:#0284c7}
-
+.no-result{text-align:center;padding:40px 20px;color:#94a3b8}
+.no-result i{font-size:40px;display:block;margin-bottom:10px;opacity:.3}
+.no-result p{font-size:14px}
 @media(max-width:600px){
   .hdr-name{font-size:14px}
   .tbl thead th,.tbl td{padding:8px 10px;font-size:12px}
@@ -130,6 +139,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 <body>
 <div id="app">
 
+<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-logo">
     <div class="dot" style="background:#0ea5e9"></div>
@@ -140,69 +150,74 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   <div class="hdr-right">
     <span class="stat-pill" id="stat-pill">— รายการ</span>
     <button class="admin-btn" id="admin-btn" onclick="handleAdminBtn()">
-      <i class="ti ti-shield"></i>
-      <span id="admin-txt">แอดมิน</span>
+      <i class="ti ti-shield"></i><span id="admin-txt">แอดมิน</span>
     </button>
   </div>
 </div>
 
+<!-- ADD PANEL -->
 <div id="add-panel" class="add-panel" style="display:none">
   <h3><i class="ti ti-plus"></i> เพิ่มสินค้าใหม่ → บันทึกไปยัง Google Sheets</h3>
   <div class="fg">
-    <div class="fg-group">
-      <label>คอลัมน์ราคา</label>
-      <select id="f-col"></select>
-    </div>
-    <div class="fg-group">
-      <label>ชื่อรุ่น</label>
-      <input id="f-model" placeholder="เช่น iPhone 17 Pro" />
-    </div>
-    <div class="fg-group">
-      <label>ราคา (฿)</label>
-      <input id="f-price" type="number" placeholder="0" style="width:110px" />
-    </div>
-    <button class="save-btn" id="save-btn" onclick="addProduct()">
-      <i class="ti ti-device-floppy"></i> บันทึก
-    </button>
+    <div class="fg-group"><label>คอลัมน์ราคา</label><select id="f-col"></select></div>
+    <div class="fg-group"><label>ชื่อรุ่น</label><input id="f-model" placeholder="เช่น iPhone 17 Pro"/></div>
+    <div class="fg-group"><label>ราคา (฿)</label><input id="f-price" type="number" placeholder="0" style="width:110px"/></div>
+    <button class="save-btn" id="save-btn" onclick="addProduct()"><i class="ti ti-device-floppy"></i> บันทึก</button>
   </div>
   <div class="smsg" id="smsg"></div>
 </div>
 
+<!-- GLOBAL SEARCH BAR -->
+<div class="gsearch-wrap">
+  <div class="gsearch-label"><i class="ti ti-world-search" style="font-size:13px"></i> ค้นหาทุก Tab พร้อมกัน</div>
+  <div class="gsearch-row">
+    <input class="gsearch-input" id="gsearch-input" placeholder="พิมพ์ชื่อรุ่นที่ต้องการค้นหา เช่น Samsung S24, iPhone 15 Pro..." onkeydown="if(event.key==='Enter')doGlobalSearch()"/>
+    <button class="gsearch-btn" id="gsearch-btn" onclick="doGlobalSearch()"><i class="ti ti-search"></i> ค้นหา</button>
+    <button class="gclear-btn" id="gclear-btn" onclick="clearGlobalSearch()" style="display:none"><i class="ti ti-x"></i> ล้าง</button>
+  </div>
+  <div class="gload-bar" id="gload-bar"><div class="gload-fill" id="gload-fill"></div></div>
+</div>
+
+<!-- TABS -->
 <div class="tabs-row" id="tabs-row"></div>
 
-<div class="toolbar">
-  <input class="srch" id="srch" placeholder="ค้นหารุ่น..." oninput="renderTable()" />
+<!-- TOOLBAR (single-tab mode) -->
+<div class="toolbar" id="toolbar">
+  <input class="srch" id="srch" placeholder="กรองในแท็บนี้..." oninput="renderTable()"/>
   <button class="ref-btn" onclick="loadTab(currentTab)">
     <i class="ti ti-refresh" id="ref-icon"></i> โหลดใหม่
   </button>
 </div>
 
-<div class="sbar">
+<!-- STATUS BAR -->
+<div class="sbar" id="sbar">
   <div><span class="sdot ld" id="sdot"></span><span id="stxt">กำลังโหลด...</span></div>
   <span id="rcnt"></span>
 </div>
 
-<!-- TABLE with sticky headers + sticky first column -->
-<div class="tbl-outer">
-  <table class="tbl">
-    <thead id="thead"></thead>
-    <tbody id="tbody"></tbody>
-  </table>
+<!-- GLOBAL SEARCH RESULTS (hidden by default) -->
+<div id="gsearch-results" class="gsearch-results" style="display:none"></div>
+
+<!-- SINGLE TAB TABLE -->
+<div id="tab-view">
+  <div class="tbl-outer" id="tbl-outer">
+    <table class="tbl">
+      <thead id="thead"></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
 </div>
 
+<!-- LOGIN -->
 <div id="login-overlay" class="login-overlay" style="display:none">
   <div class="login-card">
     <h2><i class="ti ti-lock"></i>เข้าสู่ระบบแอดมิน</h2>
     <p>สำหรับเจ้าหน้าที่ Bigmobile เท่านั้น</p>
     <div class="lf">
-      <label>ชื่อผู้ใช้</label>
-      <input id="l-user" type="text" placeholder="admin" />
-      <label>รหัสผ่าน</label>
-      <input id="l-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()" />
+      <label>ชื่อผู้ใช้</label><input id="l-user" type="text" placeholder="admin"/>
+      <label>รหัสผ่าน</label><input id="l-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
-    <div class="lerr" id="lerr" style="display:none">
-      <i class="ti ti-alert-circle"></i> ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง
-    </div>
+    <div class="lerr" id="lerr" style="display:none"><i class="ti ti-alert-circle"></i> ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</div>
     <div class="lbrow">
       <button class="lbcancel" onclick="closeLogin()">ยกเลิก</button>
       <button class="lbgo" onclick="doLogin()">เข้าสู่ระบบ</button>
@@ -210,16 +225,12 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-</div><!-- #app -->
-
+</div>
 <script>
-// ========== CONFIG ==========
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
-const ADMIN_USER = 'admin';
-const ADMIN_PASS = 'bigmobile4503';
-// ============================
+const GAS_URL='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
+const ADMIN_USER='admin', ADMIN_PASS='bigmobile4503';
 
-const MODEL_KEY = {
+const MODEL_KEY={
   'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น',
   'Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น',
   'ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น',
@@ -231,8 +242,10 @@ const MODEL_KEY = {
 };
 
 let isAdmin=false, currentTab='', allTabs=[], products=[], currentHeaders=[];
+// cache ข้อมูลทุก tab สำหรับ global search
+let allTabData={};
 
-function modelKey(tab){ return MODEL_KEY[tab]||MODEL_KEY[tab.trim()]||'รุ่น'; }
+function modelKey(tab){return MODEL_KEY[tab]||MODEL_KEY[tab.trim()]||'รุ่น';}
 
 function setSync(state,msg){
   document.getElementById('sdot').className='sdot '+(state==='ok'?'ok':state==='err'?'err':'ld');
@@ -246,17 +259,22 @@ function fmt(v){
   return '฿'+Math.round(n).toLocaleString('th-TH');
 }
 
+function highlight(text,q){
+  if(!q)return text;
+  const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+  return String(text).replace(re,'<span class="hl">$1</span>');
+}
+
 function buildTabs(tabs){
   allTabs=tabs;
   document.getElementById('tabs-row').innerHTML=tabs.map((t,i)=>
-    `<button class="tab${i===0?' on':''}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
+    `<button class="tab${i===0?' on':''}" id="tab-btn-${i}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
   ).join('');
 }
 
 function switchTab(name){
-  document.querySelectorAll('.tab').forEach(t=>{
-    t.classList.toggle('on', t.textContent.trim()===name.trim());
-  });
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.textContent.trim()===name.trim()));
+  clearGlobalSearch(false);
   loadTab(name);
 }
 
@@ -264,13 +282,9 @@ function renderHeaders(){
   const mk=modelKey(currentTab);
   const pks=currentHeaders.filter(h=>h&&h!==mk&&String(h).trim()!=='');
   document.getElementById('thead').innerHTML=
-    '<tr><th>'+mk+'</th>'+
-    pks.map(h=>'<th>'+h+'</th>').join('')+
-    (isAdmin?'<th style="width:50px">ลบ</th>':'')+
-    '</tr>';
+    '<tr><th>'+mk+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('')+(isAdmin?'<th style="width:50px">ลบ</th>':'')+' </tr>';
   if(isAdmin){
-    document.getElementById('f-col').innerHTML=
-      pks.map(h=>`<option value="${h}">${h}</option>`).join('');
+    document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
   }
 }
 
@@ -280,10 +294,8 @@ function renderTable(){
   const pks=currentHeaders.filter(h=>h&&h!==mk&&String(h).trim()!=='');
   let rows=products;
   if(q) rows=rows.filter(p=>String(p[mk]||'').toLowerCase().includes(q));
-
   document.getElementById('stat-pill').textContent=rows.length+' รายการ';
   document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
-
   const tb=document.getElementById('tbody');
   if(!rows.length){
     tb.innerHTML=`<tr class="empty-row"><td colspan="${pks.length+1+(isAdmin?1:0)}"><i class="ti ti-mood-empty"></i>ไม่พบข้อมูล</td></tr>`;
@@ -296,9 +308,7 @@ function renderTable(){
       const v=fmt(p[h]);
       return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';
     }).join('');
-    const del=isAdmin
-      ?`<td><button class="del-btn" onclick="delProduct(${ri})" title="ลบ"><i class="ti ti-trash"></i></button></td>`
-      :'';
+    const del=isAdmin?`<td><button class="del-btn" onclick="delProduct(${ri})" title="ลบ"><i class="ti ti-trash"></i></button></td>`:'';
     return `<tr><td style="font-weight:600">${modelVal}</td>${cells}${del}</tr>`;
   }).join('');
 }
@@ -313,18 +323,15 @@ async function loadTab(tab){
     const json=await res.json();
     if(json.tabs&&!allTabs.length) buildTabs(json.tabs);
     const mk=modelKey(tab);
-    currentHeaders=json.data&&json.data.length>0
-      ?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+    currentHeaders=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
     products=(json.data||[]).filter(r=>{
       const v=r[mk];
       return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
     });
-    renderHeaders();
-    renderTable();
+    allTabData[tab]={headers:currentHeaders,rows:products};
+    renderHeaders(); renderTable();
     setSync('ok','ซิงค์แล้ว · '+tab.trim()+' · '+new Date().toLocaleTimeString('th-TH'));
-  }catch(e){
-    setSync('err','โหลดไม่ได้: '+e.message);
-  }
+  }catch(e){setSync('err','โหลดไม่ได้: '+e.message);}
   icon.classList.remove('spinning');
 }
 
@@ -337,20 +344,140 @@ async function initLoad(){
     const json=await res.json();
     if(json.tabs) buildTabs(json.tabs);
     currentTab='iPhone';
-    currentHeaders=json.data&&json.data.length>0
-      ?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+    currentHeaders=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
     products=(json.data||[]).filter(r=>{
       const mk=modelKey('iPhone');
       return r[mk]!==undefined&&String(r[mk]).trim()!==''&&String(r[mk]).trim()!=='-';
     });
-    renderHeaders();
-    renderTable();
+    allTabData['iPhone']={headers:currentHeaders,rows:products};
+    renderHeaders(); renderTable();
     setSync('ok','ซิงค์กับ Google Sheets แล้ว · '+new Date().toLocaleTimeString('th-TH'));
-  }catch(e){
-    setSync('err','โหลดไม่ได้ — '+e.message);
-  }
+  }catch(e){setSync('err','โหลดไม่ได้ — '+e.message);}
   icon.classList.remove('spinning');
 }
+
+// ======== GLOBAL SEARCH ========
+async function doGlobalSearch(){
+  const q=document.getElementById('gsearch-input').value.trim();
+  if(!q)return;
+  const btn=document.getElementById('gsearch-btn');
+  btn.disabled=true;
+  btn.innerHTML='<i class="ti ti-loader spinning"></i> กำลังค้นหา...';
+
+  // แสดง progress bar
+  const bar=document.getElementById('gload-bar');
+  const fill=document.getElementById('gload-fill');
+  bar.classList.add('show');
+  fill.style.width='0%';
+
+  // โหลดทุก tab ที่ยังไม่มีใน cache
+  const tabsToLoad=allTabs.filter(t=>!allTabData[t]);
+  for(let i=0;i<tabsToLoad.length;i++){
+    const t=tabsToLoad[i];
+    fill.style.width=Math.round(((i+1)/tabsToLoad.length)*80)+'%';
+    try{
+      const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(t));
+      const json=await res.json();
+      const mk=modelKey(t);
+      const hdrs=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+      const rows=(json.data||[]).filter(r=>{
+        const v=r[mk];
+        return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
+      });
+      allTabData[t]={headers:hdrs,rows};
+    }catch(e){/* skip */}
+  }
+  fill.style.width='100%';
+  setTimeout(()=>bar.classList.remove('show'),500);
+
+  // ค้นหาในทุก tab
+  const ql=q.toLowerCase();
+  let totalFound=0;
+  const sections=[];
+
+  for(const tab of allTabs){
+    const d=allTabData[tab];
+    if(!d) continue;
+    const mk=modelKey(tab);
+    const matched=d.rows.filter(r=>String(r[mk]||'').toLowerCase().includes(ql));
+    if(!matched.length) continue;
+    totalFound+=matched.length;
+    const pks=d.headers.filter(h=>h&&h!==mk&&String(h).trim()!=='');
+
+    const rows=matched.map(p=>{
+      const modelVal=String(p[mk]||'').replace(/^-\s*/,'');
+      const cells=pks.map(h=>{
+        const v=fmt(p[h]);
+        return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';
+      }).join('');
+      return `<tr><td style="font-weight:600">${highlight(modelVal,q)}</td>${cells}</tr>`;
+    }).join('');
+
+    sections.push(`
+      <div class="tab-section">
+        <div class="tab-section-hdr">
+          <span class="tab-badge">
+            <i class="ti ti-table" style="font-size:12px"></i>
+            ${tab.trim()}
+            <span class="tab-badge-count">${matched.length}</span>
+          </span>
+          <button class="goto-tab-btn" onclick="switchTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
+            <i class="ti ti-arrow-right" style="font-size:11px"></i> ไปที่ Tab นี้
+          </button>
+        </div>
+        <div class="tbl-outer" style="max-height:none">
+          <table class="tbl">
+            <thead><tr>
+              <th>${mk}</th>
+              ${pks.map(h=>'<th>'+h+'</th>').join('')}
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      </div>
+    `);
+  }
+
+  // แสดงผล
+  const resultEl=document.getElementById('gsearch-results');
+  if(totalFound===0){
+    resultEl.innerHTML=`
+      <div class="no-result">
+        <i class="ti ti-search-off"></i>
+        <p>ไม่พบ "<strong>${q}</strong>" ในทุก Tab</p>
+      </div>`;
+  }else{
+    resultEl.innerHTML=`
+      <div class="gsearch-summary">
+        <span>ผลการค้นหา "<strong>${q}</strong>"</span>
+        <span class="found-pill">พบ ${totalFound} รายการ ใน ${sections.length} Tab</span>
+      </div>
+      ${sections.join('')}`;
+  }
+
+  // สลับโหมด
+  document.getElementById('tab-view').style.display='none';
+  document.getElementById('toolbar').style.display='none';
+  document.getElementById('sbar').style.display='none';
+  resultEl.style.display='';
+  document.getElementById('gclear-btn').style.display='';
+
+  btn.disabled=false;
+  btn.innerHTML='<i class="ti ti-search"></i> ค้นหา';
+}
+
+function clearGlobalSearch(focusInput=true){
+  document.getElementById('gsearch-results').style.display='none';
+  document.getElementById('tab-view').style.display='';
+  document.getElementById('toolbar').style.display='';
+  document.getElementById('sbar').style.display='';
+  document.getElementById('gclear-btn').style.display='none';
+  if(focusInput){
+    document.getElementById('gsearch-input').value='';
+    document.getElementById('gsearch-input').focus();
+  }
+}
+// ================================
 
 function handleAdminBtn(){
   if(isAdmin){
@@ -376,8 +503,7 @@ function doLogin(){
   const u=document.getElementById('l-user').value.trim();
   const p=document.getElementById('l-pass').value;
   if(u===ADMIN_USER&&p===ADMIN_PASS){
-    isAdmin=true;
-    closeLogin();
+    isAdmin=true; closeLogin();
     document.getElementById('admin-btn').classList.add('active');
     document.getElementById('admin-txt').textContent='ออกจากระบบ';
     document.getElementById('add-panel').style.display='';
@@ -391,38 +517,25 @@ async function addProduct(){
   const model=document.getElementById('f-model').value.trim();
   const col=document.getElementById('f-col').value;
   const price=document.getElementById('f-price').value;
-  if(!model||!price) return;
-
+  if(!model||!price)return;
   const btn=document.getElementById('save-btn');
   const msg=document.getElementById('smsg');
   btn.disabled=true;
   msg.className='smsg wait';
   msg.innerHTML='<i class="ti ti-loader spinning"></i> กำลังบันทึก...';
-
   const mk=modelKey(currentTab);
   try{
-    // ส่งข้อมูลไปยัง Apps Script
-    await fetch(GAS_URL,{
-      method:'POST',
-      mode:'no-cors',
-      body:JSON.stringify({action:'add',tab:currentTab,modelKey:mk,model,priceCol:col,price})
-    });
-
-    // รอ 2 วิ ให้ Sheets บันทึกเสร็จก่อนดึงข้อมูลใหม่
+    await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:currentTab,modelKey:mk,model,priceCol:col,price})});
     msg.innerHTML='<i class="ti ti-loader spinning"></i> รอ Sheets บันทึก...';
     await new Promise(r=>setTimeout(r,2000));
-
-    // โหลดข้อมูลใหม่จาก Sheets
-    msg.innerHTML='<i class="ti ti-loader spinning"></i> กำลังโหลดข้อมูลใหม่...';
+    // clear cache ของ tab นี้ เพื่อให้โหลดใหม่
+    delete allTabData[currentTab];
     await loadTab(currentTab);
-
-    // เคลียร์ฟอร์ม
     document.getElementById('f-model').value='';
     document.getElementById('f-price').value='';
     msg.className='smsg ok';
-    msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึก "'+model+'" สำเร็จ และโหลดข้อมูลใหม่แล้ว';
-    setTimeout(()=>{ msg.innerHTML=''; msg.className='smsg'; },5000);
-
+    msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึก "'+model+'" สำเร็จ';
+    setTimeout(()=>{msg.innerHTML='';msg.className='smsg';},5000);
   }catch(e){
     msg.className='smsg err';
     msg.innerHTML='<i class="ti ti-alert-circle"></i> ข้อผิดพลาด: '+e.message;
@@ -434,19 +547,13 @@ async function delProduct(idx){
   const p=products[idx];
   const mk=modelKey(currentTab);
   const name=String(p[mk]||'').replace(/^-\s*/,'');
-  if(!confirm('ลบ "'+name+'" ออกจาก Google Sheets?')) return;
+  if(!confirm('ลบ "'+name+'" ออกจาก Google Sheets?'))return;
   try{
-    await fetch(GAS_URL,{
-      method:'POST',
-      mode:'no-cors',
-      body:JSON.stringify({action:'delete',tab:currentTab,modelKey:mk,model:p[mk]})
-    });
-    // รอ Sheets ลบเสร็จแล้วโหลดใหม่
+    await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:currentTab,modelKey:mk,model:p[mk]})});
     await new Promise(r=>setTimeout(r,2000));
+    delete allTabData[currentTab];
     await loadTab(currentTab);
-  }catch(e){
-    alert('ลบไม่สำเร็จ: '+e.message);
-  }
+  }catch(e){alert('ลบไม่สำเร็จ: '+e.message);}
 }
 
 initLoad();
