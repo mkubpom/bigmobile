@@ -10,7 +10,6 @@
 body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:100vh}
 #app{max-width:1200px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
 
-/* HEADER */
 .hdr{background:#0f172a;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100}
 .hdr-logo{display:flex;align-items:center;gap:8px}
 .dot{width:8px;height:8px;border-radius:50%}
@@ -22,7 +21,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .admin-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
 .admin-btn.active{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
 
-/* ADD PANEL */
 .add-panel{background:#fffbeb;border-bottom:1px solid #fde68a;padding:12px 20px}
 .add-panel h3{font-size:12px;font-weight:600;color:#92400e;margin-bottom:10px;display:flex;align-items:center;gap:5px}
 .fg{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
@@ -38,39 +36,36 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .smsg.err{color:#dc2626}
 .smsg.wait{color:#92400e}
 
-/* GLOBAL SEARCH BAR */
+/* GLOBAL SEARCH */
 .gsearch-wrap{padding:12px 20px;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border-bottom:.5px solid #1e3a5f}
-.gsearch-label{font-size:10px;font-weight:600;color:#7dd3fc;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.gsearch-label{font-size:10px;font-weight:600;color:#7dd3fc;letter-spacing:.5px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between}
+.preload-status{font-size:10px;color:#475569;display:flex;align-items:center;gap:5px}
+.preload-status.ready{color:#22c55e}
 .gsearch-row{display:flex;gap:8px;align-items:center}
 .gsearch-input{flex:1;padding:10px 14px 10px 38px;border:1.5px solid #334155;border-radius:10px;font-size:14px;color:#0f172a;font-family:inherit;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center;transition:border-color .15s}
 .gsearch-input:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.2)}
 .gsearch-btn{padding:10px 20px;background:#0ea5e9;color:#fff;border:none;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;white-space:nowrap;transition:background .15s}
 .gsearch-btn:hover{background:#0284c7}
-.gsearch-btn:disabled{background:#334155;cursor:not-allowed}
 .gclear-btn{padding:10px 14px;background:none;border:1.5px solid #475569;color:#94a3b8;border-radius:10px;font-size:12px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s}
 .gclear-btn:hover{border-color:#94a3b8;color:#e2e8f0}
-.gload-bar{margin-top:8px;height:3px;background:#1e3a5f;border-radius:100px;overflow:hidden;display:none}
-.gload-bar.show{display:block}
-.gload-fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);border-radius:100px;width:0%;transition:width .3s}
 
-/* TABS */
+/* preload progress */
+.preload-bar{margin-top:8px;height:2px;background:#1e3a5f;border-radius:100px;overflow:hidden}
+.preload-fill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);border-radius:100px;width:0%;transition:width .2s}
+
 .tabs-row{display:flex;gap:2px;padding:10px 20px 0;background:#f8fafc;border-bottom:.5px solid #e2e8f0;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#cbd5e1 transparent}
 .tabs-row::-webkit-scrollbar{height:3px}
 .tabs-row::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:10px}
 .tab{padding:7px 13px;border-radius:6px 6px 0 0;font-size:12px;cursor:pointer;border:.5px solid transparent;color:#64748b;background:none;white-space:nowrap;font-weight:500;transition:all .15s;font-family:inherit}
 .tab:hover{background:#e2e8f0;color:#1e293b}
 .tab.on{background:#fff;border-color:#e2e8f0;border-bottom-color:#fff;color:#0ea5e9;font-weight:600}
-.tab-search-mode{background:#fef9c3;border-color:#fde68a;color:#92400e;font-weight:600}
-.tab-search-mode.on{background:#fef08a;border-color:#ca8a04;color:#713f12}
 
-/* TOOLBAR */
 .toolbar{display:flex;gap:8px;padding:10px 20px;background:#fff;border-bottom:.5px solid #e2e8f0;align-items:center}
 .srch{flex:1;padding:9px 12px 9px 36px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#1e293b;font-family:inherit;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 12px center}
 .srch:focus{outline:none;border-color:#0ea5e9;background-color:#fff;box-shadow:0 0 0 2px #bfdbfe}
 .ref-btn{display:flex;align-items:center;gap:5px;padding:8px 14px;border:.5px solid #e2e8f0;border-radius:8px;font-size:12px;color:#475569;background:#f8fafc;cursor:pointer;transition:all .15s;font-family:inherit;white-space:nowrap}
 .ref-btn:hover{border-color:#0ea5e9;color:#0ea5e9;background:#eff6ff}
 
-/* STATUS */
 .sbar{padding:6px 20px;font-size:11px;color:#64748b;background:#f8fafc;border-bottom:.5px solid #e2e8f0;display:flex;justify-content:space-between;align-items:center}
 .sdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
 .sdot.ok{background:#22c55e}
@@ -80,7 +75,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 @keyframes spin{to{transform:rotate(360deg)}}
 .spinning{animation:spin 1s linear infinite;display:inline-block}
 
-/* GLOBAL SEARCH RESULTS */
+/* SEARCH RESULTS */
 .gsearch-results{padding:16px 20px}
 .gsearch-summary{font-size:13px;color:#475569;margin-bottom:16px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .gsearch-summary strong{color:#0f172a}
@@ -91,10 +86,12 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .tab-badge-count{background:#0ea5e9;color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:100px}
 .goto-tab-btn{margin-left:auto;font-size:11px;color:#0ea5e9;background:none;border:.5px solid #bfdbfe;padding:3px 10px;border-radius:6px;cursor:pointer;font-family:inherit;transition:all .15s}
 .goto-tab-btn:hover{background:#eff6ff;border-color:#0ea5e9}
+.no-result{text-align:center;padding:40px 20px;color:#94a3b8}
+.no-result i{font-size:40px;display:block;margin-bottom:10px;opacity:.3}
+.no-result p{font-size:14px}
 
 /* TABLE */
 .tbl-outer{overflow:auto;max-height:calc(100vh - 240px);-webkit-overflow-scrolling:touch}
-.tbl-outer.search-mode{max-height:none;overflow:visible}
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
 .tbl thead th{position:sticky;top:0;z-index:10;padding:9px 16px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap;box-shadow:0 1px 0 #e2e8f0}
 .tbl thead th:first-child{position:sticky;left:0;z-index:15;background:#f8fafc}
@@ -110,7 +107,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
 .empty-row i{font-size:32px;display:block;margin-bottom:8px;opacity:.4}
 
-/* LOGIN */
 .login-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:200;padding:20px}
 .login-card{background:#fff;border-radius:14px;border:.5px solid #e2e8f0;padding:30px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .login-card h2{font-size:16px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
@@ -124,9 +120,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .lbcancel{padding:9px 16px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
 .lbgo{flex:1;padding:9px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
 .lbgo:hover{background:#0284c7}
-.no-result{text-align:center;padding:40px 20px;color:#94a3b8}
-.no-result i{font-size:40px;display:block;margin-bottom:10px;opacity:.3}
-.no-result p{font-size:14px}
+
 @media(max-width:600px){
   .hdr-name{font-size:14px}
   .tbl thead th,.tbl td{padding:8px 10px;font-size:12px}
@@ -139,7 +133,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 <body>
 <div id="app">
 
-<!-- HEADER -->
 <div class="hdr">
   <div class="hdr-logo">
     <div class="dot" style="background:#0ea5e9"></div>
@@ -155,7 +148,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- ADD PANEL -->
 <div id="add-panel" class="add-panel" style="display:none">
   <h3><i class="ti ti-plus"></i> เพิ่มสินค้าใหม่ → บันทึกไปยัง Google Sheets</h3>
   <div class="fg">
@@ -167,40 +159,39 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   <div class="smsg" id="smsg"></div>
 </div>
 
-<!-- GLOBAL SEARCH BAR -->
 <div class="gsearch-wrap">
-  <div class="gsearch-label"><i class="ti ti-world-search" style="font-size:13px"></i> ค้นหาทุก Tab พร้อมกัน</div>
+  <div class="gsearch-label">
+    <span><i class="ti ti-world-search" style="font-size:13px"></i> ค้นหาทุก Tab พร้อมกัน</span>
+    <span class="preload-status" id="preload-status">
+      <i class="ti ti-loader spinning" style="font-size:11px"></i> กำลังโหลดข้อมูลทุก Tab...
+    </span>
+  </div>
   <div class="gsearch-row">
-    <input class="gsearch-input" id="gsearch-input" placeholder="พิมพ์ชื่อรุ่นที่ต้องการค้นหา เช่น Samsung S24, iPhone 15 Pro..." onkeydown="if(event.key==='Enter')doGlobalSearch()"/>
+    <input class="gsearch-input" id="gsearch-input" placeholder="พิมพ์ชื่อรุ่น เช่น Samsung S24, iPhone 15 Pro..." onkeydown="if(event.key==='Enter')doGlobalSearch()"/>
     <button class="gsearch-btn" id="gsearch-btn" onclick="doGlobalSearch()"><i class="ti ti-search"></i> ค้นหา</button>
     <button class="gclear-btn" id="gclear-btn" onclick="clearGlobalSearch()" style="display:none"><i class="ti ti-x"></i> ล้าง</button>
   </div>
-  <div class="gload-bar" id="gload-bar"><div class="gload-fill" id="gload-fill"></div></div>
+  <div class="preload-bar"><div class="preload-fill" id="preload-fill"></div></div>
 </div>
 
-<!-- TABS -->
 <div class="tabs-row" id="tabs-row"></div>
 
-<!-- TOOLBAR (single-tab mode) -->
 <div class="toolbar" id="toolbar">
   <input class="srch" id="srch" placeholder="กรองในแท็บนี้..." oninput="renderTable()"/>
-  <button class="ref-btn" onclick="loadTab(currentTab)">
+  <button class="ref-btn" onclick="reloadCurrentTab()">
     <i class="ti ti-refresh" id="ref-icon"></i> โหลดใหม่
   </button>
 </div>
 
-<!-- STATUS BAR -->
 <div class="sbar" id="sbar">
   <div><span class="sdot ld" id="sdot"></span><span id="stxt">กำลังโหลด...</span></div>
   <span id="rcnt"></span>
 </div>
 
-<!-- GLOBAL SEARCH RESULTS (hidden by default) -->
 <div id="gsearch-results" class="gsearch-results" style="display:none"></div>
 
-<!-- SINGLE TAB TABLE -->
 <div id="tab-view">
-  <div class="tbl-outer" id="tbl-outer">
+  <div class="tbl-outer">
     <table class="tbl">
       <thead id="thead"></thead>
       <tbody id="tbody"></tbody>
@@ -208,7 +199,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- LOGIN -->
 <div id="login-overlay" class="login-overlay" style="display:none">
   <div class="login-card">
     <h2><i class="ti ti-lock"></i>เข้าสู่ระบบแอดมิน</h2>
@@ -242,8 +232,9 @@ const MODEL_KEY={
 };
 
 let isAdmin=false, currentTab='', allTabs=[], products=[], currentHeaders=[];
-// cache ข้อมูลทุก tab สำหรับ global search
-let allTabData={};
+let allTabData={};         // cache ทุก tab
+let preloadDone=false;     // flag ว่า preload เสร็จแล้วหรือยัง
+let preloadPromise=null;   // Promise ของการ preload
 
 function modelKey(tab){return MODEL_KEY[tab]||MODEL_KEY[tab.trim()]||'รุ่น';}
 
@@ -260,15 +251,25 @@ function fmt(v){
 }
 
 function highlight(text,q){
-  if(!q)return text;
+  if(!q)return String(text);
   const re=new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
   return String(text).replace(re,'<span class="hl">$1</span>');
+}
+
+function parseTabData(json, tab){
+  const mk=modelKey(tab);
+  const hdrs=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
+  const rows=(json.data||[]).filter(r=>{
+    const v=r[mk];
+    return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
+  });
+  return {headers:hdrs, rows};
 }
 
 function buildTabs(tabs){
   allTabs=tabs;
   document.getElementById('tabs-row').innerHTML=tabs.map((t,i)=>
-    `<button class="tab${i===0?' on':''}" id="tab-btn-${i}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
+    `<button class="tab${i===0?' on':''}" onclick="switchTab('${t.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">${t.trim()}</button>`
   ).join('');
 }
 
@@ -283,9 +284,8 @@ function renderHeaders(){
   const pks=currentHeaders.filter(h=>h&&h!==mk&&String(h).trim()!=='');
   document.getElementById('thead').innerHTML=
     '<tr><th>'+mk+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('')+(isAdmin?'<th style="width:50px">ลบ</th>':'')+' </tr>';
-  if(isAdmin){
+  if(isAdmin)
     document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
-  }
 }
 
 function renderTable(){
@@ -313,84 +313,119 @@ function renderTable(){
   }).join('');
 }
 
+async function fetchTab(tab){
+  const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(tab));
+  const json=await res.json();
+  return {tab, json};
+}
+
+// โหลดทุก tab พร้อมกัน (parallel) ตั้งแต่เปิดหน้า
+async function preloadAllTabs(tabs){
+  const fill=document.getElementById('preload-fill');
+  const statusEl=document.getElementById('preload-status');
+  let done=0;
+
+  // ยิง fetch ทั้งหมดพร้อมกันเลย
+  const promises=tabs.map(tab=>
+    fetchTab(tab)
+      .then(({tab,json})=>{
+        allTabData[tab]=parseTabData(json,tab);
+        done++;
+        fill.style.width=Math.round((done/tabs.length)*100)+'%';
+      })
+      .catch(()=>{ done++; fill.style.width=Math.round((done/tabs.length)*100)+'%'; })
+  );
+
+  await Promise.all(promises);
+
+  preloadDone=true;
+  statusEl.className='preload-status ready';
+  statusEl.innerHTML='<i class="ti ti-circle-check" style="font-size:11px"></i> โหลดครบ '+tabs.length+' Tab แล้ว — ค้นหาได้ทันที';
+  fill.style.width='100%';
+}
+
 async function loadTab(tab){
   currentTab=tab;
   const icon=document.getElementById('ref-icon');
   icon.classList.add('spinning');
   setSync('ld','กำลังโหลด '+tab.trim()+'...');
   try{
-    const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(tab));
-    const json=await res.json();
-    if(json.tabs&&!allTabs.length) buildTabs(json.tabs);
-    const mk=modelKey(tab);
-    currentHeaders=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
-    products=(json.data||[]).filter(r=>{
-      const v=r[mk];
-      return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
-    });
-    allTabData[tab]={headers:currentHeaders,rows:products};
+    // ถ้ามีใน cache แล้ว ใช้เลย ไม่ต้องโหลดใหม่
+    if(allTabData[tab]){
+      currentHeaders=allTabData[tab].headers;
+      products=allTabData[tab].rows;
+    } else {
+      const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(tab));
+      const json=await res.json();
+      if(json.tabs&&!allTabs.length) buildTabs(json.tabs);
+      const d=parseTabData(json,tab);
+      allTabData[tab]=d;
+      currentHeaders=d.headers;
+      products=d.rows;
+    }
     renderHeaders(); renderTable();
     setSync('ok','ซิงค์แล้ว · '+tab.trim()+' · '+new Date().toLocaleTimeString('th-TH'));
   }catch(e){setSync('err','โหลดไม่ได้: '+e.message);}
   icon.classList.remove('spinning');
 }
 
+async function reloadCurrentTab(){
+  // บังคับโหลดใหม่จาก Sheets (ล้าง cache ก่อน)
+  delete allTabData[currentTab];
+  await loadTab(currentTab);
+}
+
 async function initLoad(){
-  setSync('ld','กำลังโหลดข้อมูลจาก Google Sheets...');
+  setSync('ld','กำลังโหลด...');
   const icon=document.getElementById('ref-icon');
   icon.classList.add('spinning');
   try{
+    // โหลด iPhone ก่อน (แสดงผลทันที)
     const res=await fetch(GAS_URL+'?tab=iPhone');
     const json=await res.json();
-    if(json.tabs) buildTabs(json.tabs);
+    const tabs=json.tabs||[];
+    buildTabs(tabs);
     currentTab='iPhone';
-    currentHeaders=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
-    products=(json.data||[]).filter(r=>{
-      const mk=modelKey('iPhone');
-      return r[mk]!==undefined&&String(r[mk]).trim()!==''&&String(r[mk]).trim()!=='-';
-    });
-    allTabData['iPhone']={headers:currentHeaders,rows:products};
+    const d=parseTabData(json,'iPhone');
+    allTabData['iPhone']=d;
+    currentHeaders=d.headers;
+    products=d.rows;
     renderHeaders(); renderTable();
-    setSync('ok','ซิงค์กับ Google Sheets แล้ว · '+new Date().toLocaleTimeString('th-TH'));
-  }catch(e){setSync('err','โหลดไม่ได้ — '+e.message);}
-  icon.classList.remove('spinning');
+    setSync('ok','ซิงค์แล้ว · iPhone · '+new Date().toLocaleTimeString('th-TH'));
+    icon.classList.remove('spinning');
+
+    // จากนั้น preload ที่เหลือทุก tab พร้อมกันเลยใน background
+    const remaining=tabs.filter(t=>t!=='iPhone');
+    preloadPromise=preloadAllTabs(remaining);
+  }catch(e){
+    setSync('err','โหลดไม่ได้ — '+e.message);
+    icon.classList.remove('spinning');
+  }
 }
 
-// ======== GLOBAL SEARCH ========
-async function doGlobalSearch(){
+// ค้นหาทันทีจาก cache (ไม่ต้องรอ fetch)
+function doGlobalSearch(){
   const q=document.getElementById('gsearch-input').value.trim();
-  if(!q)return;
-  const btn=document.getElementById('gsearch-btn');
-  btn.disabled=true;
-  btn.innerHTML='<i class="ti ti-loader spinning"></i> กำลังค้นหา...';
+  if(!q) return;
 
-  // แสดง progress bar
-  const bar=document.getElementById('gload-bar');
-  const fill=document.getElementById('gload-fill');
-  bar.classList.add('show');
-  fill.style.width='0%';
-
-  // โหลดทุก tab ที่ยังไม่มีใน cache
-  const tabsToLoad=allTabs.filter(t=>!allTabData[t]);
-  for(let i=0;i<tabsToLoad.length;i++){
-    const t=tabsToLoad[i];
-    fill.style.width=Math.round(((i+1)/tabsToLoad.length)*80)+'%';
-    try{
-      const res=await fetch(GAS_URL+'?tab='+encodeURIComponent(t));
-      const json=await res.json();
-      const mk=modelKey(t);
-      const hdrs=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];
-      const rows=(json.data||[]).filter(r=>{
-        const v=r[mk];
-        return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';
-      });
-      allTabData[t]={headers:hdrs,rows};
-    }catch(e){/* skip */}
+  // ถ้า preload ยังไม่เสร็จ แจ้งเตือน
+  if(!preloadDone){
+    const loaded=Object.keys(allTabData).length;
+    const total=allTabs.length||17;
+    document.getElementById('gsearch-results').innerHTML=`
+      <div class="no-result">
+        <i class="ti ti-loader spinning" style="font-size:36px;opacity:.5"></i>
+        <p style="margin-top:12px">กำลังโหลดข้อมูล ${loaded}/${total} Tab<br>
+        <span style="font-size:12px;color:#cbd5e1">กรุณารอสักครู่แล้วลองใหม่</span></p>
+      </div>`;
+    document.getElementById('tab-view').style.display='none';
+    document.getElementById('toolbar').style.display='none';
+    document.getElementById('sbar').style.display='none';
+    document.getElementById('gsearch-results').style.display='';
+    document.getElementById('gclear-btn').style.display='';
+    return;
   }
-  fill.style.width='100%';
-  setTimeout(()=>bar.classList.remove('show'),500);
 
-  // ค้นหาในทุก tab
   const ql=q.toLowerCase();
   let totalFound=0;
   const sections=[];
@@ -421,49 +456,32 @@ async function doGlobalSearch(){
             ${tab.trim()}
             <span class="tab-badge-count">${matched.length}</span>
           </span>
-          <button class="goto-tab-btn" onclick="switchTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">
+          <button class="goto-tab-btn" onclick="switchTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')" >
             <i class="ti ti-arrow-right" style="font-size:11px"></i> ไปที่ Tab นี้
           </button>
         </div>
-        <div class="tbl-outer" style="max-height:none">
+        <div style="overflow-x:auto">
           <table class="tbl">
-            <thead><tr>
-              <th>${mk}</th>
-              ${pks.map(h=>'<th>'+h+'</th>').join('')}
-            </tr></thead>
+            <thead><tr><th>${mk}</th>${pks.map(h=>'<th>'+h+'</th>').join('')}</tr></thead>
             <tbody>${rows}</tbody>
           </table>
         </div>
-      </div>
-    `);
+      </div>`);
   }
 
-  // แสดงผล
   const resultEl=document.getElementById('gsearch-results');
-  if(totalFound===0){
-    resultEl.innerHTML=`
-      <div class="no-result">
-        <i class="ti ti-search-off"></i>
-        <p>ไม่พบ "<strong>${q}</strong>" ในทุก Tab</p>
-      </div>`;
-  }else{
-    resultEl.innerHTML=`
-      <div class="gsearch-summary">
+  resultEl.innerHTML=totalFound===0
+    ?`<div class="no-result"><i class="ti ti-search-off"></i><p>ไม่พบ "<strong>${q}</strong>" ในทุก Tab</p></div>`
+    :`<div class="gsearch-summary">
         <span>ผลการค้นหา "<strong>${q}</strong>"</span>
         <span class="found-pill">พบ ${totalFound} รายการ ใน ${sections.length} Tab</span>
-      </div>
-      ${sections.join('')}`;
-  }
+      </div>${sections.join('')}`;
 
-  // สลับโหมด
   document.getElementById('tab-view').style.display='none';
   document.getElementById('toolbar').style.display='none';
   document.getElementById('sbar').style.display='none';
   resultEl.style.display='';
   document.getElementById('gclear-btn').style.display='';
-
-  btn.disabled=false;
-  btn.innerHTML='<i class="ti ti-search"></i> ค้นหา';
 }
 
 function clearGlobalSearch(focusInput=true){
@@ -474,10 +492,8 @@ function clearGlobalSearch(focusInput=true){
   document.getElementById('gclear-btn').style.display='none';
   if(focusInput){
     document.getElementById('gsearch-input').value='';
-    document.getElementById('gsearch-input').focus();
   }
 }
-// ================================
 
 function handleAdminBtn(){
   if(isAdmin){
@@ -517,7 +533,7 @@ async function addProduct(){
   const model=document.getElementById('f-model').value.trim();
   const col=document.getElementById('f-col').value;
   const price=document.getElementById('f-price').value;
-  if(!model||!price)return;
+  if(!model||!price) return;
   const btn=document.getElementById('save-btn');
   const msg=document.getElementById('smsg');
   btn.disabled=true;
@@ -528,7 +544,6 @@ async function addProduct(){
     await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:currentTab,modelKey:mk,model,priceCol:col,price})});
     msg.innerHTML='<i class="ti ti-loader spinning"></i> รอ Sheets บันทึก...';
     await new Promise(r=>setTimeout(r,2000));
-    // clear cache ของ tab นี้ เพื่อให้โหลดใหม่
     delete allTabData[currentTab];
     await loadTab(currentTab);
     document.getElementById('f-model').value='';
@@ -547,7 +562,7 @@ async function delProduct(idx){
   const p=products[idx];
   const mk=modelKey(currentTab);
   const name=String(p[mk]||'').replace(/^-\s*/,'');
-  if(!confirm('ลบ "'+name+'" ออกจาก Google Sheets?'))return;
+  if(!confirm('ลบ "'+name+'" ออกจาก Google Sheets?')) return;
   try{
     await fetch(GAS_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:currentTab,modelKey:mk,model:p[mk]})});
     await new Promise(r=>setTimeout(r,2000));
