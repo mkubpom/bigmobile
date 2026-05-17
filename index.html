@@ -7,43 +7,82 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:100vh}
-#app{max-width:1200px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08)}
+html,body{height:100%}
+body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 
-/* NAVBAR */
-.navbar{background:#0f172a;position:sticky;top:0;z-index:200}
-.navbar-inner{display:flex;align-items:center;height:54px;padding:0 20px;gap:0}
+/* ── LAYOUT: navbar fixed, content scrolls ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;
+  background:#0f172a;
+  z-index:1000;
+  height:54px;
+  /* สำคัญ: ไม่มี overflow hidden/auto เลย */
+}
+.navbar-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;height:54px;padding:0 20px;
+}
+#app{
+  max-width:1200px;margin:0 auto;background:#fff;
+  min-height:100vh;
+  box-shadow:0 0 40px rgba(0,0,0,.08);
+  padding-top:54px; /* เผื่อ fixed navbar */
+}
+
+/* ── NAVBAR LOGO ── */
 .nav-logo{display:flex;align-items:center;gap:8px;margin-right:20px;flex-shrink:0;cursor:pointer}
 .dot{width:8px;height:8px;border-radius:50%}
 .nav-logo-name{color:#fff;font-size:17px;font-weight:700;letter-spacing:-.2px}
 .nav-logo-name em{color:#0ea5e9;font-style:normal}
-.nav-menu{display:flex;align-items:center;gap:2px;flex:1;overflow-x:auto}
+
+/* ── NAV MENU ── */
+.nav-menu{display:flex;align-items:center;gap:2px;flex:1}
 .nav-item{position:relative;flex-shrink:0}
-.nav-link{display:flex;align-items:center;gap:5px;padding:6px 12px;color:#94a3b8;font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;height:38px;white-space:nowrap}
+.nav-link{
+  display:flex;align-items:center;gap:5px;
+  padding:6px 12px;color:#94a3b8;font-size:12px;font-weight:500;
+  border-radius:7px;cursor:pointer;transition:all .15s;
+  font-family:inherit;background:none;border:none;height:38px;white-space:nowrap
+}
 .nav-link:hover,.nav-link.cur{color:#fff;background:rgba(255,255,255,.08)}
 .chevron{font-size:11px;transition:transform .2s;display:inline-block}
 .nav-item.open .chevron{transform:rotate(180deg)}
 
-/* DROPDOWN — ใช้ visibility แทน display เพื่อ transition */
+/* ── DROPDOWN — แก้ปัญหา clip ── */
 .dropdown{
-  position:absolute;top:calc(100% + 4px);left:0;
-  background:#fff;border-radius:10px;border:.5px solid #e2e8f0;
-  box-shadow:0 8px 32px rgba(0,0,0,.15);min-width:240px;
-  padding:6px;z-index:9999;max-height:80vh;overflow-y:auto;
-  opacity:0;visibility:hidden;transform:translateY(-6px);
+  position:fixed; /* fixed แทน absolute เพื่อออกจาก overflow context ทั้งหมด */
+  top:54px;       /* ติดกับ navbar */
+  background:#fff;
+  border-radius:0 0 12px 12px;
+  border:.5px solid #e2e8f0;
+  border-top:none;
+  box-shadow:0 12px 40px rgba(0,0,0,.15);
+  min-width:240px;
+  padding:6px 6px 10px;
+  z-index:999;
+  max-height:calc(100vh - 70px);
+  overflow-y:auto;
+  /* animation */
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-4px);
   transition:opacity .15s,transform .15s,visibility .15s;
   pointer-events:none;
 }
 .nav-item.open .dropdown{
-  opacity:1;visibility:visible;transform:translateY(0);
-  pointer-events:auto;
+  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
 }
-.dd-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:7px;color:#374151;font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;width:100%;text-align:left}
+.dd-item{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 14px;border-radius:7px;color:#374151;font-size:13px;
+  cursor:pointer;transition:all .15s;font-family:inherit;
+  background:none;border:none;width:100%;text-align:left;
+}
 .dd-item:hover{background:#f0f9ff;color:#0ea5e9}
 .dd-item i{font-size:14px;color:#94a3b8;flex-shrink:0}
 .dd-item:hover i{color:#0ea5e9}
-.dd-sep{height:.5px;background:#f1f5f9;margin:4px 0}
-.dd-label{padding:6px 12px 3px;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px}
+.dd-sep{height:.5px;background:#f1f5f9;margin:5px 0}
+.dd-label{padding:7px 14px 3px;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px}
 
 .nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
 .stat-pill{background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 10px;border-radius:100px;border:.5px solid #334155}
@@ -51,15 +90,15 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .admin-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
 .admin-btn.on{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
 
-/* PAGES */
+/* ── PAGES ── */
 .page{display:none}.page.active{display:block}
 
-/* HOME */
+/* ── HOME ── */
 .home-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0c4a6e 100%);padding:56px 28px;text-align:center;color:#fff}
 .home-hero h1{font-size:26px;font-weight:700;margin-bottom:6px}
 .home-hero h1 em{color:#0ea5e9;font-style:normal}
 .home-hero p{font-size:14px;color:#94a3b8;margin-bottom:28px}
-.home-search-wrap{max-width:560px;margin:0 auto;display:flex;gap:8px}
+.home-search-wrap{max-width:540px;margin:0 auto;display:flex;gap:8px}
 .home-search-wrap input{flex:1;padding:11px 16px;border-radius:10px;border:1.5px solid #334155;background:#1e293b;color:#fff;font-size:14px;font-family:inherit}
 .home-search-wrap input::placeholder{color:#64748b}
 .home-search-wrap input:focus{outline:none;border-color:#0ea5e9}
@@ -71,7 +110,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .home-cat i{font-size:26px;display:block;margin-bottom:7px;color:#7dd3fc}
 .home-cat span{font-size:12px;color:#e2e8f0;font-weight:500}
 
-/* PRICE PAGE */
+/* ── PRICE PAGE ── */
 .add-panel{background:#fffbeb;border-bottom:1px solid #fde68a;padding:12px 20px}
 .add-panel h3{font-size:12px;font-weight:600;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:5px}
 .fg{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
@@ -142,7 +181,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .del-btn:hover{opacity:1;background:#fee2e2;color:#dc2626}
 .empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
 
-/* CONTENT PAGES */
+/* ── CONTENT PAGES ── */
 .cpg{padding:28px 32px;max-width:900px;margin:0 auto}
 .phero{background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:14px;padding:32px 24px;text-align:center;color:#fff;margin-bottom:20px}
 .phero .hico{font-size:40px;display:block;margin-bottom:10px;opacity:.9}
@@ -169,7 +208,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .empty-cnt i{font-size:36px;display:block;margin-bottom:8px;opacity:.3}
 .loading-cnt{text-align:center;padding:40px;color:#94a3b8;font-size:13px}
 
-/* NOHON */
+/* ── NOHON ── */
 .upload-area{border:2px dashed #e2e8f0;border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:#f8fafc;margin-bottom:14px}
 .upload-area:hover,.upload-area.dv{border-color:#0ea5e9;background:#eff6ff}
 .upload-area i{font-size:32px;color:#94a3b8;display:block;margin-bottom:8px}
@@ -192,8 +231,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
 .clr-btn:hover{background:#fee2e2}
 .info-box{background:#eff6ff;border:.5px solid #bfdbfe;border-radius:10px;padding:14px 16px;font-size:13px;color:#1e40af;display:flex;align-items:center;gap:10px}
 
-/* LOGIN */
-.lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:500;padding:20px}
+/* ── LOGIN ── */
+.lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
 .lcard{background:#fff;border-radius:14px;border:.5px solid #e2e8f0;padding:30px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .lcard h2{font-size:16px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
 .lcard h2 i{color:#0ea5e9}
@@ -213,14 +252,14 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   .home-hero h1{font-size:20px}
   .home-cats{grid-template-columns:repeat(3,1fr)}
   .tbl thead th,.tbl td{padding:8px 10px;font-size:12px}
+  .nav-link span{display:none} /* ซ่อน text เหลือแค่ icon บน mobile */
 }
 </style>
 </head>
 <body>
-<div id="app">
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
+<!-- NAVBAR: fixed position, ไม่มี overflow clip -->
+<nav id="navbar">
   <div class="navbar-inner">
     <div class="nav-logo" onclick="gotoPage('home')">
       <div class="dot" style="background:#0ea5e9"></div>
@@ -229,12 +268,15 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
       <span class="nav-logo-name">Big<em>mobile</em></span>
     </div>
     <div class="nav-menu">
-      <!-- รายการสินค้า -->
+      <!-- รายการสินค้า dropdown -->
       <div class="nav-item" id="ni-products">
         <button class="nav-link" onclick="toggleDD('ni-products',event)">
-          <i class="ti ti-layout-grid"></i> รายการสินค้า <i class="ti ti-chevron-down chevron"></i>
+          <i class="ti ti-layout-grid"></i>
+          <span> รายการสินค้า</span>
+          <i class="ti ti-chevron-down chevron"></i>
         </button>
-        <div class="dropdown">
+        <!-- dropdown uses position:fixed — ไม่ถูก clip -->
+        <div class="dropdown" id="dd-products">
           <div class="dd-label">จอ / หน้าจอ</div>
           <button class="dd-item" onclick="goToTab('iPhone')"><i class="ti ti-brand-apple"></i>iPhone</button>
           <button class="dd-item" onclick="goToTab('IPad')"><i class="ti ti-device-ipad"></i>iPad</button>
@@ -258,23 +300,32 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
         </div>
       </div>
       <div class="nav-item">
-        <button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')"><i class="ti ti-tag"></i> ราคา NOHON</button>
+        <button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')">
+          <i class="ti ti-tag"></i><span> ราคา NOHON</span>
+        </button>
       </div>
       <div class="nav-item">
-        <button class="nav-link" id="nl-warranty" onclick="gotoPage('warranty')"><i class="ti ti-shield-check"></i> การรับประกัน</button>
+        <button class="nav-link" id="nl-warranty" onclick="gotoPage('warranty')">
+          <i class="ti ti-shield-check"></i><span> การรับประกัน</span>
+        </button>
       </div>
       <div class="nav-item">
-        <button class="nav-link" id="nl-contact" onclick="gotoPage('contact')"><i class="ti ti-message-circle"></i> ติดต่อสอบถาม</button>
+        <button class="nav-link" id="nl-contact" onclick="gotoPage('contact')">
+          <i class="ti ti-message-circle"></i><span> ติดต่อสอบถาม</span>
+        </button>
       </div>
     </div>
     <div class="nav-right">
       <span class="stat-pill" id="stat-pill" style="display:none">—</span>
       <button class="admin-btn" id="admin-btn" onclick="handleAdmin()">
-        <i class="ti ti-shield"></i><span id="admin-txt">แอดมิน</span>
+        <i class="ti ti-shield"></i><span id="admin-txt"> แอดมิน</span>
       </button>
     </div>
   </div>
 </nav>
+
+<!-- APP CONTENT -->
+<div id="app">
 
 <!-- HOME -->
 <div class="page active" id="page-home">
@@ -340,7 +391,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
     <div><span class="sdot ld" id="sdot"></span><span id="stxt">กำลังโหลด...</span></div>
     <span id="rcnt"></span>
   </div>
-
   <div id="gsres" class="gsres" style="display:none"></div>
   <div id="tab-view">
     <div class="tbl-outer">
@@ -349,19 +399,14 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- NOHON PAGE -->
+<!-- NOHON -->
 <div class="page" id="page-nohon">
   <div class="cpg">
-    <div class="phero">
-      <i class="ti ti-tag hico"></i>
-      <h1>ราคาสินค้า NOHON</h1>
-      <p>อัปโหลด PDF รายการราคา AI จะแปลงเป็นตารางให้อัตโนมัติ</p>
-    </div>
+    <div class="phero"><i class="ti ti-tag hico"></i><h1>ราคาสินค้า NOHON</h1><p>อัปโหลด PDF รายการราคา AI จะแปลงเป็นตารางให้อัตโนมัติ</p></div>
     <div id="nohon-admin" style="display:none">
       <div class="upload-area" id="upa" onclick="document.getElementById('pdfinput').click()"
            ondragover="event.preventDefault();this.classList.add('dv')"
-           ondragleave="this.classList.remove('dv')"
-           ondrop="dropPdf(event)">
+           ondragleave="this.classList.remove('dv')" ondrop="dropPdf(event)">
         <i class="ti ti-file-type-pdf"></i>
         <p>คลิกหรือลากไฟล์ PDF มาวางที่นี่</p>
         <small>รองรับไฟล์ .pdf ขนาดไม่เกิน 10MB</small>
@@ -375,7 +420,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
       <i class="ti ti-info-circle" style="font-size:18px;flex-shrink:0"></i>
       <span>ยังไม่มีข้อมูลราคา NOHON — แอดมินสามารถอัปโหลด PDF ได้</span>
     </div>
-    <div id="nohon-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลดข้อมูล...</div>
+    <div id="nohon-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลด...</div>
     <div id="nohon-data" style="display:none">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
         <span style="font-size:13px;color:#64748b">ข้อมูลจาก PDF ที่อัปโหลด</span>
@@ -386,13 +431,13 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- WARRANTY PAGE -->
+<!-- WARRANTY -->
 <div class="page" id="page-warranty">
   <div class="cpg">
-    <div class="phero"><i class="ti ti-shield-check hico"></i><h1>รายละเอียดการรับประกัน</h1><p>เงื่อนไขและรายละเอียดการรับประกันสินค้าของ Bigmobile</p></div>
+    <div class="phero"><i class="ti ti-shield-check hico"></i><h1>รายละเอียดการรับประกัน</h1><p>เงื่อนไขและรายละเอียดการรับประกันสินค้า</p></div>
     <div id="warranty-tb" style="display:none" class="etb">
       <button class="ebtn pri" id="wsave-btn" onclick="saveContent('warranty')"><i class="ti ti-device-floppy"></i> บันทึก</button>
-      <button class="ebtn" onclick="togglePreview('warranty')"><i class="ti ti-eye"></i> <span id="wtoggle-txt">ดูตัวอย่าง</span></button>
+      <button class="ebtn" onclick="togglePreview('warranty')"><i class="ti ti-eye"></i> <span id="wtoggle-txt">แก้ไข</span></button>
       <div class="sconf" id="wsaved"><i class="ti ti-circle-check"></i> บันทึกลง Sheets แล้ว</div>
     </div>
     <div id="warranty-editor-wrap" style="display:none">
@@ -403,17 +448,17 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-<!-- CONTACT PAGE -->
+<!-- CONTACT -->
 <div class="page" id="page-contact">
   <div class="cpg">
-    <div class="phero"><i class="ti ti-message-circle hico"></i><h1>ติดต่อสอบถาม</h1><p>ช่องทางการติดต่อและสอบถามข้อมูลของ Bigmobile</p></div>
+    <div class="phero"><i class="ti ti-message-circle hico"></i><h1>ติดต่อสอบถาม</h1><p>ช่องทางการติดต่อและสอบถามของ Bigmobile</p></div>
     <div id="contact-tb" style="display:none" class="etb">
       <button class="ebtn pri" id="csave-btn" onclick="saveContent('contact')"><i class="ti ti-device-floppy"></i> บันทึก</button>
-      <button class="ebtn" onclick="togglePreview('contact')"><i class="ti ti-eye"></i> <span id="ctoggle-txt">ดูตัวอย่าง</span></button>
+      <button class="ebtn" onclick="togglePreview('contact')"><i class="ti ti-eye"></i> <span id="ctoggle-txt">แก้ไข</span></button>
       <div class="sconf" id="csaved"><i class="ti ti-circle-check"></i> บันทึกลง Sheets แล้ว</div>
     </div>
     <div id="contact-editor-wrap" style="display:none">
-      <textarea class="ceditor" id="contact-ed" placeholder="พิมพ์ข้อมูลการติดต่อ...&#10;รองรับ HTML เช่น &lt;h2&gt;ช่องทางติดต่อ&lt;/h2&gt; &lt;p&gt;📱 Line: @bigmobile&lt;/p&gt;"></textarea>
+      <textarea class="ceditor" id="contact-ed" placeholder="พิมพ์ข้อมูลการติดต่อ...&#10;รองรับ HTML เช่น &lt;h2&gt;ช่องทางติดต่อ&lt;/h2&gt;"></textarea>
     </div>
     <div id="contact-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลด...</div>
     <div id="contact-display" class="cdisplay"></div>
@@ -437,10 +482,11 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc;min-height:10
   </div>
 </div>
 
-</div>
+</div><!-- #app -->
+
 <script>
 const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
-const AU='admin', AP='bigmobile4503';
+const AU='admin',AP='bigmobile4503';
 const MK={
   'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น',
   'Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น',
@@ -454,20 +500,31 @@ const MK={
 let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[];
 let tabCache={},preloadDone=false;
 
-/* ===== DROPDOWN (แก้ bug) ===== */
-function toggleDD(id, e){
+/* ── DROPDOWN ──
+   ใช้ position:fixed สำหรับ dropdown
+   ต้องคำนวณ left ตาม button position */
+function toggleDD(id,e){
   e.stopPropagation();
   const item=document.getElementById(id);
+  const dd=item.querySelector('.dropdown');
   const wasOpen=item.classList.contains('open');
   closeAllDD();
-  if(!wasOpen) item.classList.add('open');
+  if(!wasOpen){
+    item.classList.add('open');
+    // คำนวณ left ให้ตรงกับ button
+    const btn=item.querySelector('.nav-link');
+    const rect=btn.getBoundingClientRect();
+    dd.style.left=rect.left+'px';
+    dd.style.minWidth=Math.max(240,rect.width)+'px';
+  }
 }
 function closeAllDD(){
   document.querySelectorAll('.nav-item.open').forEach(el=>el.classList.remove('open'));
 }
 document.addEventListener('click',()=>closeAllDD());
+window.addEventListener('scroll',()=>closeAllDD(),{passive:true});
 
-/* ===== PAGE NAV ===== */
+/* ── PAGE NAV ── */
 function gotoPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
@@ -475,25 +532,23 @@ function gotoPage(name){
   document.getElementById('stat-pill').style.display=name==='price'?'':'none';
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('cur'));
   const nl=document.getElementById('nl-'+name);if(nl)nl.classList.add('cur');
-  if(name==='warranty') loadContent('warranty');
-  if(name==='contact') loadContent('contact');
-  if(name==='nohon') loadNohon();
+  if(name==='warranty')loadContent('warranty');
+  if(name==='contact')loadContent('contact');
+  if(name==='nohon')loadNohon();
+  window.scrollTo(0,0);
 }
 function goToTab(tab){
-  gotoPage('price');
-  closeAllDD();
+  gotoPage('price');closeAllDD();
   document.getElementById('tab-title').textContent=tab.trim();
-  clearGS(false);
-  loadTab(tab);
+  clearGS(false);loadTab(tab);
 }
 function homeSearch(){
-  const q=document.getElementById('hsearch').value.trim();
-  if(!q)return;
+  const q=document.getElementById('hsearch').value.trim();if(!q)return;
   gotoPage('price');
   setTimeout(()=>{document.getElementById('gsinput').value=q;doGS();},80);
 }
 
-/* ===== PRICE DATA ===== */
+/* ── PRICE DATA ── */
 function mk(tab){return MK[tab]||MK[tab.trim()]||'รุ่น';}
 function setSync(s,msg){
   document.getElementById('sdot').className='sdot '+(s==='ok'?'ok':s==='err'?'err':'ld');
@@ -519,7 +574,7 @@ function renderHeaders(){
   const m=mk(curTab);
   const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
   document.getElementById('thead').innerHTML='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('')+(isAdmin?'<th style="width:44px">ลบ</th>':'')+' </tr>';
-  if(isAdmin) document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
+  if(isAdmin)document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
 }
 function renderTbl(){
   const q=document.getElementById('srch').value.toLowerCase();
@@ -580,7 +635,7 @@ async function init(){
   }catch(e){console.error(e);}
 }
 
-/* ===== GLOBAL SEARCH ===== */
+/* ── GLOBAL SEARCH ── */
 function doGS(){
   const q=document.getElementById('gsinput').value.trim();if(!q)return;
   if(!preloadDone){
@@ -601,7 +656,7 @@ function doGS(){
       const cells=pks.map(h=>{const v=fmt(p[h]);return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';}).join('');
       return `<tr><td style="font-weight:600">${hl(mv,q)}</td>${cells}</tr>`;
     }).join('');
-    secs.push(`<div class="tsec"><div class="tshdr"><span class="tbadge"><i class="ti ti-table" style="font-size:12px"></i>${tab.trim()}<span class="tbadge-cnt">${matched.length}</span></span><button class="gtbtn" onclick="goToTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')" ><i class="ti ti-arrow-right" style="font-size:11px"></i> ไปที่ Tab นี้</button></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>${m}</th>${pks.map(h=>'<th>'+h+'</th>').join('')}</tr></thead><tbody>${rows}</tbody></table></div></div>`);
+    secs.push(`<div class="tsec"><div class="tshdr"><span class="tbadge"><i class="ti ti-table" style="font-size:12px"></i>${tab.trim()}<span class="tbadge-cnt">${matched.length}</span></span><button class="gtbtn" onclick="goToTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><i class="ti ti-arrow-right" style="font-size:11px"></i> ไปที่ Tab นี้</button></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>${m}</th>${pks.map(h=>'<th>'+h+'</th>').join('')}</tr></thead><tbody>${rows}</tbody></table></div></div>`);
   }
   const el=document.getElementById('gsres');
   el.innerHTML=total===0?`<div class="nores"><i class="ti ti-search-off"></i><p>ไม่พบ "<strong>${q}</strong>" ในทุก Tab</p></div>`:`<div class="gssummary"><span>ผลการค้นหา "<strong>${q}</strong>"</span><span class="fpill">พบ ${total} รายการ ใน ${secs.length} Tab</span></div>${secs.join('')}`;
@@ -615,12 +670,12 @@ function clearGS(focus=true){
   if(focus)document.getElementById('gsinput').value='';
 }
 
-/* ===== ADMIN ===== */
+/* ── ADMIN ── */
 function handleAdmin(){
   if(isAdmin){
     isAdmin=false;
     document.getElementById('admin-btn').classList.remove('on');
-    document.getElementById('admin-txt').textContent='แอดมิน';
+    document.getElementById('admin-txt').textContent=' แอดมิน';
     document.getElementById('add-panel').style.display='none';
     document.getElementById('nohon-admin').style.display='none';
     document.getElementById('clr-nohon').style.display='none';
@@ -645,7 +700,7 @@ function doLogin(){
   if(u===AU&&p===AP){
     isAdmin=true;closeLogin();
     document.getElementById('admin-btn').classList.add('on');
-    document.getElementById('admin-txt').textContent='ออกจากระบบ';
+    document.getElementById('admin-txt').textContent=' ออกจากระบบ';
     document.getElementById('add-panel').style.display='';
     document.getElementById('nohon-admin').style.display='';
     document.getElementById('clr-nohon').style.display='';
@@ -682,7 +737,7 @@ async function delProd(idx){
   }catch(e){alert('ลบไม่สำเร็จ: '+e.message);}
 }
 
-/* ===== CONTENT (WARRANTY / CONTACT) — บันทึกลง Sheets ===== */
+/* ── CONTENT (WARRANTY / CONTACT) ── */
 async function loadContent(page){
   const disp=document.getElementById(page+'-display');
   const loading=document.getElementById(page+'-loading');
@@ -701,21 +756,21 @@ async function loadContent(page){
 function togglePreview(page){
   const ew=document.getElementById(page+'-editor-wrap');
   const disp=document.getElementById(page+'-display');
-  const txtEl=document.getElementById(page.charAt(0)+'toggle-txt');
+  const pid=page.charAt(0);
+  const txtEl=document.getElementById(pid+'toggle-txt');
   const isEdit=ew.style.display!=='none';
   if(isEdit){
     const content=document.getElementById(page+'-ed').value;
     disp.innerHTML=content||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>ยังไม่มีเนื้อหา</p></div>`;
-    ew.style.display='none';disp.style.display='';
-    txtEl.textContent='แก้ไข';
+    ew.style.display='none';disp.style.display='';txtEl.textContent='แก้ไข';
   }else{
-    ew.style.display='block';disp.style.display='none';
-    txtEl.textContent='ดูตัวอย่าง';
+    ew.style.display='block';disp.style.display='none';txtEl.textContent='ดูตัวอย่าง';
   }
 }
 async function saveContent(page){
   const content=document.getElementById(page+'-ed').value;
-  const btn=document.getElementById(page.charAt(0)+'save-btn');
+  const pid=page.charAt(0);
+  const btn=document.getElementById(pid+'save-btn');
   btn.disabled=true;
   try{
     await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveContent',key:page,value:content})});
@@ -724,22 +779,20 @@ async function saveContent(page){
     disp.innerHTML=content||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>ยังไม่มีเนื้อหา</p></div>`;
     document.getElementById(page+'-editor-wrap').style.display='none';
     disp.style.display='';
-    document.getElementById(page.charAt(0)+'toggle-txt').textContent='แก้ไข';
-    const conf=document.getElementById(page.charAt(0)+'saved');
+    document.getElementById(pid+'toggle-txt').textContent='แก้ไข';
+    const conf=document.getElementById(pid+'saved');
     conf.classList.add('show');setTimeout(()=>conf.classList.remove('show'),3000);
   }catch(e){alert('บันทึกไม่สำเร็จ: '+e.message);}
   btn.disabled=false;
 }
 
-/* ===== NOHON PDF → AI → Sheets ===== */
+/* ── NOHON PDF → AI → Sheets ── */
 async function loadNohon(){
   const loading=document.getElementById('nohon-loading');
   const dataEl=document.getElementById('nohon-data');
   const info=document.getElementById('nohon-info');
   loading.style.display='block';dataEl.style.display='none';info.style.display='none';
   try{
-    const res=await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'getNohon'})});
-    // no-cors ไม่อ่าน response ได้ — ใช้ GET แทน
     const res2=await fetch(GAS+'?action=getNohon');
     const json=await res2.json();
     if(json.rows&&json.rows.length>0){
@@ -748,9 +801,7 @@ async function loadNohon(){
     }else{
       info.style.display=isAdmin?'none':'flex';
     }
-  }catch(e){
-    info.style.display='flex';
-  }
+  }catch(e){info.style.display='flex';}
   loading.style.display='none';
 }
 function renderNohonTbl(data){
@@ -760,52 +811,34 @@ function renderNohonTbl(data){
   ).join('');
 }
 async function clearNohon(){
-  if(!confirm('ล้างข้อมูล NOHON ทั้งหมดออกจาก Sheets?'))return;
+  if(!confirm('ล้างข้อมูล NOHON ทั้งหมด?'))return;
   try{
     await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveNohon',data:{headers:[],rows:[]}})});
     document.getElementById('nohon-data').style.display='none';
     document.getElementById('nohon-info').style.display=isAdmin?'none':'flex';
-  }catch(e){alert('ล้างไม่สำเร็จ: '+e.message);}
+  }catch(e){alert('ล้างไม่สำเร็จ');}
 }
-function dropPdf(e){
-  e.preventDefault();document.getElementById('upa').classList.remove('dv');
-  const f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf')processPdf(f);
-}
+function dropPdf(e){e.preventDefault();document.getElementById('upa').classList.remove('dv');const f=e.dataTransfer.files[0];if(f&&f.type==='application/pdf')processPdf(f);}
 function selectPdf(e){const f=e.target.files[0];if(f)processPdf(f);}
 async function processPdf(file){
   const st=document.getElementById('aist');
   st.className='aist proc';
   st.innerHTML='<i class="ti ti-loader spin" style="font-size:18px"></i><div><strong>กำลังอ่าน PDF ด้วย AI...</strong><br><span style="font-size:12px">กรุณารอสักครู่</span></div>';
   try{
-    const b64=await new Promise((res,rej)=>{
-      const r=new FileReader();
-      r.onload=()=>res(r.result.split(',')[1]);
-      r.onerror=rej;r.readAsDataURL(file);
-    });
+    const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file);});
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:4000,
-        messages:[{role:'user',content:[
-          {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
-          {type:'text',text:`จาก PDF รายการราคาสินค้า NOHON ให้แปลงเป็น JSON เท่านั้น ไม่มีคำอธิบายอื่น:
-{"headers":["รุ่น","ราคา",...],"rows":[["ชื่อรุ่น","ราคา"],...]}\n\nกฎ: headers=ชื่อคอลัมน์, rows=แถวข้อมูล, ราคา=ตัวเลขล้วน, ช่องว่าง=""
-ตอบเป็น JSON เท่านั้น`}
-        ]}]
-      })
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:[
+        {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
+        {type:'text',text:`จาก PDF รายการราคาสินค้า NOHON ให้แปลงเป็น JSON เท่านั้น ไม่มีคำอธิบายอื่น:\n{"headers":["รุ่น","ราคา",...],"rows":[["ชื่อรุ่น","ราคา"],...]}\n\nกฎ: headers=ชื่อคอลัมน์, rows=แถวข้อมูล, ราคา=ตัวเลขล้วน, ช่องว่าง=""\nตอบเป็น JSON เท่านั้น`}
+      ]}]})
     });
     const result=await resp.json();
-    const text=result.content[0].text.replace(/```json|```/g,'').trim();
-    const data=JSON.parse(text);
-    if(!data.headers||!data.rows||!data.rows.length)throw new Error('ไม่พบข้อมูลราคาใน PDF');
-
-    // บันทึกลง Sheets
+    const data=JSON.parse(result.content[0].text.replace(/```json|```/g,'').trim());
+    if(!data.headers||!data.rows||!data.rows.length)throw new Error('ไม่พบข้อมูลใน PDF');
     st.innerHTML='<i class="ti ti-loader spin" style="font-size:18px"></i><div><strong>กำลังบันทึกลง Google Sheets...</strong></div>';
     await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveNohon',data})});
     await new Promise(r=>setTimeout(r,2000));
-
     st.className='aist done';
     st.innerHTML=`<i class="ti ti-circle-check" style="font-size:18px"></i><div><strong>สำเร็จ!</strong> พบ ${data.rows.length} รายการ บันทึกลง Sheets แล้ว</div>`;
     renderNohonTbl(data);
@@ -816,10 +849,6 @@ async function processPdf(file){
     st.innerHTML=`<i class="ti ti-alert-circle" style="font-size:18px"></i><div><strong>เกิดข้อผิดพลาด</strong><br><span style="font-size:12px">${e.message}</span></div>`;
   }
 }
-
-/* ===== GET NOHON via GET ===== */
-// เพิ่ม action=getNohon ให้ doGet ใน Apps Script รองรับด้วย
-// (โค้ด Apps Script ด้านบนรองรับแล้ว)
 
 init();
 </script>
