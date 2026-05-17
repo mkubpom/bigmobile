@@ -9,91 +9,36 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
-
-/* ── LAYOUT: navbar fixed, content scrolls ── */
-#navbar{
-  position:fixed;top:0;left:0;right:0;
-  background:#0f172a;
-  z-index:1000;
-  height:54px;
-  /* สำคัญ: ไม่มี overflow hidden/auto เลย */
-}
-.navbar-inner{
-  max-width:1200px;margin:0 auto;
-  display:flex;align-items:center;height:54px;padding:0 20px;
-}
-#app{
-  max-width:1200px;margin:0 auto;background:#fff;
-  min-height:100vh;
-  box-shadow:0 0 40px rgba(0,0,0,.08);
-  padding-top:54px; /* เผื่อ fixed navbar */
-}
-
-/* ── NAVBAR LOGO ── */
+#navbar{position:fixed;top:0;left:0;right:0;background:#0f172a;z-index:1000;height:54px}
+.navbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:54px;padding:0 20px}
+#app{max-width:1200px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08);padding-top:54px}
 .nav-logo{display:flex;align-items:center;gap:8px;margin-right:20px;flex-shrink:0;cursor:pointer}
 .dot{width:8px;height:8px;border-radius:50%}
 .nav-logo-name{color:#fff;font-size:17px;font-weight:700;letter-spacing:-.2px}
 .nav-logo-name em{color:#0ea5e9;font-style:normal}
-
-/* ── NAV MENU ── */
 .nav-menu{display:flex;align-items:center;gap:2px;flex:1}
 .nav-item{position:relative;flex-shrink:0}
-.nav-link{
-  display:flex;align-items:center;gap:5px;
-  padding:6px 12px;color:#94a3b8;font-size:12px;font-weight:500;
-  border-radius:7px;cursor:pointer;transition:all .15s;
-  font-family:inherit;background:none;border:none;height:38px;white-space:nowrap
-}
+.nav-link{display:flex;align-items:center;gap:5px;padding:6px 12px;color:#94a3b8;font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;height:38px;white-space:nowrap}
 .nav-link:hover,.nav-link.cur{color:#fff;background:rgba(255,255,255,.08)}
 .chevron{font-size:11px;transition:transform .2s;display:inline-block}
 .nav-item.open .chevron{transform:rotate(180deg)}
-
-/* ── DROPDOWN — แก้ปัญหา clip ── */
-.dropdown{
-  position:fixed; /* fixed แทน absolute เพื่อออกจาก overflow context ทั้งหมด */
-  top:54px;       /* ติดกับ navbar */
-  background:#fff;
-  border-radius:0 0 12px 12px;
-  border:.5px solid #e2e8f0;
-  border-top:none;
-  box-shadow:0 12px 40px rgba(0,0,0,.15);
-  min-width:240px;
-  padding:6px 6px 10px;
-  z-index:999;
-  max-height:calc(100vh - 70px);
-  overflow-y:auto;
-  /* animation */
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(-4px);
-  transition:opacity .15s,transform .15s,visibility .15s;
-  pointer-events:none;
-}
-.nav-item.open .dropdown{
-  opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;
-}
-.dd-item{
-  display:flex;align-items:center;gap:10px;
-  padding:8px 14px;border-radius:7px;color:#374151;font-size:13px;
-  cursor:pointer;transition:all .15s;font-family:inherit;
-  background:none;border:none;width:100%;text-align:left;
-}
+.dropdown{position:fixed;top:54px;background:#fff;border-radius:0 0 12px 12px;border:.5px solid #e2e8f0;border-top:none;box-shadow:0 12px 40px rgba(0,0,0,.15);min-width:240px;padding:6px 6px 10px;z-index:999;max-height:calc(100vh - 70px);overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
+.nav-item.open .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
+.dd-item{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:7px;color:#374151;font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;width:100%;text-align:left}
 .dd-item:hover{background:#f0f9ff;color:#0ea5e9}
 .dd-item i{font-size:14px;color:#94a3b8;flex-shrink:0}
 .dd-item:hover i{color:#0ea5e9}
 .dd-sep{height:.5px;background:#f1f5f9;margin:5px 0}
 .dd-label{padding:7px 14px 3px;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px}
-
 .nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
 .stat-pill{background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 10px;border-radius:100px;border:.5px solid #334155}
 .admin-btn{background:none;border:.5px solid #334155;color:#94a3b8;font-size:12px;padding:6px 13px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:inherit;transition:all .15s}
 .admin-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
 .admin-btn.on{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
 
-/* ── PAGES ── */
 .page{display:none}.page.active{display:block}
 
-/* ── HOME ── */
+/* HOME */
 .home-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0c4a6e 100%);padding:56px 28px;text-align:center;color:#fff}
 .home-hero h1{font-size:26px;font-weight:700;margin-bottom:6px}
 .home-hero h1 em{color:#0ea5e9;font-style:normal}
@@ -110,7 +55,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .home-cat i{font-size:26px;display:block;margin-bottom:7px;color:#7dd3fc}
 .home-cat span{font-size:12px;color:#e2e8f0;font-weight:500}
 
-/* ── PRICE PAGE ── */
+/* PRICE */
 .add-panel{background:#fffbeb;border-bottom:1px solid #fde68a;padding:12px 20px}
 .add-panel h3{font-size:12px;font-weight:600;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:5px}
 .fg{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}
@@ -123,7 +68,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .sbtn:disabled{background:#d6d3d1;cursor:not-allowed}
 .smsg{font-size:11px;margin-top:6px;display:flex;align-items:center;gap:4px}
 .smsg.ok{color:#15803d}.smsg.err{color:#dc2626}.smsg.wait{color:#92400e}
-
 .gsearch-wrap{padding:10px 20px;background:linear-gradient(135deg,#0f172a,#1e3a5f);border-bottom:.5px solid #1e3a5f}
 .gsearch-top{font-size:10px;font-weight:600;color:#7dd3fc;letter-spacing:.5px;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
 .pstatus{font-size:10px;color:#475569;display:flex;align-items:center;gap:5px}
@@ -137,7 +81,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .gclr:hover{border-color:#94a3b8;color:#e2e8f0}
 .pbar{margin-top:6px;height:2px;background:#1e3a5f;border-radius:100px;overflow:hidden}
 .pfill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);border-radius:100px;width:0%;transition:width .2s}
-
 .tab-hdr{padding:10px 20px;background:#fff;border-bottom:.5px solid #e2e8f0;display:flex;align-items:center;gap:10px}
 .tab-hdr h2{font-size:15px;font-weight:600;color:#0f172a}
 .back-btn{font-size:12px;color:#64748b;background:none;border:.5px solid #e2e8f0;padding:5px 12px;border-radius:7px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px}
@@ -154,7 +97,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{animation:spin 1s linear infinite;display:inline-block}
-
 .gsres{padding:16px 20px}
 .gssummary{font-size:13px;color:#475569;margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .fpill{background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:2px 10px;border-radius:100px}
@@ -167,7 +109,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .hl{background:#fef08a;border-radius:3px;padding:0 2px;font-weight:600;color:#713f12}
 .nores{text-align:center;padding:40px 20px;color:#94a3b8}
 .nores i{font-size:40px;display:block;margin-bottom:10px;opacity:.3}
-
 .tbl-outer{overflow:auto;max-height:calc(100vh - 200px)}
 .tbl{width:100%;border-collapse:collapse;font-size:13px}
 .tbl thead th{position:sticky;top:0;z-index:10;padding:9px 16px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap;box-shadow:0 1px 0 #e2e8f0}
@@ -181,12 +122,18 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .del-btn:hover{opacity:1;background:#fee2e2;color:#dc2626}
 .empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
 
-/* ── CONTENT PAGES ── */
+/* CONTENT PAGES */
 .cpg{padding:28px 32px;max-width:900px;margin:0 auto}
 .phero{background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:14px;padding:32px 24px;text-align:center;color:#fff;margin-bottom:20px}
 .phero .hico{font-size:40px;display:block;margin-bottom:10px;opacity:.9}
 .phero h1{font-size:21px;font-weight:700;margin-bottom:4px}
 .phero p{font-size:13px;color:#94a3b8}
+
+/* URL badge แสดง link ปัจจุบัน */
+.url-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(14,165,233,.15);border:1px solid rgba(14,165,233,.3);border-radius:100px;padding:4px 12px;font-size:11px;color:#7dd3fc;margin-top:10px;font-family:monospace;cursor:pointer;transition:all .15s}
+.url-badge:hover{background:rgba(14,165,233,.25)}
+.url-badge i{font-size:12px}
+
 .etb{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
 .ebtn{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px;border:.5px solid #e2e8f0;background:#fff;color:#475569;transition:all .15s}
 .ebtn:hover{border-color:#0ea5e9;color:#0ea5e9}
@@ -208,7 +155,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .empty-cnt i{font-size:36px;display:block;margin-bottom:8px;opacity:.3}
 .loading-cnt{text-align:center;padding:40px;color:#94a3b8;font-size:13px}
 
-/* ── NOHON ── */
+/* NOHON */
 .upload-area{border:2px dashed #e2e8f0;border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:all .2s;background:#f8fafc;margin-bottom:14px}
 .upload-area:hover,.upload-area.dv{border-color:#0ea5e9;background:#eff6ff}
 .upload-area i{font-size:32px;color:#94a3b8;display:block;margin-bottom:8px}
@@ -231,7 +178,11 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .clr-btn:hover{background:#fee2e2}
 .info-box{background:#eff6ff;border:.5px solid #bfdbfe;border-radius:10px;padding:14px 16px;font-size:13px;color:#1e40af;display:flex;align-items:center;gap:10px}
 
-/* ── LOGIN ── */
+/* COPY TOAST */
+.copy-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#0f172a;color:#fff;font-size:13px;padding:10px 20px;border-radius:100px;opacity:0;transition:all .25s;z-index:9999;pointer-events:none;display:flex;align-items:center;gap:6px}
+.copy-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* LOGIN */
 .lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
 .lcard{background:#fff;border-radius:14px;border:.5px solid #e2e8f0;padding:30px;width:320px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
 .lcard h2{font-size:16px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
@@ -245,20 +196,17 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .lcnl{padding:9px 14px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
 .lgo{flex:1;padding:9px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
 .lgo:hover{background:#0284c7}
-
 @media(max-width:768px){
   .cpg{padding:16px}
   .home-hero{padding:36px 16px}
   .home-hero h1{font-size:20px}
   .home-cats{grid-template-columns:repeat(3,1fr)}
   .tbl thead th,.tbl td{padding:8px 10px;font-size:12px}
-  .nav-link span{display:none} /* ซ่อน text เหลือแค่ icon บน mobile */
 }
 </style>
 </head>
 <body>
 
-<!-- NAVBAR: fixed position, ไม่มี overflow clip -->
 <nav id="navbar">
   <div class="navbar-inner">
     <div class="nav-logo" onclick="gotoPage('home')">
@@ -268,14 +216,11 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
       <span class="nav-logo-name">Big<em>mobile</em></span>
     </div>
     <div class="nav-menu">
-      <!-- รายการสินค้า dropdown -->
       <div class="nav-item" id="ni-products">
         <button class="nav-link" onclick="toggleDD('ni-products',event)">
-          <i class="ti ti-layout-grid"></i>
-          <span> รายการสินค้า</span>
+          <i class="ti ti-layout-grid"></i><span> รายการสินค้า</span>
           <i class="ti ti-chevron-down chevron"></i>
         </button>
-        <!-- dropdown uses position:fixed — ไม่ถูก clip -->
         <div class="dropdown" id="dd-products">
           <div class="dd-label">จอ / หน้าจอ</div>
           <button class="dd-item" onclick="goToTab('iPhone')"><i class="ti ti-brand-apple"></i>iPhone</button>
@@ -324,7 +269,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
   </div>
 </nav>
 
-<!-- APP CONTENT -->
 <div id="app">
 
 <!-- HOME -->
@@ -353,7 +297,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
   </div>
 </div>
 
-<!-- PRICE PAGE -->
+<!-- PRICE -->
 <div class="page" id="page-price">
   <div id="add-panel" class="add-panel" style="display:none">
     <h3><i class="ti ti-plus"></i> เพิ่มสินค้าใหม่</h3>
@@ -365,7 +309,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
     </div>
     <div class="smsg" id="smsg"></div>
   </div>
-
   <div class="gsearch-wrap">
     <div class="gsearch-top">
       <span><i class="ti ti-world-search" style="font-size:12px"></i> ค้นหาทุก Tab</span>
@@ -378,8 +321,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
     </div>
     <div class="pbar"><div class="pfill" id="pfill"></div></div>
   </div>
-
-  <div class="tab-hdr" id="tab-hdr">
+  <div class="tab-hdr">
     <button class="back-btn" onclick="gotoPage('home')"><i class="ti ti-arrow-left"></i> หน้าหลัก</button>
     <h2 id="tab-title">—</h2>
   </div>
@@ -402,7 +344,16 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 <!-- NOHON -->
 <div class="page" id="page-nohon">
   <div class="cpg">
-    <div class="phero"><i class="ti ti-tag hico"></i><h1>ราคาสินค้า NOHON</h1><p>อัปโหลด PDF รายการราคา AI จะแปลงเป็นตารางให้อัตโนมัติ</p></div>
+    <div class="phero">
+      <i class="ti ti-tag hico"></i>
+      <h1>ราคาสินค้า NOHON</h1>
+      <p>อัปโหลด PDF รายการราคา AI จะแปลงเป็นตารางให้อัตโนมัติ</p>
+      <div class="url-badge" onclick="copyUrl('#nohon')">
+        <i class="ti ti-link"></i>
+        <span id="url-nohon">mkubpom.github.io/bigmobile/#nohon</span>
+        <i class="ti ti-copy" style="opacity:.7"></i>
+      </div>
+    </div>
     <div id="nohon-admin" style="display:none">
       <div class="upload-area" id="upa" onclick="document.getElementById('pdfinput').click()"
            ondragover="event.preventDefault();this.classList.add('dv')"
@@ -434,7 +385,16 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 <!-- WARRANTY -->
 <div class="page" id="page-warranty">
   <div class="cpg">
-    <div class="phero"><i class="ti ti-shield-check hico"></i><h1>รายละเอียดการรับประกัน</h1><p>เงื่อนไขและรายละเอียดการรับประกันสินค้า</p></div>
+    <div class="phero">
+      <i class="ti ti-shield-check hico"></i>
+      <h1>รายละเอียดการรับประกัน</h1>
+      <p>เงื่อนไขและรายละเอียดการรับประกันสินค้า</p>
+      <div class="url-badge" onclick="copyUrl('#warranty')">
+        <i class="ti ti-link"></i>
+        <span>mkubpom.github.io/bigmobile/#warranty</span>
+        <i class="ti ti-copy" style="opacity:.7"></i>
+      </div>
+    </div>
     <div id="warranty-tb" style="display:none" class="etb">
       <button class="ebtn pri" id="wsave-btn" onclick="saveContent('warranty')"><i class="ti ti-device-floppy"></i> บันทึก</button>
       <button class="ebtn" onclick="togglePreview('warranty')"><i class="ti ti-eye"></i> <span id="wtoggle-txt">แก้ไข</span></button>
@@ -451,7 +411,16 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 <!-- CONTACT -->
 <div class="page" id="page-contact">
   <div class="cpg">
-    <div class="phero"><i class="ti ti-message-circle hico"></i><h1>ติดต่อสอบถาม</h1><p>ช่องทางการติดต่อและสอบถามของ Bigmobile</p></div>
+    <div class="phero">
+      <i class="ti ti-message-circle hico"></i>
+      <h1>ติดต่อสอบถาม</h1>
+      <p>ช่องทางการติดต่อและสอบถามของ Bigmobile</p>
+      <div class="url-badge" onclick="copyUrl('#contact')">
+        <i class="ti ti-link"></i>
+        <span>mkubpom.github.io/bigmobile/#contact</span>
+        <i class="ti ti-copy" style="opacity:.7"></i>
+      </div>
+    </div>
     <div id="contact-tb" style="display:none" class="etb">
       <button class="ebtn pri" id="csave-btn" onclick="saveContent('contact')"><i class="ti ti-device-floppy"></i> บันทึก</button>
       <button class="ebtn" onclick="togglePreview('contact')"><i class="ti ti-eye"></i> <span id="ctoggle-txt">แก้ไข</span></button>
@@ -484,9 +453,13 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 
 </div><!-- #app -->
 
+<!-- COPY TOAST -->
+<div class="copy-toast" id="copy-toast"><i class="ti ti-check"></i> คัดลอก URL แล้ว</div>
+
 <script>
 const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
 const AU='admin',AP='bigmobile4503';
+const BASE_URL=window.location.origin+window.location.pathname;
 const MK={
   'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น',
   'Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น',
@@ -497,12 +470,41 @@ const MK={
   'แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น',
   'ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น'
 };
+// pages ที่มี hash routing
+const HASH_PAGES=['nohon','warranty','contact'];
 let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[];
 let tabCache={},preloadDone=false;
 
-/* ── DROPDOWN ──
-   ใช้ position:fixed สำหรับ dropdown
-   ต้องคำนวณ left ตาม button position */
+/* ── HASH ROUTING ── */
+function getPageFromHash(){
+  const h=location.hash.replace('#','');
+  return HASH_PAGES.includes(h)?h:null;
+}
+function setHash(page){
+  if(HASH_PAGES.includes(page)){
+    history.pushState(null,'',BASE_URL+'#'+page);
+  }else{
+    // home หรือ price ไม่มี hash (หรือลบ hash ออก)
+    history.pushState(null,'',BASE_URL+(page==='price'?'#price':''));
+  }
+}
+// ฟัง back/forward ของ browser
+window.addEventListener('popstate',()=>{
+  const page=getPageFromHash();
+  if(page) showPageDirect(page);
+  else showPageDirect('home');
+});
+
+/* ── COPY URL ── */
+function copyUrl(hash){
+  const url=BASE_URL+hash;
+  navigator.clipboard.writeText(url).catch(()=>{});
+  const toast=document.getElementById('copy-toast');
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'),2500);
+}
+
+/* ── DROPDOWN ── */
 function toggleDD(id,e){
   e.stopPropagation();
   const item=document.getElementById(id);
@@ -511,7 +513,6 @@ function toggleDD(id,e){
   closeAllDD();
   if(!wasOpen){
     item.classList.add('open');
-    // คำนวณ left ให้ตรงกับ button
     const btn=item.querySelector('.nav-link');
     const rect=btn.getBoundingClientRect();
     dd.style.left=rect.left+'px';
@@ -525,7 +526,8 @@ document.addEventListener('click',()=>closeAllDD());
 window.addEventListener('scroll',()=>closeAllDD(),{passive:true});
 
 /* ── PAGE NAV ── */
-function gotoPage(name){
+function showPageDirect(name){
+  // เปิด page โดยไม่ push history (ใช้ใน popstate)
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   closeAllDD();
@@ -537,8 +539,14 @@ function gotoPage(name){
   if(name==='nohon')loadNohon();
   window.scrollTo(0,0);
 }
+function gotoPage(name){
+  showPageDirect(name);
+  setHash(name);
+}
 function goToTab(tab){
-  gotoPage('price');closeAllDD();
+  showPageDirect('price');
+  setHash('price');
+  closeAllDD();
   document.getElementById('tab-title').textContent=tab.trim();
   clearGS(false);loadTab(tab);
 }
@@ -626,6 +634,10 @@ async function preloadAll(tabs){
   st.innerHTML='<i class="ti ti-circle-check" style="font-size:11px"></i> โหลดครบ '+tabs.length+' Tab';
 }
 async function init(){
+  // โหลดหน้าตาม hash ทันที
+  const initPage=getPageFromHash();
+  if(initPage)showPageDirect(initPage);
+  // preload iPhone data
   try{
     const res=await fetch(GAS+'?tab=iPhone');
     const json=await res.json();
@@ -737,7 +749,7 @@ async function delProd(idx){
   }catch(e){alert('ลบไม่สำเร็จ: '+e.message);}
 }
 
-/* ── CONTENT (WARRANTY / CONTACT) ── */
+/* ── CONTENT ── */
 async function loadContent(page){
   const disp=document.getElementById(page+'-display');
   const loading=document.getElementById(page+'-loading');
@@ -748,9 +760,7 @@ async function loadContent(page){
     const val=json.value||'';
     document.getElementById(page+'-ed').value=val;
     disp.innerHTML=val||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>${isAdmin?'กดแก้ไขเพื่อเพิ่มข้อมูล':'ยังไม่มีข้อมูล — แอดมินกำลังจัดทำ'}</p></div>`;
-  }catch(e){
-    disp.innerHTML=`<div class="empty-cnt"><i class="ti ti-wifi-off"></i><p>โหลดไม่ได้</p></div>`;
-  }
+  }catch(e){disp.innerHTML=`<div class="empty-cnt"><i class="ti ti-wifi-off"></i><p>โหลดไม่ได้</p></div>`;}
   loading.style.display='none';disp.style.display='';
 }
 function togglePreview(page){
@@ -786,21 +796,18 @@ async function saveContent(page){
   btn.disabled=false;
 }
 
-/* ── NOHON PDF → AI → Sheets ── */
+/* ── NOHON ── */
 async function loadNohon(){
   const loading=document.getElementById('nohon-loading');
   const dataEl=document.getElementById('nohon-data');
   const info=document.getElementById('nohon-info');
   loading.style.display='block';dataEl.style.display='none';info.style.display='none';
   try{
-    const res2=await fetch(GAS+'?action=getNohon');
-    const json=await res2.json();
+    const res=await fetch(GAS+'?action=getNohon');
+    const json=await res.json();
     if(json.rows&&json.rows.length>0){
-      renderNohonTbl({headers:json.headers,rows:json.rows});
-      dataEl.style.display='';
-    }else{
-      info.style.display=isAdmin?'none':'flex';
-    }
+      renderNohonTbl({headers:json.headers,rows:json.rows});dataEl.style.display='';
+    }else{info.style.display=isAdmin?'none':'flex';}
   }catch(e){info.style.display='flex';}
   loading.style.display='none';
 }
@@ -830,7 +837,7 @@ async function processPdf(file){
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,messages:[{role:'user',content:[
         {type:'document',source:{type:'base64',media_type:'application/pdf',data:b64}},
-        {type:'text',text:`จาก PDF รายการราคาสินค้า NOHON ให้แปลงเป็น JSON เท่านั้น ไม่มีคำอธิบายอื่น:\n{"headers":["รุ่น","ราคา",...],"rows":[["ชื่อรุ่น","ราคา"],...]}\n\nกฎ: headers=ชื่อคอลัมน์, rows=แถวข้อมูล, ราคา=ตัวเลขล้วน, ช่องว่าง=""\nตอบเป็น JSON เท่านั้น`}
+        {type:'text',text:`จาก PDF รายการราคาสินค้า NOHON ให้แปลงเป็น JSON เท่านั้น:\n{"headers":["รุ่น","ราคา",...],"rows":[["ชื่อรุ่น","ราคา"],...]}\nกฎ: ราคา=ตัวเลขล้วน, ช่องว่าง="" ตอบ JSON เท่านั้น`}
       ]}]})
     });
     const result=await resp.json();
