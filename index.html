@@ -1,719 +1,335 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bigmobile ราคาอะไหล่แท้</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css"/>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
-#navbar{position:fixed;top:0;left:0;right:0;background:#0f172a;z-index:1000;height:54px}
-.navbar-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;height:54px;padding:0 16px;gap:0}
-#app{max-width:1200px;margin:0 auto;background:#fff;min-height:100vh;box-shadow:0 0 40px rgba(0,0,0,.08);padding-top:54px}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* LOGO */
-.nav-logo{display:flex;align-items:center;gap:7px;flex-shrink:0;cursor:pointer;margin-right:12px}
-.dot{width:7px;height:7px;border-radius:50%}
-.nav-logo-name{color:#fff;font-size:16px;font-weight:700;letter-spacing:-.2px}
-.nav-logo-name em{color:#0ea5e9;font-style:normal}
+  body {
+    font-family: 'Sarabun', 'Prompt', sans-serif;
+    background: #0a1628;
+    color: #fff;
+    min-height: 100vh;
+  }
 
-/* DESKTOP MENU */
-.nav-menu{display:flex;align-items:center;gap:2px;flex:1}
-.nav-item{position:relative;flex-shrink:0}
-.nav-link{display:flex;align-items:center;gap:4px;padding:6px 10px;color:#94a3b8;font-size:12px;font-weight:500;border-radius:7px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;height:36px;white-space:nowrap}
-.nav-link:hover,.nav-link.cur{color:#fff;background:rgba(255,255,255,.08)}
-.chevron{font-size:10px;transition:transform .2s;display:inline-block}
-.nav-item.open .chevron{transform:rotate(180deg)}
+  /* ===== NAVBAR ===== */
+  nav {
+    background: #0d1f3c;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    padding: 0 24px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-/* DROPDOWN desktop */
-.dropdown{position:fixed;top:54px;background:#fff;border-radius:0 0 12px 12px;border:.5px solid #e2e8f0;border-top:none;box-shadow:0 12px 40px rgba(0,0,0,.15);min-width:240px;padding:6px 6px 10px;z-index:999;max-height:calc(100vh - 70px);overflow-y:auto;opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .15s,transform .15s,visibility .15s;pointer-events:none}
-.nav-item.open .dropdown{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
-.dd-item{display:flex;align-items:center;gap:10px;padding:8px 14px;border-radius:7px;color:#374151;font-size:13px;cursor:pointer;transition:all .15s;font-family:inherit;background:none;border:none;width:100%;text-align:left}
-.dd-item:hover{background:#f0f9ff;color:#0ea5e9}
-.dd-item i{font-size:14px;color:#94a3b8;flex-shrink:0}
-.dd-item:hover i{color:#0ea5e9}
-.dd-sep{height:.5px;background:#f1f5f9;margin:5px 0}
-.dd-label{padding:7px 14px 3px;font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px}
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+  .nav-logo .dots { display: flex; gap: 4px; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-red { background: #e74c3c; }
+  .dot-orange { background: #e67e22; }
+  .dot-blue { background: #3498db; }
+  .logo-big { color: #fff; }
+  .logo-mobile { color: #3498db; }
 
-/* HAMBURGER BUTTON */
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:4px;padding:8px;cursor:pointer;background:none;border:.5px solid #334155;border-radius:7px;margin-left:auto}
-.hamburger span{display:block;width:18px;height:2px;background:#94a3b8;border-radius:2px;transition:all .2s}
-.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+  /* Desktop nav right */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
 
-/* MOBILE DRAWER */
-.mobile-drawer{display:none;position:fixed;top:54px;left:0;right:0;bottom:0;background:#0f172a;z-index:998;overflow-y:auto;padding:12px 0 32px;transform:translateX(-100%);transition:transform .25s ease}
-.mobile-drawer.open{transform:translateX(0)}
-.mob-section{padding:8px 16px 4px;font-size:10px;font-weight:700;color:#475569;letter-spacing:.5px;text-transform:uppercase}
-.mob-item{display:flex;align-items:center;gap:12px;padding:12px 20px;color:#cbd5e1;font-size:14px;cursor:pointer;border-bottom:.5px solid #1e293b;font-family:inherit;background:none;border-left:none;border-right:none;border-top:none;width:100%;text-align:left;transition:all .15s}
-.mob-item:hover,.mob-item.cur{background:#1e293b;color:#0ea5e9}
-.mob-item i{font-size:18px;color:#475569;flex-shrink:0}
-.mob-item:hover i,.mob-item.cur i{color:#0ea5e9}
-.mob-sep{height:.5px;background:#1e293b;margin:4px 0}
+  /* Settings gear button (replaces แอดมิน) */
+  .btn-settings {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    font-size: 1.1rem;
+  }
+  .btn-settings:hover { background: rgba(255,255,255,0.15); }
 
-/* RIGHT SIDE NAV */
-.nav-right{display:flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
-.stat-pill{background:#1e293b;color:#94a3b8;font-size:11px;padding:4px 10px;border-radius:100px;border:.5px solid #334155}
-.admin-btn{background:none;border:.5px solid #334155;color:#94a3b8;font-size:12px;padding:5px 11px;border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:inherit;transition:all .15s;white-space:nowrap}
-.admin-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
-.admin-btn.on{border-color:#f97316;color:#f97316;background:rgba(249,115,22,.08)}
+  .btn-hamburger {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.2s;
+  }
+  .btn-hamburger:hover { background: rgba(255,255,255,0.15); }
 
-/* PAGES */
-.page{display:none}.page.active{display:block}
+  /* Mobile "รายการสินค้า" label — shown only on mobile, left of hamburger */
+  .nav-catalog-label {
+    display: none; /* hidden on desktop */
+    font-size: 0.8rem;
+    color: #3498db;
+    font-weight: 600;
+    background: rgba(52,152,219,0.12);
+    border: 1px solid rgba(52,152,219,0.3);
+    border-radius: 6px;
+    padding: 5px 10px;
+    white-space: nowrap;
+    cursor: pointer;
+  }
 
-/* HOME */
-.home-hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 60%,#0c4a6e 100%);padding:48px 20px;text-align:center;color:#fff}
-.home-hero h1{font-size:24px;font-weight:700;margin-bottom:6px}
-.home-hero h1 em{color:#0ea5e9;font-style:normal}
-.home-hero p{font-size:14px;color:#94a3b8;margin-bottom:24px}
-.home-search-wrap{max-width:540px;margin:0 auto;display:flex;gap:8px}
-.home-search-wrap input{flex:1;padding:11px 16px;border-radius:10px;border:1.5px solid #334155;background:#1e293b;color:#fff;font-size:14px;font-family:inherit;min-width:0}
-.home-search-wrap input::placeholder{color:#64748b}
-.home-search-wrap input:focus{outline:none;border-color:#0ea5e9}
-.home-search-wrap button{padding:11px 18px;background:#0ea5e9;border:none;color:#fff;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
-.home-search-wrap button:hover{background:#0284c7}
-.home-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px;max-width:760px;margin:24px auto 0}
-.home-cat{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px 10px;cursor:pointer;transition:all .2s;text-align:center}
-.home-cat:hover{background:rgba(14,165,233,.15);border-color:#0ea5e9;transform:translateY(-2px)}
-.home-cat:active{transform:translateY(0)}
-.home-cat i{font-size:24px;display:block;margin-bottom:6px;color:#7dd3fc}
-.home-cat span{font-size:11px;color:#e2e8f0;font-weight:500}
+  /* ===== HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 40px;
+    background: linear-gradient(160deg, #0d1f3c 0%, #0a2a4a 50%, #061525 100%);
+  }
+  .hero h1 { font-size: 2rem; font-weight: 700; line-height: 1.3; }
+  .hero h1 .blue { color: #3498db; }
+  .hero p { color: #8ab4cc; margin-top: 8px; font-size: 0.95rem; }
 
-/* PRICE */
-.add-panel{background:#fffbeb;border-bottom:1px solid #fde68a;padding:12px 16px}
-.add-panel h3{font-size:12px;font-weight:600;color:#92400e;margin-bottom:8px;display:flex;align-items:center;gap:5px}
-.fg{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap}
-.fg-group{display:flex;flex-direction:column;gap:3px}
-.fg-group label{font-size:10px;color:#78716c;font-weight:600}
-.fg-group input,.fg-group select{padding:7px 9px;border:.5px solid #d6d3d1;border-radius:7px;font-size:12px;color:#1c1917;background:#fff;font-family:inherit}
-.fg-group input:focus,.fg-group select:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
-.sbtn{padding:8px 14px;background:#f97316;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px}
-.sbtn:hover{background:#ea580c}
-.sbtn:disabled{background:#d6d3d1;cursor:not-allowed}
-.smsg{font-size:11px;margin-top:6px;display:flex;align-items:center;gap:4px}
-.smsg.ok{color:#15803d}.smsg.err{color:#dc2626}.smsg.wait{color:#92400e}
+  /* Search */
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    max-width: 540px;
+    margin: 28px auto 0;
+  }
+  .search-bar input {
+    flex: 1;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    color: #fff;
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    outline: none;
+  }
+  .search-bar input::placeholder { color: #6a8fa8; }
+  .search-bar button {
+    background: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 22px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
 
-.gsearch-wrap{padding:10px 16px;background:linear-gradient(135deg,#0f172a,#1e3a5f);border-bottom:.5px solid #1e3a5f}
-.gsearch-top{font-size:10px;font-weight:600;color:#7dd3fc;letter-spacing:.5px;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between}
-.pstatus{font-size:10px;color:#475569;display:flex;align-items:center;gap:5px}
-.pstatus.ready{color:#22c55e}
-.gsrow{display:flex;gap:7px;align-items:center}
-.gsinput{flex:1;padding:9px 14px 9px 34px;border:1.5px solid #334155;border-radius:10px;font-size:13px;color:#0f172a;font-family:inherit;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center;min-width:0}
-.gsinput:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.2)}
-.gsbtn{padding:9px 14px;background:#0ea5e9;color:#fff;border:none;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;display:flex;align-items:center;gap:5px;flex-shrink:0}
-.gsbtn:hover{background:#0284c7}
-.gclr{padding:9px 11px;background:none;border:1.5px solid #475569;color:#94a3b8;border-radius:10px;font-size:12px;cursor:pointer;font-family:inherit;flex-shrink:0}
-.gclr:hover{border-color:#94a3b8;color:#e2e8f0}
-.pbar{margin-top:6px;height:2px;background:#1e3a5f;border-radius:100px;overflow:hidden}
-.pfill{height:100%;background:linear-gradient(90deg,#0ea5e9,#8b5cf6);border-radius:100px;width:0%;transition:width .2s}
+  /* ===== CATALOG GRID ===== */
+  .catalog {
+    max-width: 720px;
+    margin: 40px auto 60px;
+    padding: 0 20px;
+  }
 
-.tab-hdr{padding:10px 16px;background:#fff;border-bottom:.5px solid #e2e8f0;display:flex;align-items:center;gap:10px}
-.tab-hdr h2{font-size:14px;font-weight:600;color:#0f172a}
-.back-btn{font-size:12px;color:#64748b;background:none;border:.5px solid #e2e8f0;padding:5px 10px;border-radius:7px;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:4px;flex-shrink:0}
-.back-btn:hover{border-color:#0ea5e9;color:#0ea5e9}
-.toolbar{display:flex;gap:7px;padding:10px 16px;background:#fff;border-bottom:.5px solid #e2e8f0;align-items:center}
-.srch{flex:1;padding:9px 12px 9px 34px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#1e293b;font-family:inherit;background:#f8fafc url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E") no-repeat 10px center;min-width:0}
-.srch:focus{outline:none;border-color:#0ea5e9;background:#fff;box-shadow:0 0 0 2px #bfdbfe}
-.rbtn{display:flex;align-items:center;gap:5px;padding:8px 12px;border:.5px solid #e2e8f0;border-radius:8px;font-size:12px;color:#475569;background:#f8fafc;cursor:pointer;font-family:inherit;white-space:nowrap;flex-shrink:0}
-.rbtn:hover{border-color:#0ea5e9;color:#0ea5e9;background:#eff6ff}
-.sbar{padding:5px 16px;font-size:11px;color:#64748b;background:#f8fafc;border-bottom:.5px solid #e2e8f0;display:flex;justify-content:space-between}
-.sdot{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
-.sdot.ok{background:#22c55e}.sdot.err{background:#ef4444}
-.sdot.ld{background:#f59e0b;animation:pulse .8s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.spin{animation:spin 1s linear infinite;display:inline-block}
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
 
-.gsres{padding:14px 16px}
-.gssummary{font-size:13px;color:#475569;margin-bottom:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.fpill{background:#dbeafe;color:#1e40af;font-size:11px;font-weight:600;padding:2px 10px;border-radius:100px}
-.tsec{margin-bottom:20px}
-.tshdr{display:flex;align-items:center;gap:10px;margin-bottom:8px;padding-bottom:6px;border-bottom:1.5px solid #e2e8f0}
-.tbadge{display:inline-flex;align-items:center;gap:5px;background:#0f172a;color:#fff;font-size:12px;font-weight:600;padding:4px 12px;border-radius:100px}
-.tbadge-cnt{background:#0ea5e9;color:#fff;font-size:10px;font-weight:700;padding:1px 7px;border-radius:100px}
-.gtbtn{margin-left:auto;font-size:11px;color:#0ea5e9;background:none;border:.5px solid #bfdbfe;padding:3px 10px;border-radius:6px;cursor:pointer;font-family:inherit;flex-shrink:0}
-.gtbtn:hover{background:#eff6ff}
-.hl{background:#fef08a;border-radius:3px;padding:0 2px;font-weight:600;color:#713f12}
-.nores{text-align:center;padding:40px 20px;color:#94a3b8}
-.nores i{font-size:40px;display:block;margin-bottom:10px;opacity:.3}
+  .catalog-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 22px 12px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  }
+  .catalog-item:hover {
+    background: rgba(52,152,219,0.1);
+    border-color: rgba(52,152,219,0.4);
+    transform: translateY(-2px);
+  }
+  .catalog-item .icon {
+    font-size: 1.8rem;
+    color: #3498db;
+    line-height: 1;
+  }
+  .catalog-item span {
+    font-size: 0.82rem;
+    color: #cde;
+    text-align: center;
+    font-weight: 500;
+  }
 
-.tbl-outer{overflow:auto;max-height:calc(100vh - 200px);-webkit-overflow-scrolling:touch}
-.tbl{width:100%;border-collapse:collapse;font-size:13px}
-.tbl thead th{position:sticky;top:0;z-index:10;padding:9px 14px;text-align:left;color:#64748b;font-weight:600;font-size:11px;border-bottom:1.5px solid #e2e8f0;background:#f8fafc;white-space:nowrap;box-shadow:0 1px 0 #e2e8f0}
-.tbl thead th:first-child{position:sticky;left:0;z-index:15;background:#f8fafc}
-.tbl tbody td:first-child{position:sticky;left:0;z-index:5;background:#fff}
-.tbl tr:hover td:first-child{background:#f0f9ff}
-.tbl td{padding:9px 14px;border-bottom:.5px solid #f1f5f9;color:#1e293b;white-space:nowrap}
-.tbl tr:hover td{background:#f0f9ff}
-.pv{color:#0369a1;font-weight:600}.nt{color:#cbd5e1;font-size:12px}
-.del-btn{background:none;border:none;color:#fca5a5;cursor:pointer;font-size:15px;padding:3px 6px;border-radius:5px;opacity:.7}
-.del-btn:hover{opacity:1;background:#fee2e2;color:#dc2626}
-.empty-row td{text-align:center;padding:50px;color:#94a3b8;font-size:14px}
+  /* ===== RESPONSIVE — MOBILE ===== */
+  @media (max-width: 600px) {
+    /* Show mobile catalog label */
+    .nav-catalog-label { display: flex; align-items: center; }
 
-/* CONTENT PAGES */
-.cpg{padding:20px 16px;max-width:960px;margin:0 auto}
-.phero{background:linear-gradient(135deg,#0f172a,#1e3a5f);border-radius:12px;padding:28px 20px;text-align:center;color:#fff;margin-bottom:16px}
-.phero .hico{font-size:36px;display:block;margin-bottom:8px;opacity:.9}
-.phero h1{font-size:20px;font-weight:700;margin-bottom:4px}
-.phero p{font-size:13px;color:#94a3b8}
-.etb{display:flex;gap:8px;margin-bottom:12px;align-items:center;flex-wrap:wrap}
-.ebtn{padding:7px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px;border:.5px solid #e2e8f0;background:#fff;color:#475569;transition:all .15s}
-.ebtn:hover{border-color:#0ea5e9;color:#0ea5e9}
-.ebtn.pri{background:#0ea5e9;color:#fff;border-color:#0ea5e9}
-.ebtn.pri:hover{background:#0284c7}
-.ebtn.danger{border-color:#fca5a5;color:#dc2626}
-.ebtn.danger:hover{background:#fee2e2}
-.ebtn:disabled{opacity:.5;cursor:not-allowed}
-.sconf{background:#dcfce7;border:.5px solid #bbf7d0;border-radius:7px;padding:6px 12px;font-size:12px;color:#15803d;display:none;align-items:center;gap:5px;margin-left:auto}
-.sconf.show{display:flex}
-.ceditor{width:100%;min-height:260px;padding:14px;border:.5px solid #e2e8f0;border-radius:10px;font-size:14px;font-family:inherit;color:#1e293b;line-height:1.8;resize:vertical;background:#fff}
-.ceditor:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 2px #bfdbfe}
-.cdisplay{min-height:100px;line-height:1.9;font-size:14px;color:#374151}
-.cdisplay h2{font-size:16px;font-weight:600;color:#0f172a;margin:18px 0 7px;padding-bottom:5px;border-bottom:.5px solid #e2e8f0}
-.cdisplay h3{font-size:14px;font-weight:600;color:#1e293b;margin:12px 0 5px}
-.cdisplay p{margin-bottom:10px}
-.cdisplay ul{padding-left:20px;margin-bottom:10px}
-.cdisplay ul li{margin-bottom:4px}
-.cdisplay strong{font-weight:700;color:#0f172a}
-.empty-cnt{text-align:center;padding:40px 20px;color:#94a3b8}
-.empty-cnt i{font-size:36px;display:block;margin-bottom:8px;opacity:.3}
-.loading-cnt{text-align:center;padding:40px;color:#94a3b8;font-size:13px}
+    .hero h1 { font-size: 1.45rem; }
 
-/* NOHON */
-.nohon-admin-panel{background:#fffbeb;border:.5px solid #fde68a;border-radius:12px;padding:14px 16px;margin-bottom:14px}
-.nohon-admin-panel h3{font-size:13px;font-weight:600;color:#92400e;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.url-row{display:flex;gap:8px;align-items:stretch;flex-wrap:wrap}
-.url-input{flex:1;min-width:200px;padding:9px 12px;border:.5px solid #d6d3d1;border-radius:8px;font-size:12px;font-family:monospace;color:#1c1917;background:#fff}
-.url-input:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
-.url-save-btn{padding:9px 16px;background:#f97316;color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;display:flex;align-items:center;gap:5px}
-.url-save-btn:hover{background:#ea580c}
-.url-save-btn:disabled{background:#d6d3d1;cursor:not-allowed}
-.url-hint{font-size:11px;color:#92400e;margin-top:8px;line-height:1.7}
-.url-hint code{background:#fef9c3;padding:1px 5px;border-radius:3px;font-size:11px}
-.url-saved-msg{font-size:11px;color:#15803d;margin-top:6px;display:none;align-items:center;gap:4px}
-.url-saved-msg.show{display:flex}
-.url-loading-msg{font-size:11px;color:#92400e;margin-top:6px;display:none;align-items:center;gap:4px}
-.url-loading-msg.show{display:flex}
+    .catalog-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
 
-.pdf-viewer-wrap{border:.5px solid #e2e8f0;border-radius:12px;overflow:hidden;background:#f8fafc}
-.pdf-toolbar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0f172a;gap:10px}
-.pdf-toolbar-title{color:#e2e8f0;font-size:13px;font-weight:500;display:flex;align-items:center;gap:7px;flex:1;min-width:0}
-.pdf-open-btn{display:flex;align-items:center;gap:5px;padding:6px 14px;background:#0ea5e9;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;font-family:inherit;text-decoration:none;flex-shrink:0}
-.pdf-open-btn:hover{background:#0284c7}
-.pdf-frame{width:100%;height:calc(100vh - 200px);min-height:400px;border:none;display:block}
-.pdf-no-url{text-align:center;padding:50px 20px;color:#94a3b8}
-.pdf-no-url i{font-size:44px;display:block;margin-bottom:10px;opacity:.3}
-.pdf-no-url p{font-size:14px;margin-bottom:6px}
-.pdf-no-url small{font-size:12px;color:#cbd5e1}
-
-/* LOGIN */
-.lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
-.lcard{background:#fff;border-radius:14px;border:.5px solid #e2e8f0;padding:28px;width:300px;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.lcard h2{font-size:15px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:7px}
-.lcard h2 i{color:#0ea5e9}
-.lcard p{font-size:12px;color:#94a3b8;margin-bottom:14px}
-.lf label{font-size:11px;color:#64748b;display:block;margin-bottom:4px;margin-top:10px;font-weight:600}
-.lf input{width:100%;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:8px;font-size:14px;color:#0f172a;font-family:inherit}
-.lf input:focus{outline:none;border-color:#0ea5e9;box-shadow:0 0 0 2px #bfdbfe}
-.lerr{font-size:12px;color:#dc2626;margin-top:7px;display:flex;align-items:center;gap:4px}
-.lrow{display:flex;gap:8px;margin-top:14px}
-.lcnl{padding:9px 14px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
-.lgo{flex:1;padding:9px;background:#0ea5e9;color:#fff;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit}
-.lgo:hover{background:#0284c7}
-
-/* RESPONSIVE */
-@media(max-width:700px){
-  .nav-menu{display:none}
-  .hamburger{display:flex}
-  .mobile-drawer{display:block}
-  .nav-right .stat-pill{display:none !important}
-  .home-cats{grid-template-columns:repeat(3,1fr)}
-  .tbl-outer{max-height:calc(100vh - 240px)}
-  .pdf-frame{height:55vh;min-height:300px}
-}
-@media(min-width:701px){
-  .mobile-drawer{display:none !important}
-}
+    .catalog-item {
+      padding: 16px 8px 12px;
+      border-radius: 12px;
+    }
+    .catalog-item .icon { font-size: 1.5rem; }
+    .catalog-item span { font-size: 0.73rem; }
+  }
 </style>
 </head>
 <body>
 
-<nav id="navbar">
-  <div class="navbar-inner">
-    <div class="nav-logo" onclick="gotoPage('home');closeMobile()">
-      <div class="dot" style="background:#0ea5e9"></div>
-      <div class="dot" style="background:#f97316"></div>
-      <div class="dot" style="background:#8b5cf6"></div>
-      <span class="nav-logo-name">Big<em>mobile</em></span>
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <div class="dots">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-orange"></div>
+      <div class="dot dot-blue"></div>
     </div>
+    <span class="logo-big">Big</span><span class="logo-mobile">mobile</span>
+  </div>
 
-    <!-- Desktop menu -->
-    <div class="nav-menu">
-      <div class="nav-item" id="ni-products">
-        <button class="nav-link" onclick="toggleDD('ni-products',event)">
-          <i class="ti ti-layout-grid"></i><span> รายการสินค้า</span>
-          <i class="ti ti-chevron-down chevron"></i>
-        </button>
-        <div class="dropdown">
-          <div class="dd-label">จอ / หน้าจอ</div>
-          <button class="dd-item" onclick="goToTab('iPhone')"><i class="ti ti-brand-apple"></i>iPhone</button>
-          <button class="dd-item" onclick="goToTab('IPad')"><i class="ti ti-device-ipad"></i>iPad</button>
-          <button class="dd-item" onclick="goToTab('Samsung')"><i class="ti ti-device-mobile"></i>Samsung</button>
-          <button class="dd-item" onclick="goToTab('TAB')"><i class="ti ti-device-tablet"></i>Samsung TAB</button>
-          <button class="dd-item" onclick="goToTab('จอพับ Filp-Fold')"><i class="ti ti-device-mobile-rotated"></i>จอพับ Flip-Fold</button>
-          <button class="dd-item" onclick="goToTab('ViVo')"><i class="ti ti-device-mobile"></i>Vivo</button>
-          <button class="dd-item" onclick="goToTab('OPPO')"><i class="ti ti-device-mobile"></i>OPPO</button>
-          <button class="dd-item" onclick="goToTab('Huawei')"><i class="ti ti-device-mobile"></i>Huawei</button>
-          <button class="dd-item" onclick="goToTab('Apple Watch ')"><i class="ti ti-device-watch"></i>Apple Watch</button>
-          <div class="dd-sep"></div>
-          <div class="dd-label">อะไหล่อื่นๆ</div>
-          <button class="dd-item" onclick="goToTab('แพรชาร์จแท้แกะ')"><i class="ti ti-plug"></i>แพรชาร์จแท้แกะ</button>
-          <button class="dd-item" onclick="goToTab('สายแพร SAMSUNG Filp-Fold แท้')"><i class="ti ti-plug"></i>สายแพร Samsung Flip-Fold</button>
-          <button class="dd-item" onclick="goToTab('กล้องหลังแท้แกะ')"><i class="ti ti-camera"></i>กล้องหลังแท้แกะ</button>
-          <button class="dd-item" onclick="goToTab('แพร Face ID config ได้')"><i class="ti ti-scan"></i>แพร Face ID</button>
-          <button class="dd-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้นใช้แล้ว)')"><i class="ti ti-battery-charging"></i>แบตแท้ Config (ขึ้นใช้แล้ว)</button>
-          <button class="dd-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้น ของแท้) ')"><i class="ti ti-battery-charging-2"></i>แบตแท้ Config (ของแท้)</button>
-          <button class="dd-item" onclick="goToTab('ฝาหลังแท้แกะ SAMSUNG')"><i class="ti ti-device-mobile"></i>ฝาหลังแท้แกะ Samsung</button>
-          <button class="dd-item" onclick="goToTab('OCA + Touch IPad ')"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
-        </div>
-      </div>
-      <div class="nav-item"><button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')"><i class="ti ti-tag"></i><span> ราคา NOHON</span></button></div>
-      <div class="nav-item"><button class="nav-link" id="nl-warranty" onclick="gotoPage('warranty')"><i class="ti ti-shield-check"></i><span> การรับประกัน</span></button></div>
-      <div class="nav-item"><button class="nav-link" id="nl-contact" onclick="gotoPage('contact')"><i class="ti ti-message-circle"></i><span> ติดต่อสอบถาม</span></button></div>
-    </div>
+  <div class="nav-right">
+    <!-- ⚙️ Settings gear — ชิดขวาสุดทั้ง desktop & mobile -->
+    <!-- Mobile only: รายการสินค้า label (left of hamburger) -->
+    <span class="nav-catalog-label">☰ รายการสินค้า</span>
 
-    <div class="nav-right">
-      <span class="stat-pill" id="stat-pill" style="display:none">—</span>
-      <button class="admin-btn" id="admin-btn" onclick="handleAdmin()"><i class="ti ti-shield"></i><span id="admin-txt"> แอดมิน</span></button>
-      <!-- hamburger -->
-      <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="เมนู">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+    <!-- Hamburger menu -->
+    <button class="btn-hamburger" title="เมนู">&#9776;</button>
+
+    <!-- Settings gear — rightmost on ALL screen sizes -->
+    <button class="btn-settings" title="ตั้งค่า">⚙️</button>
   </div>
 </nav>
 
-<!-- Mobile Drawer -->
-<div class="mobile-drawer" id="mobile-drawer">
-  <div class="mob-section">รายการสินค้า — จอ / หน้าจอ</div>
-  <button class="mob-item" onclick="goToTab('iPhone');closeMobile()"><i class="ti ti-brand-apple"></i>iPhone</button>
-  <button class="mob-item" onclick="goToTab('IPad');closeMobile()"><i class="ti ti-device-ipad"></i>iPad</button>
-  <button class="mob-item" onclick="goToTab('Samsung');closeMobile()"><i class="ti ti-device-mobile"></i>Samsung</button>
-  <button class="mob-item" onclick="goToTab('TAB');closeMobile()"><i class="ti ti-device-tablet"></i>Samsung TAB</button>
-  <button class="mob-item" onclick="goToTab('จอพับ Filp-Fold');closeMobile()"><i class="ti ti-device-mobile-rotated"></i>จอพับ Flip-Fold</button>
-  <button class="mob-item" onclick="goToTab('ViVo');closeMobile()"><i class="ti ti-device-mobile"></i>Vivo</button>
-  <button class="mob-item" onclick="goToTab('OPPO');closeMobile()"><i class="ti ti-device-mobile"></i>OPPO</button>
-  <button class="mob-item" onclick="goToTab('Huawei');closeMobile()"><i class="ti ti-device-mobile"></i>Huawei</button>
-  <button class="mob-item" onclick="goToTab('Apple Watch ');closeMobile()"><i class="ti ti-device-watch"></i>Apple Watch</button>
-  <div class="mob-sep"></div>
-  <div class="mob-section">อะไหล่อื่นๆ</div>
-  <button class="mob-item" onclick="goToTab('แพรชาร์จแท้แกะ');closeMobile()"><i class="ti ti-plug"></i>แพรชาร์จแท้แกะ</button>
-  <button class="mob-item" onclick="goToTab('สายแพร SAMSUNG Filp-Fold แท้');closeMobile()"><i class="ti ti-plug"></i>สายแพร Samsung Flip-Fold</button>
-  <button class="mob-item" onclick="goToTab('กล้องหลังแท้แกะ');closeMobile()"><i class="ti ti-camera"></i>กล้องหลังแท้แกะ</button>
-  <button class="mob-item" onclick="goToTab('แพร Face ID config ได้');closeMobile()"><i class="ti ti-scan"></i>แพร Face ID</button>
-  <button class="mob-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้นใช้แล้ว)');closeMobile()"><i class="ti ti-battery-charging"></i>แบตแท้ Config (ขึ้นใช้แล้ว)</button>
-  <button class="mob-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้น ของแท้) ');closeMobile()"><i class="ti ti-battery-charging-2"></i>แบตแท้ Config (ของแท้)</button>
-  <button class="mob-item" onclick="goToTab('ฝาหลังแท้แกะ SAMSUNG');closeMobile()"><i class="ti ti-device-mobile"></i>ฝาหลังแท้แกะ Samsung</button>
-  <button class="mob-item" onclick="goToTab('OCA + Touch IPad ');closeMobile()"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
-  <div class="mob-sep"></div>
-  <button class="mob-item" id="mob-nohon" onclick="gotoPage('nohon');closeMobile()"><i class="ti ti-tag"></i>ราคา NOHON</button>
-  <button class="mob-item" id="mob-warranty" onclick="gotoPage('warranty');closeMobile()"><i class="ti ti-shield-check"></i>การรับประกัน</button>
-  <button class="mob-item" id="mob-contact" onclick="gotoPage('contact');closeMobile()"><i class="ti ti-message-circle"></i>ติดต่อสอบถาม</button>
-</div>
-
-<div id="app">
-
-<!-- HOME -->
-<div class="page active" id="page-home">
-  <div class="home-hero">
-    <h1>Big<em>mobile</em> ราคาอะไหล่แท้</h1>
-    <p>เลือกหมวดหมู่หรือค้นหาสินค้าได้เลย</p>
-    <div class="home-search-wrap">
-      <input id="hsearch" placeholder="ค้นหารุ่น เช่น iPhone 15 Pro..." onkeydown="if(event.key==='Enter')homeSearch()"/>
-      <button onclick="homeSearch()"><i class="ti ti-search"></i> ค้นหา</button>
-    </div>
-    <div class="home-cats">
-      <div class="home-cat" onclick="goToTab('iPhone')"><i class="ti ti-brand-apple"></i><span>iPhone</span></div>
-      <div class="home-cat" onclick="goToTab('IPad')"><i class="ti ti-device-ipad"></i><span>iPad</span></div>
-      <div class="home-cat" onclick="goToTab('Samsung')"><i class="ti ti-device-mobile"></i><span>Samsung</span></div>
-      <div class="home-cat" onclick="goToTab('TAB')"><i class="ti ti-device-tablet"></i><span>Samsung TAB</span></div>
-      <div class="home-cat" onclick="goToTab('จอพับ Filp-Fold')"><i class="ti ti-device-mobile-rotated"></i><span>Flip-Fold</span></div>
-      <div class="home-cat" onclick="goToTab('ViVo')"><i class="ti ti-device-mobile"></i><span>Vivo</span></div>
-      <div class="home-cat" onclick="goToTab('OPPO')"><i class="ti ti-device-mobile"></i><span>OPPO</span></div>
-      <div class="home-cat" onclick="goToTab('Huawei')"><i class="ti ti-device-mobile"></i><span>Huawei</span></div>
-      <div class="home-cat" onclick="goToTab('Apple Watch ')"><i class="ti ti-device-watch"></i><span>Apple Watch</span></div>
-      <div class="home-cat" onclick="goToTab('แพรชาร์จแท้แกะ')"><i class="ti ti-plug"></i><span>แพรชาร์จ</span></div>
-      <div class="home-cat" onclick="goToTab('กล้องหลังแท้แกะ')"><i class="ti ti-camera"></i><span>กล้องหลัง</span></div>
-      <div class="home-cat" onclick="goToTab('แบตแท้ Config ได้ (ขึ้นใช้แล้ว)')"><i class="ti ti-battery-charging"></i><span>แบตแท้</span></div>
-    </div>
+<!-- HERO -->
+<div class="hero">
+  <h1><span class="blue">Big</span><span>mobile</span> ราคาอะไหล่แท้</h1>
+  <p>เลือกหมวดหมู่หรือค้นหาสินค้าได้เลย</p>
+  <div class="search-bar">
+    <input type="text" placeholder="ค้นหารุ่น เช่น iPhone 15 Pro...">
+    <button>🔍 ค้นหา</button>
   </div>
 </div>
 
-<!-- PRICE PAGE -->
-<div class="page" id="page-price">
-  <div id="add-panel" class="add-panel" style="display:none">
-    <h3><i class="ti ti-plus"></i> เพิ่มสินค้าใหม่</h3>
-    <div class="fg">
-      <div class="fg-group"><label>คอลัมน์ราคา</label><select id="f-col"></select></div>
-      <div class="fg-group"><label>ชื่อรุ่น</label><input id="f-model" placeholder="ชื่อรุ่น"/></div>
-      <div class="fg-group"><label>ราคา (฿)</label><input id="f-price" type="number" placeholder="0" style="width:90px"/></div>
-      <button class="sbtn" id="save-btn" onclick="addProduct()"><i class="ti ti-device-floppy"></i> บันทึก</button>
+<!-- CATALOG GRID — 17 items -->
+<div class="catalog">
+  <div class="catalog-grid">
+
+    <div class="catalog-item">
+      <div class="icon">🍎</div>
+      <span>iPhone</span>
     </div>
-    <div class="smsg" id="smsg"></div>
-  </div>
-  <div class="gsearch-wrap">
-    <div class="gsearch-top">
-      <span><i class="ti ti-world-search" style="font-size:12px"></i> ค้นหาทุก Tab</span>
-      <span class="pstatus" id="pstatus"><i class="ti ti-loader spin" style="font-size:11px"></i> กำลังโหลด...</span>
+
+    <div class="catalog-item">
+      <div class="icon">📱</div>
+      <span>iPad</span>
     </div>
-    <div class="gsrow">
-      <input class="gsinput" id="gsinput" placeholder="พิมพ์ชื่อรุ่น..." onkeydown="if(event.key==='Enter')doGS()"/>
-      <button class="gsbtn" onclick="doGS()"><i class="ti ti-search"></i> ค้นหา</button>
-      <button class="gclr" id="gclr" onclick="clearGS()" style="display:none"><i class="ti ti-x"></i></button>
+
+    <div class="catalog-item">
+      <div class="icon">📲</div>
+      <span>Samsung</span>
     </div>
-    <div class="pbar"><div class="pfill" id="pfill"></div></div>
-  </div>
-  <div class="tab-hdr">
-    <button class="back-btn" onclick="gotoPage('home')"><i class="ti ti-arrow-left"></i> หน้าหลัก</button>
-    <h2 id="tab-title">—</h2>
-  </div>
-  <div class="toolbar" id="toolbar">
-    <input class="srch" id="srch" placeholder="กรองในแท็บนี้..." oninput="renderTbl()"/>
-    <button class="rbtn" onclick="reloadTab()"><i class="ti ti-refresh" id="ref-ico"></i> โหลดใหม่</button>
-  </div>
-  <div class="sbar" id="sbar">
-    <div><span class="sdot ld" id="sdot"></span><span id="stxt">กำลังโหลด...</span></div>
-    <span id="rcnt"></span>
-  </div>
-  <div id="gsres" class="gsres" style="display:none"></div>
-  <div id="tab-view">
-    <div class="tbl-outer"><table class="tbl"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+
+    <div class="catalog-item">
+      <div class="icon">🖥️</div>
+      <span>Samsung TAB</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">📂</div>
+      <span>จอพับ Flip-Fold</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">📱</div>
+      <span>Vivo</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">📱</div>
+      <span>OPPO</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">📱</div>
+      <span>Huawei</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">⌚</div>
+      <span>Apple Watch</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🔌</div>
+      <span>แพรชาร์จแท้แกะ</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🔗</div>
+      <span>สายแพร Samsung Flip-Fold</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">📷</div>
+      <span>กล้องหลังแท้แกะแพร</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">👁️</div>
+      <span>Face ID</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🔋</div>
+      <span>แบตแท้ Config (ขึ้นใช้แล้ว)</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🔋</div>
+      <span>แบตแท้ Config (ของแท้)</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🪟</div>
+      <span>ฝาหลังแท้แกะ Samsung</span>
+    </div>
+
+    <div class="catalog-item">
+      <div class="icon">🖱️</div>
+      <span>OCA + Touch iPad</span>
+    </div>
+
   </div>
 </div>
 
-<!-- NOHON -->
-<div class="page" id="page-nohon">
-  <div class="cpg">
-    <div class="phero"><i class="ti ti-tag hico"></i><h1>ราคาสินค้า NOHON</h1><p>รายการราคาสินค้า NOHON ทุกรุ่น</p></div>
-    <div id="nohon-admin-panel" class="nohon-admin-panel" style="display:none">
-      <h3><i class="ti ti-settings" style="font-size:13px"></i> ตั้งค่า PDF (แอดมิน)</h3>
-      <div class="url-row">
-        <input class="url-input" id="nohon-url-input" placeholder="วาง Google Drive link ของไฟล์ PDF..."/>
-        <button class="url-save-btn" id="nohon-save-btn" onclick="saveNohonUrl()"><i class="ti ti-device-floppy"></i> บันทึก</button>
-        <button class="ebtn danger" onclick="clearNohonUrl()" style="padding:9px 12px"><i class="ti ti-trash"></i></button>
-      </div>
-      <div class="url-hint">
-        📌 วิธีเอาลิงก์จาก Google Drive:<br>
-        1. อัปโหลด PDF → คลิกขวา → <strong>Get link</strong> → เปลี่ยนเป็น <strong>Anyone with the link</strong> → Copy<br>
-        2. ตัวอย่าง: <code>https://drive.google.com/file/d/xxxxx/view</code>
-      </div>
-      <div class="url-loading-msg" id="nohon-url-loading"><i class="ti ti-loader spin"></i> กำลังบันทึก...</div>
-      <div class="url-saved-msg" id="nohon-url-saved"><i class="ti ti-circle-check"></i> บันทึกลง Sheets แล้ว ทุกเครื่องจะเห็น PDF</div>
-    </div>
-    <div id="nohon-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลด...</div>
-    <div id="nohon-viewer" class="pdf-viewer-wrap">
-      <div id="nohon-has-pdf" style="display:none">
-        <div class="pdf-toolbar">
-          <div class="pdf-toolbar-title"><i class="ti ti-file-type-pdf" style="font-size:16px;color:#f87171"></i>ราคาสินค้า NOHON</div>
-          <a id="nohon-open-link" href="#" target="_blank" class="pdf-open-btn"><i class="ti ti-external-link" style="font-size:13px"></i> เปิดแบบเต็มหน้าจอ</a>
-        </div>
-        <iframe id="nohon-iframe" class="pdf-frame" src="" allowfullscreen></iframe>
-      </div>
-      <div id="nohon-no-pdf" class="pdf-no-url">
-        <i class="ti ti-file-type-pdf"></i>
-        <p>ยังไม่มีรายการราคา NOHON</p>
-        <small>แอดมินกำลังจัดทำข้อมูล</small>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- WARRANTY -->
-<div class="page" id="page-warranty">
-  <div class="cpg">
-    <div class="phero"><i class="ti ti-shield-check hico"></i><h1>รายละเอียดการรับประกัน</h1><p>เงื่อนไขและรายละเอียดการรับประกันสินค้า Bigmobile</p></div>
-    <div id="warranty-tb" style="display:none" class="etb">
-      <button class="ebtn pri" id="wsave-btn" onclick="saveContent('warranty')"><i class="ti ti-device-floppy"></i> บันทึก</button>
-      <button class="ebtn" onclick="togglePreview('warranty')"><i class="ti ti-eye"></i> <span id="wtoggle-txt">แก้ไข</span></button>
-      <div class="sconf" id="wsaved"><i class="ti ti-circle-check"></i> บันทึกลง Sheets แล้ว</div>
-    </div>
-    <div id="warranty-editor-wrap" style="display:none"><textarea class="ceditor" id="warranty-ed" placeholder="พิมพ์รายละเอียดการรับประกัน... รองรับ HTML&#10;เช่น &lt;h2&gt;หัวข้อ&lt;/h2&gt; &lt;p&gt;เนื้อหา&lt;/p&gt;"></textarea></div>
-    <div id="warranty-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลด...</div>
-    <div id="warranty-display" class="cdisplay"></div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div class="page" id="page-contact">
-  <div class="cpg">
-    <div class="phero"><i class="ti ti-message-circle hico"></i><h1>ติดต่อสอบถาม</h1><p>ช่องทางการติดต่อและสอบถามของ Bigmobile</p></div>
-    <div id="contact-tb" style="display:none" class="etb">
-      <button class="ebtn pri" id="csave-btn" onclick="saveContent('contact')"><i class="ti ti-device-floppy"></i> บันทึก</button>
-      <button class="ebtn" onclick="togglePreview('contact')"><i class="ti ti-eye"></i> <span id="ctoggle-txt">แก้ไข</span></button>
-      <div class="sconf" id="csaved"><i class="ti ti-circle-check"></i> บันทึกลง Sheets แล้ว</div>
-    </div>
-    <div id="contact-editor-wrap" style="display:none"><textarea class="ceditor" id="contact-ed" placeholder="พิมพ์ข้อมูลการติดต่อ... รองรับ HTML&#10;เช่น &lt;h2&gt;ช่องทางติดต่อ&lt;/h2&gt; &lt;p&gt;📱 Line: @bigmobile&lt;/p&gt;"></textarea></div>
-    <div id="contact-loading" class="loading-cnt" style="display:none"><i class="ti ti-loader spin"></i> กำลังโหลด...</div>
-    <div id="contact-display" class="cdisplay"></div>
-  </div>
-</div>
-
-<!-- LOGIN -->
-<div id="lov" class="lov" style="display:none">
-  <div class="lcard">
-    <h2><i class="ti ti-lock"></i>เข้าสู่ระบบแอดมิน</h2>
-    <p>สำหรับเจ้าหน้าที่ Bigmobile เท่านั้น</p>
-    <div class="lf">
-      <label>ชื่อผู้ใช้</label><input id="lu" type="text" placeholder="admin"/>
-      <label>รหัสผ่าน</label><input id="lp" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"/>
-    </div>
-    <div class="lerr" id="lerr" style="display:none"><i class="ti ti-alert-circle"></i> ไม่ถูกต้อง</div>
-    <div class="lrow"><button class="lcnl" onclick="closeLogin()">ยกเลิก</button><button class="lgo" onclick="doLogin()">เข้าสู่ระบบ</button></div>
-  </div>
-</div>
-
-</div><!-- #app -->
-
-<script>
-const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41LZdjthTCUOfDtNmf0hqCZog8aLbxyh6ZH_bQnxr/exec';
-const AU='admin',AP='bigmobile4503';
-const BASE_URL=window.location.origin+window.location.pathname;
-const HASH_PAGES=['nohon','warranty','contact'];
-const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น'};
-let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[],tabCache={},preloadDone=false;
-
-/* ── MOBILE MENU ── */
-function toggleMobile(){
-  const hb=document.getElementById('hamburger');
-  const dr=document.getElementById('mobile-drawer');
-  hb.classList.toggle('open');
-  dr.classList.toggle('open');
-}
-function closeMobile(){
-  document.getElementById('hamburger').classList.remove('open');
-  document.getElementById('mobile-drawer').classList.remove('open');
-}
-document.addEventListener('click',e=>{
-  const dr=document.getElementById('mobile-drawer');
-  const hb=document.getElementById('hamburger');
-  if(dr.classList.contains('open')&&!dr.contains(e.target)&&!hb.contains(e.target))closeMobile();
-});
-
-/* ── HASH ROUTING ── */
-function getHash(){const h=location.hash.replace('#','');return HASH_PAGES.includes(h)?h:null;}
-function setHash(p){history.pushState(null,'',BASE_URL+(HASH_PAGES.includes(p)?'#'+p:p==='price'?'#price':''));}
-window.addEventListener('popstate',()=>showPageDirect(getHash()||'home'));
-
-/* ── DROPDOWN (desktop) ── */
-function toggleDD(id,e){
-  e.stopPropagation();
-  const item=document.getElementById(id);const dd=item.querySelector('.dropdown');const wasOpen=item.classList.contains('open');
-  closeAllDD();
-  if(!wasOpen){item.classList.add('open');const rect=item.querySelector('.nav-link').getBoundingClientRect();dd.style.left=rect.left+'px';dd.style.minWidth=Math.max(240,rect.width)+'px';}
-}
-function closeAllDD(){document.querySelectorAll('.nav-item.open').forEach(el=>el.classList.remove('open'));}
-document.addEventListener('click',()=>closeAllDD());
-window.addEventListener('scroll',()=>closeAllDD(),{passive:true});
-
-/* ── PAGE NAV ── */
-function showPageDirect(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  closeAllDD();closeMobile();
-  document.getElementById('stat-pill').style.display=name==='price'?'':'none';
-  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('cur'));
-  document.querySelectorAll('.mob-item').forEach(l=>l.classList.remove('cur'));
-  const nl=document.getElementById('nl-'+name);if(nl)nl.classList.add('cur');
-  const ml=document.getElementById('mob-'+name);if(ml)ml.classList.add('cur');
-  if(name==='warranty')loadContent('warranty');
-  if(name==='contact')loadContent('contact');
-  if(name==='nohon')loadNohon();
-  window.scrollTo(0,0);
-}
-function gotoPage(name){showPageDirect(name);setHash(name);}
-function goToTab(tab){showPageDirect('price');setHash('price');closeAllDD();closeMobile();document.getElementById('tab-title').textContent=tab.trim();clearGS(false);loadTab(tab);}
-function homeSearch(){const q=document.getElementById('hsearch').value.trim();if(!q)return;gotoPage('price');setTimeout(()=>{document.getElementById('gsinput').value=q;doGS();},80);}
-
-/* ── NOHON — บันทึก URL ลง Google Sheets ── */
-function driveToEmbed(url){
-  const m=url.match(/\/file\/d\/([^/]+)/);
-  if(m)return 'https://drive.google.com/file/d/'+m[1]+'/preview';
-  return url.replace('/view','/preview');
-}
-
-async function loadNohon(){
-  document.getElementById('nohon-loading').style.display='block';
-  document.getElementById('nohon-viewer').style.display='none';
-  try{
-    const res=await fetch(GAS+'?action=getContent&key=nohon_pdf_url');
-    const json=await res.json();
-    const url=(json.value||'').trim();
-    if(isAdmin)document.getElementById('nohon-url-input').value=url;
-    showNohonPdf(url);
-  }catch(e){
-    showNohonPdf('');
-  }
-  document.getElementById('nohon-loading').style.display='none';
-  document.getElementById('nohon-viewer').style.display='';
-}
-
-function showNohonPdf(url){
-  if(url){
-    document.getElementById('nohon-iframe').src=driveToEmbed(url);
-    document.getElementById('nohon-open-link').href=url;
-    document.getElementById('nohon-has-pdf').style.display='';
-    document.getElementById('nohon-no-pdf').style.display='none';
-  }else{
-    document.getElementById('nohon-has-pdf').style.display='none';
-    document.getElementById('nohon-no-pdf').style.display='';
-  }
-}
-
-async function saveNohonUrl(){
-  const url=document.getElementById('nohon-url-input').value.trim();
-  const btn=document.getElementById('nohon-save-btn');
-  const loadMsg=document.getElementById('nohon-url-loading');
-  const savedMsg=document.getElementById('nohon-url-saved');
-  btn.disabled=true;
-  loadMsg.classList.add('show');savedMsg.classList.remove('show');
-  try{
-    // บันทึกลง Sheets ผ่าน Apps Script
-    await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveContent',key:'nohon_pdf_url',value:url})});
-    await new Promise(r=>setTimeout(r,1500));
-    loadMsg.classList.remove('show');
-    savedMsg.classList.add('show');
-    setTimeout(()=>savedMsg.classList.remove('show'),4000);
-    showNohonPdf(url);
-  }catch(e){
-    loadMsg.classList.remove('show');
-    alert('บันทึกไม่สำเร็จ: '+e.message);
-  }
-  btn.disabled=false;
-}
-
-async function clearNohonUrl(){
-  if(!confirm('ล้าง PDF ออก?'))return;
-  document.getElementById('nohon-url-input').value='';
-  await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveContent',key:'nohon_pdf_url',value:''})});
-  await new Promise(r=>setTimeout(r,1500));
-  showNohonPdf('');
-}
-
-/* ── PRICE DATA ── */
-function mk(tab){return MK[tab]||MK[tab.trim()]||'รุ่น';}
-function setSync(s,msg){document.getElementById('sdot').className='sdot '+(s==='ok'?'ok':s==='err'?'err':'ld');document.getElementById('stxt').textContent=msg;}
-function fmt(v){if(v===''||v===null||v===undefined)return '';const n=parseFloat(v);if(isNaN(n)||n===0)return '';return '฿'+Math.round(n).toLocaleString('th-TH');}
-function hl(t,q){if(!q)return String(t);return String(t).replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<span class="hl">$1</span>');}
-function parseTD(json,tab){const m=mk(tab);const hdrs=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];const rows=(json.data||[]).filter(r=>{const v=r[m];return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';});return{headers:hdrs,rows};}
-function buildTabs(tabs){allTabs=tabs;}
-function renderHeaders(){
-  const m=mk(curTab);const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  document.getElementById('thead').innerHTML='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('')+(isAdmin?'<th style="width:44px">ลบ</th>':'')+' </tr>';
-  if(isAdmin)document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
-}
-function renderTbl(){
-  const q=document.getElementById('srch').value.toLowerCase();const m=mk(curTab);const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  let rows=products;if(q)rows=rows.filter(p=>String(p[m]||'').toLowerCase().includes(q));
-  document.getElementById('stat-pill').textContent=rows.length+' รายการ';document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
-  const tb=document.getElementById('tbody');
-  if(!rows.length){tb.innerHTML=`<tr class="empty-row"><td colspan="${pks.length+1+(isAdmin?1:0)}"><i class="ti ti-mood-empty" style="font-size:28px;display:block;margin-bottom:6px;opacity:.3"></i>ไม่พบข้อมูล</td></tr>`;return;}
-  tb.innerHTML=rows.map(p=>{const ri=products.indexOf(p);const mv=String(p[m]||'').replace(/^-\s*/,'');const cells=pks.map(h=>{const v=fmt(p[h]);return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';}).join('');const del=isAdmin?`<td><button class="del-btn" onclick="delProd(${ri})"><i class="ti ti-trash"></i></button></td>`:'';return `<tr><td style="font-weight:600">${mv}</td>${cells}${del}</tr>`;}).join('');
-}
-async function loadTab(tab){
-  curTab=tab;document.getElementById('tab-title').textContent=tab.trim();
-  const ico=document.getElementById('ref-ico');ico.classList.add('spin');setSync('ld','กำลังโหลด '+tab.trim()+'...');
-  try{
-    if(tabCache[tab]){curHeaders=tabCache[tab].headers;products=tabCache[tab].rows;}
-    else{const res=await fetch(GAS+'?tab='+encodeURIComponent(tab));const json=await res.json();if(json.tabs&&!allTabs.length)buildTabs(json.tabs);const d=parseTD(json,tab);tabCache[tab]=d;curHeaders=d.headers;products=d.rows;}
-    renderHeaders();renderTbl();setSync('ok','ซิงค์แล้ว · '+tab.trim()+' · '+new Date().toLocaleTimeString('th-TH'));
-  }catch(e){setSync('err','โหลดไม่ได้: '+e.message);}
-  ico.classList.remove('spin');
-}
-async function reloadTab(){delete tabCache[curTab];await loadTab(curTab);}
-async function preloadAll(tabs){
-  const fill=document.getElementById('pfill'),st=document.getElementById('pstatus');let done=0;
-  await Promise.all(tabs.map(tab=>fetch(GAS+'?tab='+encodeURIComponent(tab)).then(r=>r.json()).then(json=>{tabCache[tab]=parseTD(json,tab);done++;fill.style.width=Math.round((done/tabs.length)*100)+'%';}).catch(()=>{done++;fill.style.width=Math.round((done/tabs.length)*100)+'%';})));
-  preloadDone=true;st.className='pstatus ready';st.innerHTML='<i class="ti ti-circle-check" style="font-size:11px"></i> โหลดครบ '+tabs.length+' Tab';
-}
-async function init(){
-  const initPage=getHash();if(initPage)showPageDirect(initPage);
-  try{const res=await fetch(GAS+'?tab=iPhone');const json=await res.json();const tabs=json.tabs||[];buildTabs(tabs);tabCache['iPhone']=parseTD(json,'iPhone');preloadAll(tabs.filter(t=>t!=='iPhone'));}
-  catch(e){console.error(e);}
-}
-
-/* ── GLOBAL SEARCH ── */
-function doGS(){
-  const q=document.getElementById('gsinput').value.trim();if(!q)return;
-  if(!preloadDone){const loaded=Object.keys(tabCache).length;document.getElementById('gsres').innerHTML=`<div class="nores"><i class="ti ti-loader spin" style="font-size:32px;opacity:.5"></i><p style="margin-top:10px">กำลังโหลด ${loaded}/${allTabs.length||17} Tab กรุณารอ...</p></div>`;document.getElementById('tab-view').style.display='none';document.getElementById('toolbar').style.display='none';document.getElementById('sbar').style.display='none';document.getElementById('gsres').style.display='';document.getElementById('gclr').style.display='';return;}
-  const ql=q.toLowerCase();let total=0;const secs=[];
-  for(const tab of allTabs){const d=tabCache[tab];if(!d)continue;const m=mk(tab);const matched=d.rows.filter(r=>String(r[m]||'').toLowerCase().includes(ql));if(!matched.length)continue;total+=matched.length;const pks=d.headers.filter(h=>h&&h!==m&&String(h).trim()!=='');const rows=matched.map(p=>{const mv=String(p[m]||'').replace(/^-\s*/,'');const cells=pks.map(h=>{const v=fmt(p[h]);return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';}).join('');return `<tr><td style="font-weight:600">${hl(mv,q)}</td>${cells}</tr>`;}).join('');secs.push(`<div class="tsec"><div class="tshdr"><span class="tbadge"><i class="ti ti-table" style="font-size:12px"></i>${tab.trim()}<span class="tbadge-cnt">${matched.length}</span></span><button class="gtbtn" onclick="goToTab('${tab.replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')"><i class="ti ti-arrow-right" style="font-size:11px"></i> ไปที่ Tab นี้</button></div><div style="overflow-x:auto"><table class="tbl"><thead><tr><th>${m}</th>${pks.map(h=>'<th>'+h+'</th>').join('')}</tr></thead><tbody>${rows}</tbody></table></div></div>`);}
-  const el=document.getElementById('gsres');el.innerHTML=total===0?`<div class="nores"><i class="ti ti-search-off"></i><p>ไม่พบ "<strong>${q}</strong>" ในทุก Tab</p></div>`:`<div class="gssummary"><span>ผลการค้นหา "<strong>${q}</strong>"</span><span class="fpill">พบ ${total} รายการ ใน ${secs.length} Tab</span></div>${secs.join('')}`;
-  document.getElementById('tab-view').style.display='none';document.getElementById('toolbar').style.display='none';document.getElementById('sbar').style.display='none';el.style.display='';document.getElementById('gclr').style.display='';
-}
-function clearGS(focus=true){document.getElementById('gsres').style.display='none';document.getElementById('tab-view').style.display='';document.getElementById('toolbar').style.display='';document.getElementById('sbar').style.display='';document.getElementById('gclr').style.display='none';if(focus)document.getElementById('gsinput').value='';}
-
-/* ── ADMIN ── */
-function handleAdmin(){
-  if(isAdmin){
-    isAdmin=false;document.getElementById('admin-btn').classList.remove('on');document.getElementById('admin-txt').textContent=' แอดมิน';
-    document.getElementById('add-panel').style.display='none';document.getElementById('nohon-admin-panel').style.display='none';
-    document.getElementById('warranty-tb').style.display='none';document.getElementById('contact-tb').style.display='none';
-    document.getElementById('warranty-editor-wrap').style.display='none';document.getElementById('contact-editor-wrap').style.display='none';
-    renderHeaders();renderTbl();
-  }else{document.getElementById('lov').style.display='flex';setTimeout(()=>document.getElementById('lu').focus(),100);}
-}
-function closeLogin(){document.getElementById('lov').style.display='none';document.getElementById('lu').value='';document.getElementById('lp').value='';document.getElementById('lerr').style.display='none';}
-function doLogin(){
-  const u=document.getElementById('lu').value.trim();const p=document.getElementById('lp').value;
-  if(u===AU&&p===AP){
-    isAdmin=true;closeLogin();document.getElementById('admin-btn').classList.add('on');document.getElementById('admin-txt').textContent=' ออกจากระบบ';
-    document.getElementById('add-panel').style.display='';document.getElementById('nohon-admin-panel').style.display='';
-    document.getElementById('warranty-tb').style.display='flex';document.getElementById('contact-tb').style.display='flex';
-    renderHeaders();renderTbl();
-    // โหลด nohon url ถ้าอยู่หน้า nohon
-    if(document.getElementById('page-nohon').classList.contains('active'))loadNohon();
-  }else{document.getElementById('lerr').style.display='flex';}
-}
-async function addProduct(){
-  const model=document.getElementById('f-model').value.trim();const col=document.getElementById('f-col').value;const price=document.getElementById('f-price').value;if(!model||!price)return;
-  const btn=document.getElementById('save-btn'),msg=document.getElementById('smsg');btn.disabled=true;msg.className='smsg wait';msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';const m=mk(curTab);
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:curTab,modelKey:m,model,priceCol:col,price})});msg.innerHTML='<i class="ti ti-loader spin"></i> รอ Sheets...';await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);document.getElementById('f-model').value='';document.getElementById('f-price').value='';msg.className='smsg ok';msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';setTimeout(()=>{msg.innerHTML='';msg.className='smsg';},5000);}
-  catch(e){msg.className='smsg err';msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;}
-  btn.disabled=false;
-}
-async function delProd(idx){
-  const p=products[idx];const m=mk(curTab);if(!confirm('ลบ "'+String(p[m]||'').replace(/^-\s*/,'')+'" ?'))return;
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:curTab,modelKey:m,model:p[m]})});await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);}
-  catch(e){alert('ลบไม่สำเร็จ');}
-}
-
-/* ── CONTENT ── */
-async function loadContent(page){
-  const disp=document.getElementById(page+'-display'),loading=document.getElementById(page+'-loading');
-  loading.style.display='block';disp.style.display='none';
-  try{const res=await fetch(GAS+'?action=getContent&key='+page);const json=await res.json();const val=json.value||'';document.getElementById(page+'-ed').value=val;disp.innerHTML=val||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>${isAdmin?'กดปุ่ม "แก้ไข" เพื่อเพิ่มข้อมูล':'ยังไม่มีข้อมูล — แอดมินกำลังจัดทำ'}</p></div>`;}
-  catch(e){disp.innerHTML=`<div class="empty-cnt"><i class="ti ti-wifi-off"></i><p>โหลดไม่ได้</p></div>`;}
-  loading.style.display='none';disp.style.display='';
-}
-function togglePreview(page){
-  const ew=document.getElementById(page+'-editor-wrap'),disp=document.getElementById(page+'-display'),pid=page.charAt(0),txtEl=document.getElementById(pid+'toggle-txt'),isEdit=ew.style.display!=='none';
-  if(isEdit){const c=document.getElementById(page+'-ed').value;disp.innerHTML=c||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>ยังไม่มีเนื้อหา</p></div>`;ew.style.display='none';disp.style.display='';txtEl.textContent='แก้ไข';}
-  else{ew.style.display='block';disp.style.display='none';txtEl.textContent='ดูตัวอย่าง';}
-}
-async function saveContent(page){
-  const content=document.getElementById(page+'-ed').value;const pid=page.charAt(0);const btn=document.getElementById(pid+'save-btn');btn.disabled=true;
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'saveContent',key:page,value:content})});await new Promise(r=>setTimeout(r,1500));
-    const disp=document.getElementById(page+'-display');disp.innerHTML=content||`<div class="empty-cnt"><i class="ti ti-pencil-plus"></i><p>ยังไม่มีเนื้อหา</p></div>`;
-    document.getElementById(page+'-editor-wrap').style.display='none';disp.style.display='';document.getElementById(pid+'toggle-txt').textContent='แก้ไข';
-    const conf=document.getElementById(pid+'saved');conf.classList.add('show');setTimeout(()=>conf.classList.remove('show'),3000);}
-  catch(e){alert('บันทึกไม่สำเร็จ');}
-  btn.disabled=false;
-}
-
-init();
-</script>
 </body>
 </html>
