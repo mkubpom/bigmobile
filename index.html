@@ -216,69 +216,58 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .pdf-no-url p{font-size:14px;margin-bottom:6px}
 .pdf-no-url small{font-size:12px;color:#cbd5e1}
 
-/* ── ADMIN PANEL TABS ── */
+/* ── ADMIN PANEL ── */
 .adm-panel{background:#fffbeb;border-bottom:1.5px solid #fde68a;padding:0}
 .adm-tabs{display:flex;border-bottom:1px solid #fde68a}
-.adm-tab{flex:1;padding:9px 6px;font-size:12px;font-weight:600;color:#92400e;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;border-bottom:2px solid transparent;transition:all .15s}
-.adm-tab:hover{background:rgba(249,115,22,.06)}
+.adm-tab{flex:1;padding:9px 6px;font-size:12px;font-weight:600;color:#92400e;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;border-bottom:2px solid transparent}
 .adm-tab.on{border-bottom-color:#f97316;color:#ea580c;background:rgba(249,115,22,.08)}
 .adm-body{padding:12px 14px;display:none}
 .adm-body.on{display:block}
-.adm-add-form{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap}
+.adm-row{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap}
 .adm-fg{display:flex;flex-direction:column;gap:3px}
 .adm-fg label{font-size:10px;color:#78716c;font-weight:700}
 .adm-fg input,.adm-fg select{padding:7px 9px;border:.5px solid #d6d3d1;border-radius:7px;font-size:12px;color:#1c1917;background:#fff;font-family:inherit}
 .adm-fg input:focus,.adm-fg select:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
-.adm-sbtn{padding:8px 14px;background:#f97316;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.adm-sbtn{padding:8px 14px;background:#f97316;color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:5px}
 .adm-sbtn:hover{background:#ea580c}
 .adm-sbtn:disabled{background:#d6d3d1;cursor:not-allowed}
-.adm-msg{font-size:11px;margin-top:7px;display:flex;align-items:center;gap:4px}
+.adm-msg{font-size:11px;margin-top:8px;display:flex;align-items:center;gap:4px}
 .adm-msg.ok{color:#15803d}.adm-msg.err{color:#dc2626}.adm-msg.wait{color:#92400e}
-/* ── EDIT PRICE BUTTON ── */
-.edit-btn{background:none;border:.5px solid #fed7aa;color:#f97316;cursor:pointer;font-size:11px;padding:3px 7px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;font-family:inherit;transition:all .15s;white-space:nowrap}
+/* edit btn in table */
+.edit-btn{background:none;border:.5px solid #fed7aa;color:#f97316;cursor:pointer;font-size:11px;padding:3px 7px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;font-family:inherit;transition:all .15s}
 .edit-btn:hover{background:#f97316;color:#fff;border-color:#f97316}
-/* ── CATALOG MANAGER MODAL ── */
-.catmov{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
-.catmcard{background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28)}
-.catmhdr{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#0f172a;border-radius:16px 16px 0 0}
-.catmhdr h2{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
-.catmhdr h2 i{color:#f97316}
-.catmhdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1}
-.catmbody{flex:1;overflow-y:auto;padding:16px}
-.catm-sec{font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase;margin:14px 0 8px}
-.catm-sec:first-child{margin-top:0}
-.catm-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:9px;margin-bottom:6px}
-.catm-row.on{border-color:#22c55e;background:#f0fdf4}
-.catm-row i.ci{font-size:18px;flex-shrink:0}
-.catm-row.on i.ci{color:#22c55e}
-.catm-row:not(.on) i.ci{color:#94a3b8}
-.catm-label{flex:1;font-size:13px;font-weight:600;color:#0f172a}
-.catm-sub{font-size:11px;color:#94a3b8;font-weight:400}
-.catm-tog{width:38px;height:22px;background:#e2e8f0;border-radius:11px;position:relative;cursor:pointer;border:none;transition:background .2s;flex-shrink:0}
-.catm-tog.on{background:#22c55e}
-.catm-tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
-.catm-tog.on::after{left:19px}
-.catmfoot{padding:14px 20px;border-top:.5px solid #f1f5f9;display:flex;gap:9px;flex-shrink:0}
-.catm-ok{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
-.catm-ok:hover{background:#ea580c}
-.catm-cl{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
-/* ── EDIT PRICE MODAL ── */
-.editpov{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
-.editpcard{background:#fff;border-radius:16px;width:100%;max-width:400px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28)}
-.editphdr{padding:15px 18px;background:#0f172a;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.editphdr h2{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px}
-.editphdr h2 i{color:#f97316}
-.editphdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1}
-.editpbody{flex:1;overflow-y:auto;padding:16px}
+/* modals shared */
+.m-ov{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
+.m-card{background:#fff;border-radius:16px;width:100%;max-width:480px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.m-hdr{padding:15px 18px;background:#0f172a;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.m-hdr h2{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px}
+.m-hdr h2 i{color:#f97316}
+.m-hdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1}
+.m-body{flex:1;overflow-y:auto;padding:16px}
+.m-foot{padding:13px 18px;border-top:.5px solid #f1f5f9;display:flex;gap:9px;flex-shrink:0}
+.m-ok{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.m-ok:hover{background:#ea580c}
+.m-ok:disabled{background:#d6d3d1;cursor:not-allowed}
+.m-cl{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
+/* catalog rows */
+.cat-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:9px;margin-bottom:6px}
+.cat-row.on{border-color:#22c55e;background:#f0fdf4}
+.cat-row i.ico{font-size:18px;flex-shrink:0;color:#94a3b8}
+.cat-row.on i.ico{color:#22c55e}
+.cat-lbl{flex:1;font-size:13px;font-weight:600;color:#0f172a}
+.cat-sub{font-size:11px;color:#94a3b8;font-weight:400}
+.cat-tog{width:38px;height:22px;background:#e2e8f0;border-radius:11px;position:relative;cursor:pointer;border:none;transition:background .2s;flex-shrink:0}
+.cat-tog.on{background:#22c55e}
+.cat-tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.cat-tog.on::after{left:19px}
+.cat-sec{font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase;margin:14px 0 8px}
+.cat-sec:first-child{margin-top:0}
+/* edit price fields */
 .ep-model{font-size:13px;font-weight:600;color:#0f172a;padding-bottom:12px;border-bottom:.5px solid #f1f5f9;margin-bottom:14px;line-height:1.4}
-.ep-field{margin-bottom:12px}
-.ep-label{font-size:11px;font-weight:700;color:#64748b;margin-bottom:5px;display:block}
-.ep-inp{width:100%;padding:8px 12px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit;color:#0f172a}
+.ep-field{margin-bottom:11px}
+.ep-label{font-size:11px;font-weight:700;color:#64748b;display:block;margin-bottom:4px}
+.ep-inp{width:100%;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit;color:#0f172a}
 .ep-inp:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
-.editpfoot{padding:14px 18px;border-top:.5px solid #f1f5f9;display:flex;gap:9px;flex-shrink:0}
-.ep-ok{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
-.ep-ok:hover{background:#ea580c}
-.ep-cl{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
 
 /* LOGIN */
 .lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
@@ -435,11 +424,13 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 <div class="page" id="page-price">
   <div id="add-panel" class="adm-panel" style="display:none">
     <div class="adm-tabs">
-      <button class="adm-tab on" id="adm-tab-add" onclick="switchAdmTab('add')"><i class="ti ti-plus"></i> เพิ่มสินค้า</button>
-      <button class="adm-tab" id="adm-tab-cat" onclick="switchAdmTab('cat')"><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อก</button>
+      <button class="adm-tab on" id="adm-t1" onclick="admTab(1)"><i class="ti ti-plus"></i> เพิ่มสินค้า</button>
+      <button class="adm-tab" id="adm-t2" onclick="admTab(2)"><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อก</button>
+      <button class="adm-tab" id="adm-t3" onclick="admTab(3)"><i class="ti ti-pencil"></i> แก้ไขราคา</button>
     </div>
-    <div class="adm-body on" id="adm-body-add">
-      <div class="adm-add-form">
+    <!-- tab 1: เพิ่มสินค้า -->
+    <div class="adm-body on" id="adm-b1">
+      <div class="adm-row">
         <div class="adm-fg"><label>คอลัมน์ราคา</label><select id="f-col"></select></div>
         <div class="adm-fg"><label>ชื่อรุ่น</label><input id="f-model" placeholder="ชื่อรุ่น"/></div>
         <div class="adm-fg"><label>ราคา (฿)</label><input id="f-price" type="number" placeholder="0" style="width:90px"/></div>
@@ -447,8 +438,14 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
       </div>
       <div class="adm-msg" id="smsg"></div>
     </div>
-    <div class="adm-body" id="adm-body-cat">
+    <!-- tab 2: จัดการแคตตาล็อก -->
+    <div class="adm-body" id="adm-b2">
+      <p style="font-size:12px;color:#92400e;margin-bottom:8px">จัดการว่าจะแสดงหมวดไหนบนหน้าแรก — ดึงชื่อจาก Google Sheets โดยตรง</p>
       <button class="adm-sbtn" onclick="openCatMgr()"><i class="ti ti-settings"></i> เปิดจัดการแคตตาล็อก</button>
+    </div>
+    <!-- tab 3: คลิกแถวในตารางเพื่อแก้ไขราคา -->
+    <div class="adm-body" id="adm-b3">
+      <p style="font-size:12px;color:#92400e">กดปุ่ม <strong>✏️ แก้ไข</strong> ที่แถวสินค้าในตารางด้านล่างได้เลย</p>
     </div>
   </div>
   <div class="gsearch-wrap">
@@ -563,38 +560,33 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 </div>
 
 <!-- CATALOG MANAGER MODAL -->
-<div id="catmov" class="catmov" style="display:none" onclick="if(event.target.id==='catmov')closeCatMgr()">
-  <div class="catmcard">
-    <div class="catmhdr">
-      <h2><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อกหน้าแรก</h2>
-      <button onclick="closeCatMgr()"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="catmbody" id="catmbody"></div>
-    <div class="catmfoot">
-      <button class="catm-cl" onclick="closeCatMgr()">ยกเลิก</button>
-      <button class="catm-ok" onclick="saveCatMgr()"><i class="ti ti-device-floppy"></i> บันทึกแคตตาล็อก</button>
+<div id="catmov" class="m-ov" style="display:none" onclick="if(event.target.id==='catmov')closeCatMgr()">
+  <div class="m-card">
+    <div class="m-hdr"><h2><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อกหน้าแรก</h2><button onclick="closeCatMgr()"><i class="ti ti-x"></i></button></div>
+    <div class="m-body" id="catm-body">กำลังโหลด...</div>
+    <div class="m-foot">
+      <button class="m-cl" onclick="closeCatMgr()">ยกเลิก</button>
+      <button class="m-ok" onclick="saveCatMgr()"><i class="ti ti-device-floppy"></i> บันทึก</button>
     </div>
   </div>
 </div>
-
 <!-- EDIT PRICE MODAL -->
-<div id="editpov" class="editpov" style="display:none" onclick="if(event.target.id==='editpov')closeEditP()">
-  <div class="editpcard">
-    <div class="editphdr">
-      <h2><i class="ti ti-pencil"></i> แก้ไขราคา</h2>
-      <button onclick="closeEditP()"><i class="ti ti-x"></i></button>
-    </div>
-    <div class="editpbody">
+<div id="editpov" class="m-ov" style="display:none" onclick="if(event.target.id==='editpov')closeEditP()">
+  <div class="m-card" style="max-width:380px">
+    <div class="m-hdr"><h2><i class="ti ti-pencil"></i> แก้ไขราคา</h2><button onclick="closeEditP()"><i class="ti ti-x"></i></button></div>
+    <div class="m-body">
       <div class="ep-model" id="ep-model"></div>
       <div id="ep-fields"></div>
       <div class="adm-msg" id="ep-msg"></div>
     </div>
-    <div class="editpfoot">
-      <button class="ep-cl" onclick="closeEditP()">ยกเลิก</button>
-      <button class="ep-ok" id="ep-ok" onclick="saveEditP()"><i class="ti ti-device-floppy"></i> บันทึกราคา</button>
+    <div class="m-foot">
+      <button class="m-cl" onclick="closeEditP()">ยกเลิก</button>
+      <button class="m-ok" id="ep-ok" onclick="saveEditP()"><i class="ti ti-device-floppy"></i> บันทึกราคา</button>
     </div>
   </div>
 </div>
+<!-- TOAST -->
+<div id="_toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 22px;border-radius:100px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap;opacity:0;transition:opacity .25s;pointer-events:none"></div>
 
 </div><!-- #app -->
 
@@ -733,10 +725,9 @@ function buildTabs(tabs){allTabs=tabs;}
 function renderHeaders(){
   const m=mk(curTab);
   const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  let ths='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('');
-  if(isAdmin) ths+='<th style="width:76px">แก้ไข</th><th style="width:44px">ลบ</th>';
-  ths+='</tr>';
-  document.getElementById('thead').innerHTML=ths;
+  let h='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('');
+  if(isAdmin) h+='<th style="width:76px">แก้ไข</th><th style="width:44px">ลบ</th>';
+  document.getElementById('thead').innerHTML=h+'</tr>';
   if(isAdmin) document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
 }
 function renderTbl(){
@@ -748,20 +739,20 @@ function renderTbl(){
   document.getElementById('stat-pill').textContent=rows.length+' รายการ';
   document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
   const tb=document.getElementById('tbody');
-  const cols=pks.length+1+(isAdmin?2:0);
+  const span=pks.length+1+(isAdmin?2:0);
   if(!rows.length){
-    tb.innerHTML=`<tr class="empty-row"><td colspan="${cols}"><i class="ti ti-mood-empty" style="font-size:28px;display:block;margin-bottom:6px;opacity:.3"></i>ไม่พบข้อมูล</td></tr>`;
+    tb.innerHTML=`<tr class="empty-row"><td colspan="${span}"><i class="ti ti-mood-empty" style="font-size:28px;display:block;margin-bottom:6px;opacity:.3"></i>ไม่พบข้อมูล</td></tr>`;
     return;
   }
   tb.innerHTML=rows.map(p=>{
     const ri=products.indexOf(p);
     const mv=String(p[m]||'').replace(/^-\s*/,'');
     const cells=pks.map(h=>{const v=fmt(p[h]);return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';}).join('');
-    const adminCols=isAdmin
+    const adm=isAdmin
       ?`<td><button class="edit-btn" onclick="openEditP(${ri})"><i class="ti ti-pencil"></i> แก้ไข</button></td>`
        +`<td><button class="del-btn" onclick="delProd(${ri})"><i class="ti ti-trash"></i></button></td>`
       :'';
-    return `<tr><td style="font-weight:600">${mv}</td>${cells}${adminCols}</tr>`;
+    return `<tr><td style="font-weight:600">${mv}</td>${cells}${adm}</tr>`;
   }).join('');
 }
 async function loadTab(tab){
@@ -781,9 +772,20 @@ async function preloadAll(tabs){
   preloadDone=true;st.className='pstatus ready';st.innerHTML='<i class="ti ti-circle-check" style="font-size:11px"></i> โหลดครบ '+tabs.length+' Tab';
 }
 async function init(){
+  // สร้างแคตตาล็อกหน้าแรกจาก localStorage ก่อนเลย (เร็ว ไม่ต้องรอ GAS)
+  buildHomeCats();
   const initPage=getHash();if(initPage)showPageDirect(initPage);
-  try{const res=await fetch(GAS+'?tab=iPhone');const json=await res.json();const tabs=json.tabs||[];buildTabs(tabs);tabCache['iPhone']=parseTD(json,'iPhone');preloadAll(tabs.filter(t=>t!=='iPhone'));}
-  catch(e){console.error(e);}
+  try{
+    const res=await fetch(GAS+'?tab=iPhone');
+    const json=await res.json();
+    const tabs=json.tabs||[];
+    buildTabs(tabs);
+    tabCache['iPhone']=parseTD(json,'iPhone');
+    // rebuild หน้าแรกอีกครั้งหลังได้ allTabs จาก GAS
+    // เพื่อให้ชีตใหม่ที่ยังไม่อยู่ใน activeCats ปรากฏใน catalog manager
+    buildHomeCats();
+    preloadAll(tabs.filter(t=>t!=='iPhone'));
+  }catch(e){console.error(e);}
 }
 
 /* ── GLOBAL SEARCH ── */
@@ -798,12 +800,23 @@ function doGS(){
 function clearGS(focus=true){document.getElementById('gsres').style.display='none';document.getElementById('tab-view').style.display='';document.getElementById('toolbar').style.display='';document.getElementById('sbar').style.display='';document.getElementById('gclr').style.display='none';if(focus)document.getElementById('gsinput').value='';}
 
 /* ── ADMIN ── */
+function admTab(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById('adm-t'+i).classList.toggle('on',i===n);
+    document.getElementById('adm-b'+i).classList.toggle('on',i===n);
+  });
+}
 function handleAdmin(){
   if(isAdmin){
-    isAdmin=false;document.getElementById('admin-btn').classList.remove('on');document.getElementById('admin-txt').textContent=' แอดมิน';
-    document.getElementById('add-panel').style.display='none';document.getElementById('nohon-admin-panel').style.display='none';
-    document.getElementById('warranty-tb').style.display='none';document.getElementById('contact-tb').style.display='none';
-    document.getElementById('warranty-editor-wrap').style.display='none';document.getElementById('contact-editor-wrap').style.display='none';
+    isAdmin=false;
+    document.getElementById('admin-btn').classList.remove('on');
+    document.getElementById('admin-txt').textContent=' แอดมิน';
+    document.getElementById('add-panel').style.display='none';
+    document.getElementById('nohon-admin-panel').style.display='none';
+    document.getElementById('warranty-tb').style.display='none';
+    document.getElementById('contact-tb').style.display='none';
+    document.getElementById('warranty-editor-wrap').style.display='none';
+    document.getElementById('contact-editor-wrap').style.display='none';
     renderHeaders();renderTbl();
   }else{document.getElementById('lov').style.display='flex';setTimeout(()=>document.getElementById('lu').focus(),100);}
 }
@@ -811,25 +824,194 @@ function closeLogin(){document.getElementById('lov').style.display='none';docume
 function doLogin(){
   const u=document.getElementById('lu').value.trim();const p=document.getElementById('lp').value;
   if(u===AU&&p===AP){
-    isAdmin=true;closeLogin();document.getElementById('admin-btn').classList.add('on');document.getElementById('admin-txt').textContent=' ออกจากระบบ';
-    document.getElementById('add-panel').style.display='';document.getElementById('nohon-admin-panel').style.display='';
-    document.getElementById('warranty-tb').style.display='flex';document.getElementById('contact-tb').style.display='flex';
+    isAdmin=true;closeLogin();
+    document.getElementById('admin-btn').classList.add('on');
+    document.getElementById('admin-txt').textContent=' ออกจากระบบ';
+    document.getElementById('add-panel').style.display='';
+    document.getElementById('nohon-admin-panel').style.display='';
+    document.getElementById('warranty-tb').style.display='flex';
+    document.getElementById('contact-tb').style.display='flex';
     renderHeaders();renderTbl();
-    // โหลด nohon url ถ้าอยู่หน้า nohon
     if(document.getElementById('page-nohon').classList.contains('active'))loadNohon();
   }else{document.getElementById('lerr').style.display='flex';}
 }
+
+/* ── TOAST ── */
+function toast(msg,ms=3000){
+  const t=document.getElementById('_toast');
+  t.textContent=msg;t.style.opacity='1';
+  clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},ms);
+}
+
+/* ── POST TO GAS (แก้ปัญหา no-cors ไม่รู้ error) ── */
+async function gasPost(body){
+  // ใช้ mode no-cors เพราะ GAS ไม่รองรับ CORS บน POST
+  // แต่เราตรวจสอบผ่านการ reload ข้อมูลจาก GET แทน
+  await fetch(GAS,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(body)});
+  // รอให้ Sheets บันทึก
+  await new Promise(r=>setTimeout(r,2500));
+}
+
+/* ── ADD PRODUCT ── */
 async function addProduct(){
-  const model=document.getElementById('f-model').value.trim();const col=document.getElementById('f-col').value;const price=document.getElementById('f-price').value;if(!model||!price)return;
-  const btn=document.getElementById('save-btn'),msg=document.getElementById('smsg');btn.disabled=true;msg.className='smsg wait';msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';const m=mk(curTab);
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:curTab,modelKey:m,model,priceCol:col,price})});msg.innerHTML='<i class="ti ti-loader spin"></i> รอ Sheets...';await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);document.getElementById('f-model').value='';document.getElementById('f-price').value='';msg.className='smsg ok';msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';setTimeout(()=>{msg.innerHTML='';msg.className='smsg';},5000);}
-  catch(e){msg.className='smsg err';msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;}
+  const model=document.getElementById('f-model').value.trim();
+  const col=document.getElementById('f-col').value;
+  const price=document.getElementById('f-price').value;
+  if(!model){toast('⚠️ กรุณากรอกชื่อรุ่น');return;}
+  if(!price){toast('⚠️ กรุณากรอกราคา');return;}
+  const btn=document.getElementById('save-btn');
+  const msg=document.getElementById('smsg');
+  btn.disabled=true;
+  msg.className='adm-msg wait';
+  msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';
+  const m=mk(curTab);
+  try{
+    await gasPost({action:'add',tab:curTab,modelKey:m,model,priceCol:col,price:parseFloat(price)||price});
+    delete tabCache[curTab];
+    await loadTab(curTab);
+    document.getElementById('f-model').value='';
+    document.getElementById('f-price').value='';
+    msg.className='adm-msg ok';
+    msg.innerHTML='<i class="ti ti-circle-check"></i> เพิ่มสินค้าสำเร็จ: '+model;
+    toast('✅ เพิ่ม "'+model+'" ลง '+curTab+' แล้ว');
+    setTimeout(()=>{msg.innerHTML='';msg.className='adm-msg';},5000);
+  }catch(e){
+    msg.className='adm-msg err';
+    msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;
+  }
   btn.disabled=false;
 }
+
+/* ── DELETE PRODUCT ── */
 async function delProd(idx){
-  const p=products[idx];const m=mk(curTab);if(!confirm('ลบ "'+String(p[m]||'').replace(/^-\s*/,'')+'" ?'))return;
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:curTab,modelKey:m,model:p[m]})});await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);}
-  catch(e){alert('ลบไม่สำเร็จ');}
+  const p=products[idx];const m=mk(curTab);
+  if(!confirm('ลบ "'+String(p[m]||'').replace(/^-\s*/,'')+'" ?'))return;
+  try{
+    await gasPost({action:'delete',tab:curTab,modelKey:m,model:p[m]});
+    delete tabCache[curTab];await loadTab(curTab);
+    toast('🗑️ ลบสำเร็จ');
+  }catch(e){toast('❌ ลบไม่สำเร็จ: '+e.message);}
+}
+
+/* ── CATALOG MANAGER ── */
+// icon map สำหรับ tab ที่รู้จัก — tab ใหม่จาก Sheets จะใช้ icon default
+const CAT_ICON={'iPhone':'ti-brand-apple','IPad':'ti-device-ipad','Samsung':'ti-device-mobile','TAB':'ti-device-tablet','จอพับ Filp-Fold':'ti-device-mobile-rotated','ViVo':'ti-device-mobile','OPPO':'ti-device-mobile','Huawei':'ti-device-mobile','Apple Watch ':'ti-device-watch','แพรชาร์จแท้แกะ':'ti-plug','สายแพร SAMSUNG Filp-Fold แท้':'ti-plug','กล้องหลังแท้แกะ':'ti-camera','แพร Face ID config ได้':'ti-scan','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'ti-battery-charging','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'ti-battery-charging-2','ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad'};
+const CAT_LABEL={'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB','จอพับ Filp-Fold':'จอพับ Flip-Fold','ViVo':'Vivo','OPPO':'OPPO','Huawei':'Huawei','Apple Watch ':'Apple Watch','แพรชาร์จแท้แกะ':'แพรชาร์จแท้แกะ','สายแพร SAMSUNG Filp-Fold แท้':'สายแพร Samsung Flip-Fold','กล้องหลังแท้แกะ':'กล้องหลังแท้แกะ','แพร Face ID config ได้':'Face ID','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'แบตแท้ Config (ขึ้นใช้แล้ว)','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'แบตแท้ Config (ของแท้)','ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad'};
+
+// โหลด activeCats จาก localStorage — ถ้าไม่มีใช้ทั้งหมดที่รู้จัก
+let activeCats=JSON.parse(localStorage.getItem('bm_cats')||'null')||Object.keys(CAT_LABEL);
+
+// สร้างหน้าแรกจาก activeCats ทันทีตอนโหลด
+function buildHomeCats(){
+  const wrap=document.querySelector('.home-cats');
+  if(!wrap)return;
+  // รวม allTabs ที่ได้จาก GAS กับที่รู้จัก เพื่อให้ชีตใหม่โชว์ด้วย
+  const allKeys=[...new Set([...activeCats,...(allTabs||[])])];
+  // แสดงเฉพาะที่อยู่ใน activeCats
+  wrap.innerHTML=activeCats.map(k=>{
+    const ico=CAT_ICON[k]||'ti-tag';
+    const lbl=CAT_LABEL[k]||k.trim();
+    const safe=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div class="home-cat" onclick="goToTab('${safe}')"><i class="ti ${ico}"></i><span>${lbl}</span></div>`;
+  }).join('');
+}
+
+function openCatMgr(){
+  renderCatMgr();
+  document.getElementById('catmov').style.display='flex';
+}
+function closeCatMgr(){document.getElementById('catmov').style.display='none';}
+
+function renderCatMgr(){
+  // รวมทุก tab: จาก allTabs (GAS) + CAT_LABEL ที่รู้จัก
+  const allKeys=[...new Set([...(allTabs||[]),...Object.keys(CAT_LABEL)])];
+  const onKeys=allKeys.filter(k=>activeCats.includes(k));
+  const offKeys=allKeys.filter(k=>!activeCats.includes(k));
+  const row=(k,on)=>{
+    const ico=CAT_ICON[k]||'ti-tag';
+    const lbl=CAT_LABEL[k]||k.trim();
+    const ek=encodeURIComponent(k);
+    return `<div class="cat-row${on?' on':''}">
+      <i class="ti ${ico} ico"></i>
+      <span class="cat-lbl">${lbl} <span class="cat-sub">· ${k.trim()}</span></span>
+      <button class="cat-tog${on?' on':''}" onclick="toggleCat('${ek}')"></button>
+    </div>`;
+  };
+  document.getElementById('catm-body').innerHTML=
+    `<p style="font-size:12px;color:#64748b;margin-bottom:12px;line-height:1.6">เปิด/ปิดหมวดที่แสดงบนหน้าแรก รวมถึง <strong>ชีตใหม่</strong>จาก Google Sheets</p>`+
+    (onKeys.length?`<div class="cat-sec">กำลังแสดง (${onKeys.length})</div>`+onKeys.map(k=>row(k,true)).join(''):'')+
+    (offKeys.length?`<div class="cat-sec">ซ่อนอยู่ (${offKeys.length})</div>`+offKeys.map(k=>row(k,false)).join(''):'');
+}
+function toggleCat(ek){
+  const k=decodeURIComponent(ek);
+  if(activeCats.includes(k)) activeCats=activeCats.filter(x=>x!==k);
+  else activeCats=[...activeCats,k];
+  renderCatMgr();
+}
+function saveCatMgr(){
+  // บันทึกลง localStorage — คงอยู่แม้ออกจาก admin หรือ refresh
+  localStorage.setItem('bm_cats',JSON.stringify(activeCats));
+  buildHomeCats();
+  closeCatMgr();
+  toast('✅ บันทึกแคตตาล็อกแล้ว · แสดง '+activeCats.length+' รายการ');
+}
+
+/* ── EDIT PRICE ── */
+let _editIdx=-1;
+function openEditP(ri){
+  const p=products[ri];
+  const m=mk(curTab);
+  const mv=String(p[m]||'').replace(/^-\s*/,'');
+  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
+  _editIdx=ri;
+  document.getElementById('ep-model').innerHTML=
+    `<i class="ti ti-package" style="color:#f97316;margin-right:5px"></i><strong>${mv}</strong>`+
+    `<span style="font-size:11px;color:#94a3b8;margin-left:6px">· ${curTab.trim()}</span>`;
+  document.getElementById('ep-fields').innerHTML=pks.map(h=>{
+    const raw=p[h];
+    const num=(raw!==''&&raw!==null&&raw!==undefined&&!isNaN(parseFloat(raw)))?Math.round(parseFloat(raw)):'';
+    const id='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
+    return `<div class="ep-field">
+      <label class="ep-label">${h}</label>
+      <input class="ep-inp" id="${id}" type="number" value="${num===0?'':num}" placeholder="ว่าง = ไม่มีราคา" data-col="${h}"/>
+    </div>`;
+  }).join('');
+  document.getElementById('ep-msg').innerHTML='';
+  document.getElementById('ep-ok').disabled=false;
+  document.getElementById('editpov').style.display='flex';
+  admTab(3); // switch admin tab to แก้ไขราคา
+}
+function closeEditP(){document.getElementById('editpov').style.display='none';_editIdx=-1;}
+async function saveEditP(){
+  if(_editIdx<0)return;
+  const p=products[_editIdx];
+  const m=mk(curTab);
+  const mv=String(p[m]||'');
+  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
+  const updates={};
+  pks.forEach(h=>{
+    const id='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
+    const el=document.getElementById(id);
+    if(el) updates[h]=el.value.trim();
+  });
+  const msg=document.getElementById('ep-msg');
+  const btn=document.getElementById('ep-ok');
+  msg.className='adm-msg wait';
+  msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';
+  btn.disabled=true;
+  try{
+    await gasPost({action:'editPrice',tab:curTab,modelKey:m,model:mv,updates});
+    delete tabCache[curTab];
+    await loadTab(curTab);
+    msg.className='adm-msg ok';
+    msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';
+    toast('✅ แก้ไขราคา "'+mv.slice(0,20)+'" สำเร็จ');
+    setTimeout(()=>closeEditP(),1200);
+  }catch(e){
+    msg.className='adm-msg err';
+    msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;
+    btn.disabled=false;
+  }
 }
 
 /* ── CONTENT ── */
@@ -852,160 +1034,6 @@ async function saveContent(page){
     document.getElementById(page+'-editor-wrap').style.display='none';disp.style.display='';document.getElementById(pid+'toggle-txt').textContent='แก้ไข';
     const conf=document.getElementById(pid+'saved');conf.classList.add('show');setTimeout(()=>conf.classList.remove('show'),3000);}
   catch(e){alert('บันทึกไม่สำเร็จ');}
-  btn.disabled=false;
-}
-
-/* ── ADMIN TAB SWITCHER ── */
-function switchAdmTab(t){
-  ['add','cat'].forEach(x=>{
-    document.getElementById('adm-tab-'+x).classList.toggle('on',x===t);
-    document.getElementById('adm-body-'+x).classList.toggle('on',x===t);
-  });
-}
-
-/* ── CATALOG MANAGER ── */
-// ข้อมูล icon/label สำหรับแต่ละ tab key
-const CAT_META={
-  'iPhone':{icon:'ti-brand-apple',label:'iPhone'},
-  'IPad':{icon:'ti-device-ipad',label:'iPad'},
-  'Samsung':{icon:'ti-device-mobile',label:'Samsung'},
-  'TAB':{icon:'ti-device-tablet',label:'Samsung TAB'},
-  'จอพับ Filp-Fold':{icon:'ti-device-mobile-rotated',label:'จอพับ Flip-Fold'},
-  'ViVo':{icon:'ti-device-mobile',label:'Vivo'},
-  'OPPO':{icon:'ti-device-mobile',label:'OPPO'},
-  'Huawei':{icon:'ti-device-mobile',label:'Huawei'},
-  'Apple Watch ':{icon:'ti-device-watch',label:'Apple Watch'},
-  'แพรชาร์จแท้แกะ':{icon:'ti-plug',label:'แพรชาร์จแท้แกะ'},
-  'สายแพร SAMSUNG Filp-Fold แท้':{icon:'ti-plug',label:'สายแพร Samsung Flip-Fold'},
-  'กล้องหลังแท้แกะ':{icon:'ti-camera',label:'กล้องหลังแท้แกะ'},
-  'แพร Face ID config ได้':{icon:'ti-scan',label:'Face ID'},
-  'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':{icon:'ti-battery-charging',label:'แบตแท้ Config (ขึ้นใช้แล้ว)'},
-  'แบตแท้ Config ได้ (ขึ้น ของแท้) ':{icon:'ti-battery-charging-2',label:'แบตแท้ Config (ของแท้)'},
-  'ฝาหลังแท้แกะ SAMSUNG':{icon:'ti-device-mobile',label:'ฝาหลังแท้แกะ Samsung'},
-  'OCA + Touch IPad ':{icon:'ti-device-ipad',label:'OCA + Touch iPad'}
-};
-
-// รายการที่เปิดอยู่ (tab keys) — เริ่มต้น = ทั้งหมด
-let activeCats=Object.keys(CAT_META);
-
-function openCatMgr(){
-  renderCatMgr();
-  document.getElementById('catmov').style.display='flex';
-}
-function closeCatMgr(){document.getElementById('catmov').style.display='none';}
-
-function renderCatMgr(){
-  // รวม tabs จาก allTabs (ได้จาก GAS) + keys ที่รู้จัก
-  const allKeys=[...new Set([...Object.keys(CAT_META),...(allTabs||[])])];
-  const onKeys=allKeys.filter(k=>activeCats.includes(k));
-  const offKeys=allKeys.filter(k=>!activeCats.includes(k));
-
-  const rowHTML=(k,isOn)=>{
-    const m=CAT_META[k]||{icon:'ti-tag',label:k.trim()};
-    const ek=encodeURIComponent(k);
-    return `<div class="catm-row${isOn?' on':''}">
-      <i class="ti ${m.icon} ci"></i>
-      <span class="catm-label">${m.label} <span class="catm-sub">· ${k.trim()}</span></span>
-      <button class="catm-tog${isOn?' on':''}" onclick="toggleCat('${ek}')"></button>
-    </div>`;
-  };
-
-  document.getElementById('catmbody').innerHTML=
-    `<p style="font-size:12px;color:#64748b;margin-bottom:12px;line-height:1.6"><i class="ti ti-info-circle" style="color:#0ea5e9"></i> เปิด/ปิดหมวดที่แสดงบนหน้าแรก — ดึงชื่อ Sheet จาก Google Sheets โดยตรง</p>`+
-    (onKeys.length?`<div class="catm-sec">แสดงอยู่ (${onKeys.length})</div>${onKeys.map(k=>rowHTML(k,true)).join('')}`:'') +
-    (offKeys.length?`<div class="catm-sec">ซ่อนอยู่ (${offKeys.length})</div>${offKeys.map(k=>rowHTML(k,false)).join('')}`:'');
-}
-
-function toggleCat(ek){
-  const k=decodeURIComponent(ek);
-  if(activeCats.includes(k)) activeCats=activeCats.filter(x=>x!==k);
-  else activeCats=[...activeCats,k];
-  renderCatMgr();
-}
-
-function saveCatMgr(){
-  // rebuild หน้าแรกทันที
-  const wrap=document.querySelector('.home-cats');
-  if(wrap){
-    wrap.innerHTML=activeCats.map(k=>{
-      const m=CAT_META[k]||{icon:'ti-tag',label:k.trim()};
-      const safe=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-      return `<div class="home-cat" onclick="goToTab('${safe}')"><i class="ti ${m.icon}"></i><span>${m.label}</span></div>`;
-    }).join('');
-  }
-  closeCatMgr();
-  // toast แจ้ง
-  let t=document.getElementById('_adm_toast');
-  if(!t){t=document.createElement('div');t.id='_adm_toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 22px;border-radius:100px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap;opacity:0;transition:opacity .2s';document.body.appendChild(t);}
-  t.textContent='✅ บันทึกแคตตาล็อกแล้ว · แสดง '+activeCats.length+' รายการ';
-  t.style.opacity='1';clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},3000);
-}
-
-/* ── EDIT PRICE ── */
-let _editIdx=-1;
-function openEditP(ri){
-  const p=products[ri];
-  const m=mk(curTab);
-  const mv=String(p[m]||'').replace(/^-\s*/,'');
-  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  _editIdx=ri;
-  document.getElementById('ep-model').innerHTML=
-    `<i class="ti ti-package" style="color:#f97316;margin-right:6px"></i><strong>${mv}</strong>`+
-    `<span style="font-size:11px;color:#94a3b8;font-weight:400;margin-left:6px">· ${curTab.trim()}</span>`;
-  document.getElementById('ep-fields').innerHTML=pks.map(h=>{
-    const raw=p[h];
-    const num=(raw!==''&&raw!==null&&raw!==undefined)?Math.round(parseFloat(raw)||0):'';
-    const fid='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
-    return `<div class="ep-field">
-      <label class="ep-label">${h}</label>
-      <input class="ep-inp" id="${fid}" type="number" value="${num==='0'?'':num}" placeholder="ว่าง = ไม่มีราคา" data-col="${h}"/>
-    </div>`;
-  }).join('');
-  document.getElementById('ep-msg').innerHTML='';
-  document.getElementById('editpov').style.display='flex';
-}
-function closeEditP(){document.getElementById('editpov').style.display='none';_editIdx=-1;}
-
-async function saveEditP(){
-  if(_editIdx<0)return;
-  const p=products[_editIdx];
-  const m=mk(curTab);
-  const mv=String(p[m]||'');
-  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  // เก็บค่าใหม่จาก input ทุกช่อง
-  const updates={};
-  pks.forEach(h=>{
-    const fid='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
-    const el=document.getElementById(fid);
-    if(el) updates[h]=el.value.trim();
-  });
-  const msg=document.getElementById('ep-msg');
-  const btn=document.getElementById('ep-ok');
-  msg.className='adm-msg wait';
-  msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';
-  btn.disabled=true;
-  try{
-    // ส่ง POST ไป GAS — updates เป็น object ปกติ (GAS จะรับ JSON แล้ว parse เอง)
-    const body=JSON.stringify({
-      action:'editPrice',
-      tab:curTab,
-      modelKey:m,
-      model:mv,
-      updates:updates   // ← ส่งเป็น object ตรงๆ ไม่ stringify ซ้อน
-    });
-    await fetch(GAS,{method:'POST',mode:'no-cors',body});
-    // รอ Sheets อัปเดต
-    await new Promise(r=>setTimeout(r,2000));
-    // reload ข้อมูล tab นี้
-    delete tabCache[curTab];
-    await loadTab(curTab);
-    msg.className='adm-msg ok';
-    msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';
-    setTimeout(()=>closeEditP(),1200);
-  }catch(err){
-    msg.className='adm-msg err';
-    msg.innerHTML='<i class="ti ti-alert-circle"></i> '+err.message;
-  }
   btn.disabled=false;
 }
 
