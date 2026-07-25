@@ -216,7 +216,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .pdf-no-url p{font-size:14px;margin-bottom:6px}
 .pdf-no-url small{font-size:12px;color:#cbd5e1}
 
-/* ── ADMIN CATALOG MANAGER ── */
+/* ── ADMIN PANEL TABS ── */
 .adm-panel{background:#fffbeb;border-bottom:1.5px solid #fde68a;padding:0}
 .adm-tabs{display:flex;border-bottom:1px solid #fde68a}
 .adm-tab{flex:1;padding:9px 6px;font-size:12px;font-weight:600;color:#92400e;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:5px;border-bottom:2px solid transparent;transition:all .15s}
@@ -224,8 +224,6 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .adm-tab.on{border-bottom-color:#f97316;color:#ea580c;background:rgba(249,115,22,.08)}
 .adm-body{padding:12px 14px;display:none}
 .adm-body.on{display:block}
-
-/* add product panel */
 .adm-add-form{display:flex;gap:7px;align-items:flex-end;flex-wrap:wrap}
 .adm-fg{display:flex;flex-direction:column;gap:3px}
 .adm-fg label{font-size:10px;color:#78716c;font-weight:700}
@@ -236,44 +234,51 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 .adm-sbtn:disabled{background:#d6d3d1;cursor:not-allowed}
 .adm-msg{font-size:11px;margin-top:7px;display:flex;align-items:center;gap:4px}
 .adm-msg.ok{color:#15803d}.adm-msg.err{color:#dc2626}.adm-msg.wait{color:#92400e}
-
-/* edit price inline */
+/* ── EDIT PRICE BUTTON ── */
 .edit-btn{background:none;border:.5px solid #fed7aa;color:#f97316;cursor:pointer;font-size:11px;padding:3px 7px;border-radius:5px;display:inline-flex;align-items:center;gap:3px;font-family:inherit;transition:all .15s;white-space:nowrap}
 .edit-btn:hover{background:#f97316;color:#fff;border-color:#f97316}
-.price-edit-wrap{display:inline-flex;align-items:center;gap:4px}
-.price-edit-inp{width:80px;padding:3px 7px;border:.5px solid #f97316;border-radius:5px;font-size:12px;font-family:inherit;color:#1c1917;background:#fff}
-.price-edit-inp:focus{outline:none;box-shadow:0 0 0 2px #fed7aa}
-.price-save-btn{background:#f97316;color:#fff;border:none;border-radius:5px;padding:3px 7px;font-size:11px;cursor:pointer;font-family:inherit}
-.price-save-btn:hover{background:#ea580c}
-.price-cancel-btn{background:none;border:.5px solid #d6d3d1;color:#78716c;border-radius:5px;padding:3px 6px;font-size:11px;cursor:pointer;font-family:inherit}
-
-/* catalog manager modal */
-.catmov{position:fixed;inset:0;background:rgba(15,23,42,.7);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
-.catmcard{background:#fff;border-radius:16px;width:100%;max-width:560px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28);animation:cmIn .18s ease}
-@keyframes cmIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
-.catmhdr{padding:16px 20px;border-bottom:.5px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#0f172a;border-radius:16px 16px 0 0}
+/* ── CATALOG MANAGER MODAL ── */
+.catmov{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
+.catmcard{background:#fff;border-radius:16px;width:100%;max-width:540px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.catmhdr{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;background:#0f172a;border-radius:16px 16px 0 0}
 .catmhdr h2{font-size:15px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
 .catmhdr h2 i{color:#f97316}
-.catmhdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer}
+.catmhdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1}
 .catmbody{flex:1;overflow-y:auto;padding:16px}
-.catm-section-title{font-size:11px;font-weight:700;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;margin-top:16px}
-.catm-section-title:first-child{margin-top:0}
-.catm-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:9px;margin-bottom:6px;transition:border .15s}
-.catm-row:hover{border-color:#bae6fd}
-.catm-row.active-cat{border-color:#22c55e;background:#f0fdf4}
-.catm-ico-sel{width:28px;height:28px;border:.5px solid #e2e8f0;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;background:#f8fafc;flex-shrink:0}
-.catm-ico-sel:hover{border-color:#0ea5e9;background:#eff6ff}
+.catm-sec{font-size:10px;font-weight:700;color:#94a3b8;letter-spacing:.5px;text-transform:uppercase;margin:14px 0 8px}
+.catm-sec:first-child{margin-top:0}
+.catm-row{display:flex;align-items:center;gap:10px;padding:9px 12px;border:.5px solid #e2e8f0;border-radius:9px;margin-bottom:6px}
+.catm-row.on{border-color:#22c55e;background:#f0fdf4}
+.catm-row i.ci{font-size:18px;flex-shrink:0}
+.catm-row.on i.ci{color:#22c55e}
+.catm-row:not(.on) i.ci{color:#94a3b8}
 .catm-label{flex:1;font-size:13px;font-weight:600;color:#0f172a}
-.catm-sublabel{font-size:11px;color:#94a3b8;font-weight:400}
-.catm-toggle{width:38px;height:22px;background:#e2e8f0;border-radius:11px;position:relative;cursor:pointer;border:none;transition:background .2s;flex-shrink:0}
-.catm-toggle.on{background:#22c55e}
-.catm-toggle::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
-.catm-toggle.on::after{left:19px}
-.catm-drag{color:#cbd5e1;cursor:grab;font-size:16px;flex-shrink:0}
+.catm-sub{font-size:11px;color:#94a3b8;font-weight:400}
+.catm-tog{width:38px;height:22px;background:#e2e8f0;border-radius:11px;position:relative;cursor:pointer;border:none;transition:background .2s;flex-shrink:0}
+.catm-tog.on{background:#22c55e}
+.catm-tog::after{content:'';position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:left .2s}
+.catm-tog.on::after{left:19px}
 .catmfoot{padding:14px 20px;border-top:.5px solid #f1f5f9;display:flex;gap:9px;flex-shrink:0}
-.catm-save-btn{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
-.catm-save-btn:hover{background:#ea580c}
-.catm-cnl-btn{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
+.catm-ok{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.catm-ok:hover{background:#ea580c}
+.catm-cl{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
+/* ── EDIT PRICE MODAL ── */
+.editpov{position:fixed;inset:0;background:rgba(15,23,42,.72);display:flex;align-items:center;justify-content:center;z-index:2100;padding:16px}
+.editpcard{background:#fff;border-radius:16px;width:100%;max-width:400px;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 24px 60px rgba(0,0,0,.28)}
+.editphdr{padding:15px 18px;background:#0f172a;border-radius:16px 16px 0 0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.editphdr h2{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:7px}
+.editphdr h2 i{color:#f97316}
+.editphdr button{background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;line-height:1}
+.editpbody{flex:1;overflow-y:auto;padding:16px}
+.ep-model{font-size:13px;font-weight:600;color:#0f172a;padding-bottom:12px;border-bottom:.5px solid #f1f5f9;margin-bottom:14px;line-height:1.4}
+.ep-field{margin-bottom:12px}
+.ep-label{font-size:11px;font-weight:700;color:#64748b;margin-bottom:5px;display:block}
+.ep-inp{width:100%;padding:8px 12px;border:.5px solid #e2e8f0;border-radius:8px;font-size:13px;font-family:inherit;color:#0f172a}
+.ep-inp:focus{outline:none;border-color:#f97316;box-shadow:0 0 0 2px #fed7aa}
+.editpfoot{padding:14px 18px;border-top:.5px solid #f1f5f9;display:flex;gap:9px;flex-shrink:0}
+.ep-ok{flex:1;padding:10px;background:#f97316;color:#fff;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:7px}
+.ep-ok:hover{background:#ea580c}
+.ep-cl{padding:10px 16px;border:.5px solid #e2e8f0;border-radius:9px;font-size:13px;color:#64748b;background:#fff;cursor:pointer;font-family:inherit}
 
 /* LOGIN */
 .lov{position:fixed;inset:0;background:rgba(15,23,42,.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px}
@@ -429,12 +434,10 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 <!-- PRICE PAGE -->
 <div class="page" id="page-price">
   <div id="add-panel" class="adm-panel" style="display:none">
-    <!-- tab switcher -->
     <div class="adm-tabs">
       <button class="adm-tab on" id="adm-tab-add" onclick="switchAdmTab('add')"><i class="ti ti-plus"></i> เพิ่มสินค้า</button>
       <button class="adm-tab" id="adm-tab-cat" onclick="switchAdmTab('cat')"><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อก</button>
     </div>
-    <!-- body: เพิ่มสินค้า -->
     <div class="adm-body on" id="adm-body-add">
       <div class="adm-add-form">
         <div class="adm-fg"><label>คอลัมน์ราคา</label><select id="f-col"></select></div>
@@ -444,9 +447,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
       </div>
       <div class="adm-msg" id="smsg"></div>
     </div>
-    <!-- body: จัดการแคตตาล็อก -->
     <div class="adm-body" id="adm-body-cat">
-      <button class="adm-sbtn" onclick="openCatManager()" style="margin-bottom:4px"><i class="ti ti-settings"></i> เปิดจัดการแคตตาล็อก</button>
+      <button class="adm-sbtn" onclick="openCatMgr()"><i class="ti ti-settings"></i> เปิดจัดการแคตตาล็อก</button>
     </div>
   </div>
   <div class="gsearch-wrap">
@@ -561,37 +563,35 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 </div>
 
 <!-- CATALOG MANAGER MODAL -->
-<div id="catmov" class="catmov" style="display:none" onclick="if(event.target.id==='catmov')closeCatManager()">
+<div id="catmov" class="catmov" style="display:none" onclick="if(event.target.id==='catmov')closeCatMgr()">
   <div class="catmcard">
     <div class="catmhdr">
       <h2><i class="ti ti-layout-grid"></i> จัดการแคตตาล็อกหน้าแรก</h2>
-      <button onclick="closeCatManager()"><i class="ti ti-x"></i></button>
+      <button onclick="closeCatMgr()"><i class="ti ti-x"></i></button>
     </div>
-    <div class="catmbody" id="catmbody">
-      <div style="text-align:center;padding:40px;color:#94a3b8"><i class="ti ti-loader spin" style="font-size:28px"></i><p style="margin-top:8px">กำลังโหลด Sheet จาก Google Sheets...</p></div>
-    </div>
+    <div class="catmbody" id="catmbody"></div>
     <div class="catmfoot">
-      <button class="catm-cnl-btn" onclick="closeCatManager()">ยกเลิก</button>
-      <button class="catm-save-btn" onclick="saveCatManager()"><i class="ti ti-device-floppy"></i> บันทึกแคตตาล็อก</button>
+      <button class="catm-cl" onclick="closeCatMgr()">ยกเลิก</button>
+      <button class="catm-ok" onclick="saveCatMgr()"><i class="ti ti-device-floppy"></i> บันทึกแคตตาล็อก</button>
     </div>
   </div>
 </div>
 
 <!-- EDIT PRICE MODAL -->
-<div id="editpov" class="catmov" style="display:none" onclick="if(event.target.id==='editpov')closeEditPrice()">
-  <div class="catmcard" style="max-width:400px">
-    <div class="catmhdr">
+<div id="editpov" class="editpov" style="display:none" onclick="if(event.target.id==='editpov')closeEditP()">
+  <div class="editpcard">
+    <div class="editphdr">
       <h2><i class="ti ti-pencil"></i> แก้ไขราคา</h2>
-      <button onclick="closeEditPrice()"><i class="ti ti-x"></i></button>
+      <button onclick="closeEditP()"><i class="ti ti-x"></i></button>
     </div>
-    <div class="catmbody">
-      <div style="font-size:13px;font-weight:600;color:#0f172a;margin-bottom:16px;padding-bottom:12px;border-bottom:.5px solid #f1f5f9" id="editp-model"></div>
-      <div id="editp-fields"></div>
-      <div class="adm-msg" id="editp-msg" style="margin-top:10px"></div>
+    <div class="editpbody">
+      <div class="ep-model" id="ep-model"></div>
+      <div id="ep-fields"></div>
+      <div class="adm-msg" id="ep-msg"></div>
     </div>
-    <div class="catmfoot">
-      <button class="catm-cnl-btn" onclick="closeEditPrice()">ปิด</button>
-      <button class="catm-save-btn" onclick="saveEditPrice()"><i class="ti ti-device-floppy"></i> บันทึกราคา</button>
+    <div class="editpfoot">
+      <button class="ep-cl" onclick="closeEditP()">ยกเลิก</button>
+      <button class="ep-ok" id="ep-ok" onclick="saveEditP()"><i class="ti ti-device-floppy"></i> บันทึกราคา</button>
     </div>
   </div>
 </div>
@@ -731,21 +731,36 @@ function hl(t,q){if(!q)return String(t);return String(t).replace(new RegExp('('+
 function parseTD(json,tab){const m=mk(tab);const hdrs=json.data&&json.data.length>0?Object.keys(json.data[0]).filter(k=>k!=='cat'):[];const rows=(json.data||[]).filter(r=>{const v=r[m];return v!==undefined&&String(v).trim()!==''&&String(v).trim()!=='-';});return{headers:hdrs,rows};}
 function buildTabs(tabs){allTabs=tabs;}
 function renderHeaders(){
-  const m=mk(curTab);const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  document.getElementById('thead').innerHTML='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('')+(isAdmin?'<th style="width:80px">แก้ไข</th><th style="width:44px">ลบ</th>':'')+' </tr>';
-  if(isAdmin)document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
+  const m=mk(curTab);
+  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
+  let ths='<tr><th>'+m+'</th>'+pks.map(h=>'<th>'+h+'</th>').join('');
+  if(isAdmin) ths+='<th style="width:76px">แก้ไข</th><th style="width:44px">ลบ</th>';
+  ths+='</tr>';
+  document.getElementById('thead').innerHTML=ths;
+  if(isAdmin) document.getElementById('f-col').innerHTML=pks.map(h=>`<option value="${h}">${h}</option>`).join('');
 }
 function renderTbl(){
-  const q=document.getElementById('srch').value.toLowerCase();const m=mk(curTab);const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  let rows=products;if(q)rows=rows.filter(p=>String(p[m]||'').toLowerCase().includes(q));
-  document.getElementById('stat-pill').textContent=rows.length+' รายการ';document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
+  const q=document.getElementById('srch').value.toLowerCase();
+  const m=mk(curTab);
+  const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
+  let rows=products;
+  if(q) rows=rows.filter(p=>String(p[m]||'').toLowerCase().includes(q));
+  document.getElementById('stat-pill').textContent=rows.length+' รายการ';
+  document.getElementById('rcnt').textContent='แสดง '+rows.length+' จาก '+products.length+' รายการ';
   const tb=document.getElementById('tbody');
-  if(!rows.length){tb.innerHTML=`<tr class="empty-row"><td colspan="${pks.length+1+(isAdmin?2:0)}"><i class="ti ti-mood-empty" style="font-size:28px;display:block;margin-bottom:6px;opacity:.3"></i>ไม่พบข้อมูล</td></tr>`;return;}
+  const cols=pks.length+1+(isAdmin?2:0);
+  if(!rows.length){
+    tb.innerHTML=`<tr class="empty-row"><td colspan="${cols}"><i class="ti ti-mood-empty" style="font-size:28px;display:block;margin-bottom:6px;opacity:.3"></i>ไม่พบข้อมูล</td></tr>`;
+    return;
+  }
   tb.innerHTML=rows.map(p=>{
     const ri=products.indexOf(p);
     const mv=String(p[m]||'').replace(/^-\s*/,'');
     const cells=pks.map(h=>{const v=fmt(p[h]);return '<td>'+(v?'<span class="pv">'+v+'</span>':'<span class="nt">—</span>')+'</td>';}).join('');
-    const adminCols=isAdmin?`<td><button class="edit-btn" onclick="openEditPrice(${ri})"><i class="ti ti-pencil"></i> แก้ไข</button></td><td><button class="del-btn" onclick="delProd(${ri})"><i class="ti ti-trash"></i></button></td>`:'';
+    const adminCols=isAdmin
+      ?`<td><button class="edit-btn" onclick="openEditP(${ri})"><i class="ti ti-pencil"></i> แก้ไข</button></td>`
+       +`<td><button class="del-btn" onclick="delProd(${ri})"><i class="ti ti-trash"></i></button></td>`
+      :'';
     return `<tr><td style="font-weight:600">${mv}</td>${cells}${adminCols}</tr>`;
   }).join('');
 }
@@ -804,6 +819,13 @@ function doLogin(){
     if(document.getElementById('page-nohon').classList.contains('active'))loadNohon();
   }else{document.getElementById('lerr').style.display='flex';}
 }
+async function addProduct(){
+  const model=document.getElementById('f-model').value.trim();const col=document.getElementById('f-col').value;const price=document.getElementById('f-price').value;if(!model||!price)return;
+  const btn=document.getElementById('save-btn'),msg=document.getElementById('smsg');btn.disabled=true;msg.className='smsg wait';msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';const m=mk(curTab);
+  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:curTab,modelKey:m,model,priceCol:col,price})});msg.innerHTML='<i class="ti ti-loader spin"></i> รอ Sheets...';await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);document.getElementById('f-model').value='';document.getElementById('f-price').value='';msg.className='smsg ok';msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';setTimeout(()=>{msg.innerHTML='';msg.className='smsg';},5000);}
+  catch(e){msg.className='smsg err';msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;}
+  btn.disabled=false;
+}
 async function delProd(idx){
   const p=products[idx];const m=mk(curTab);if(!confirm('ลบ "'+String(p[m]||'').replace(/^-\s*/,'')+'" ?'))return;
   try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'delete',tab:curTab,modelKey:m,model:p[m]})});await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);}
@@ -834,142 +856,156 @@ async function saveContent(page){
 }
 
 /* ── ADMIN TAB SWITCHER ── */
-function switchAdmTab(tab){
-  ['add','cat'].forEach(t=>{
-    document.getElementById('adm-tab-'+t).classList.toggle('on',t===tab);
-    document.getElementById('adm-body-'+t).classList.toggle('on',t===tab);
+function switchAdmTab(t){
+  ['add','cat'].forEach(x=>{
+    document.getElementById('adm-tab-'+x).classList.toggle('on',x===t);
+    document.getElementById('adm-body-'+x).classList.toggle('on',x===t);
   });
 }
 
+/* ── CATALOG MANAGER ── */
+// ข้อมูล icon/label สำหรับแต่ละ tab key
+const CAT_META={
+  'iPhone':{icon:'ti-brand-apple',label:'iPhone'},
+  'IPad':{icon:'ti-device-ipad',label:'iPad'},
+  'Samsung':{icon:'ti-device-mobile',label:'Samsung'},
+  'TAB':{icon:'ti-device-tablet',label:'Samsung TAB'},
+  'จอพับ Filp-Fold':{icon:'ti-device-mobile-rotated',label:'จอพับ Flip-Fold'},
+  'ViVo':{icon:'ti-device-mobile',label:'Vivo'},
+  'OPPO':{icon:'ti-device-mobile',label:'OPPO'},
+  'Huawei':{icon:'ti-device-mobile',label:'Huawei'},
+  'Apple Watch ':{icon:'ti-device-watch',label:'Apple Watch'},
+  'แพรชาร์จแท้แกะ':{icon:'ti-plug',label:'แพรชาร์จแท้แกะ'},
+  'สายแพร SAMSUNG Filp-Fold แท้':{icon:'ti-plug',label:'สายแพร Samsung Flip-Fold'},
+  'กล้องหลังแท้แกะ':{icon:'ti-camera',label:'กล้องหลังแท้แกะ'},
+  'แพร Face ID config ได้':{icon:'ti-scan',label:'Face ID'},
+  'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':{icon:'ti-battery-charging',label:'แบตแท้ Config (ขึ้นใช้แล้ว)'},
+  'แบตแท้ Config ได้ (ขึ้น ของแท้) ':{icon:'ti-battery-charging-2',label:'แบตแท้ Config (ของแท้)'},
+  'ฝาหลังแท้แกะ SAMSUNG':{icon:'ti-device-mobile',label:'ฝาหลังแท้แกะ Samsung'},
+  'OCA + Touch IPad ':{icon:'ti-device-ipad',label:'OCA + Touch iPad'}
+};
+
+// รายการที่เปิดอยู่ (tab keys) — เริ่มต้น = ทั้งหมด
+let activeCats=Object.keys(CAT_META);
+
+function openCatMgr(){
+  renderCatMgr();
+  document.getElementById('catmov').style.display='flex';
+}
+function closeCatMgr(){document.getElementById('catmov').style.display='none';}
+
+function renderCatMgr(){
+  // รวม tabs จาก allTabs (ได้จาก GAS) + keys ที่รู้จัก
+  const allKeys=[...new Set([...Object.keys(CAT_META),...(allTabs||[])])];
+  const onKeys=allKeys.filter(k=>activeCats.includes(k));
+  const offKeys=allKeys.filter(k=>!activeCats.includes(k));
+
+  const rowHTML=(k,isOn)=>{
+    const m=CAT_META[k]||{icon:'ti-tag',label:k.trim()};
+    const ek=encodeURIComponent(k);
+    return `<div class="catm-row${isOn?' on':''}">
+      <i class="ti ${m.icon} ci"></i>
+      <span class="catm-label">${m.label} <span class="catm-sub">· ${k.trim()}</span></span>
+      <button class="catm-tog${isOn?' on':''}" onclick="toggleCat('${ek}')"></button>
+    </div>`;
+  };
+
+  document.getElementById('catmbody').innerHTML=
+    `<p style="font-size:12px;color:#64748b;margin-bottom:12px;line-height:1.6"><i class="ti ti-info-circle" style="color:#0ea5e9"></i> เปิด/ปิดหมวดที่แสดงบนหน้าแรก — ดึงชื่อ Sheet จาก Google Sheets โดยตรง</p>`+
+    (onKeys.length?`<div class="catm-sec">แสดงอยู่ (${onKeys.length})</div>${onKeys.map(k=>rowHTML(k,true)).join('')}`:'') +
+    (offKeys.length?`<div class="catm-sec">ซ่อนอยู่ (${offKeys.length})</div>${offKeys.map(k=>rowHTML(k,false)).join('')}`:'');
+}
+
+function toggleCat(ek){
+  const k=decodeURIComponent(ek);
+  if(activeCats.includes(k)) activeCats=activeCats.filter(x=>x!==k);
+  else activeCats=[...activeCats,k];
+  renderCatMgr();
+}
+
+function saveCatMgr(){
+  // rebuild หน้าแรกทันที
+  const wrap=document.querySelector('.home-cats');
+  if(wrap){
+    wrap.innerHTML=activeCats.map(k=>{
+      const m=CAT_META[k]||{icon:'ti-tag',label:k.trim()};
+      const safe=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      return `<div class="home-cat" onclick="goToTab('${safe}')"><i class="ti ${m.icon}"></i><span>${m.label}</span></div>`;
+    }).join('');
+  }
+  closeCatMgr();
+  // toast แจ้ง
+  let t=document.getElementById('_adm_toast');
+  if(!t){t=document.createElement('div');t.id='_adm_toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 22px;border-radius:100px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap;opacity:0;transition:opacity .2s';document.body.appendChild(t);}
+  t.textContent='✅ บันทึกแคตตาล็อกแล้ว · แสดง '+activeCats.length+' รายการ';
+  t.style.opacity='1';clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},3000);
+}
+
 /* ── EDIT PRICE ── */
-let editProdIdx=-1;
-function openEditPrice(ri){
+let _editIdx=-1;
+function openEditP(ri){
   const p=products[ri];
   const m=mk(curTab);
   const mv=String(p[m]||'').replace(/^-\s*/,'');
   const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
-  editProdIdx=ri;
-  document.getElementById('editp-model').innerHTML='<i class="ti ti-package" style="color:#f97316"></i> '+mv+' <span style="font-size:11px;color:#94a3b8;font-weight:400">· '+curTab.trim()+'</span>';
-  document.getElementById('editp-fields').innerHTML=pks.map(h=>{
+  _editIdx=ri;
+  document.getElementById('ep-model').innerHTML=
+    `<i class="ti ti-package" style="color:#f97316;margin-right:6px"></i><strong>${mv}</strong>`+
+    `<span style="font-size:11px;color:#94a3b8;font-weight:400;margin-left:6px">· ${curTab.trim()}</span>`;
+  document.getElementById('ep-fields').innerHTML=pks.map(h=>{
     const raw=p[h];
-    const numVal=raw!==''&&raw!==null&&raw!==undefined?Math.round(parseFloat(raw)||0):'';
-    return `<div style="margin-bottom:10px">
-      <div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px">${h}</div>
-      <div style="display:flex;align-items:center;gap:6px">
-        <span style="color:#94a3b8;font-size:12px">฿</span>
-        <input class="price-edit-inp" id="ep-${h.replace(/\s/g,'_')}" style="width:120px" type="number" value="${numVal}" placeholder="0"/>
-        <span style="font-size:11px;color:#94a3b8">ว่างไว้ = ไม่มีราคา</span>
-      </div>
+    const num=(raw!==''&&raw!==null&&raw!==undefined)?Math.round(parseFloat(raw)||0):'';
+    const fid='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
+    return `<div class="ep-field">
+      <label class="ep-label">${h}</label>
+      <input class="ep-inp" id="${fid}" type="number" value="${num==='0'?'':num}" placeholder="ว่าง = ไม่มีราคา" data-col="${h}"/>
     </div>`;
   }).join('');
-  document.getElementById('editp-msg').innerHTML='';
+  document.getElementById('ep-msg').innerHTML='';
   document.getElementById('editpov').style.display='flex';
 }
-function closeEditPrice(){document.getElementById('editpov').style.display='none';editProdIdx=-1;}
-async function saveEditPrice(){
-  if(editProdIdx<0)return;
-  const p=products[editProdIdx];
+function closeEditP(){document.getElementById('editpov').style.display='none';_editIdx=-1;}
+
+async function saveEditP(){
+  if(_editIdx<0)return;
+  const p=products[_editIdx];
   const m=mk(curTab);
   const mv=String(p[m]||'');
   const pks=curHeaders.filter(h=>h&&h!==m&&String(h).trim()!=='');
+  // เก็บค่าใหม่จาก input ทุกช่อง
   const updates={};
   pks.forEach(h=>{
-    const inp=document.getElementById('ep-'+h.replace(/\s/g,'_'));
-    if(inp) updates[h]=inp.value.trim();
+    const fid='epf_'+h.replace(/[^a-zA-Z0-9ก-๙]/g,'_');
+    const el=document.getElementById(fid);
+    if(el) updates[h]=el.value.trim();
   });
-  const msg=document.getElementById('editp-msg');
-  msg.className='adm-msg wait';msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';
+  const msg=document.getElementById('ep-msg');
+  const btn=document.getElementById('ep-ok');
+  msg.className='adm-msg wait';
+  msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';
+  btn.disabled=true;
   try{
-    await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'editPrice',tab:curTab,modelKey:m,model:mv,updates})});
+    // ส่ง POST ไป GAS — updates เป็น object ปกติ (GAS จะรับ JSON แล้ว parse เอง)
+    const body=JSON.stringify({
+      action:'editPrice',
+      tab:curTab,
+      modelKey:m,
+      model:mv,
+      updates:updates   // ← ส่งเป็น object ตรงๆ ไม่ stringify ซ้อน
+    });
+    await fetch(GAS,{method:'POST',mode:'no-cors',body});
+    // รอ Sheets อัปเดต
     await new Promise(r=>setTimeout(r,2000));
-    delete tabCache[curTab];await loadTab(curTab);
-    msg.className='adm-msg ok';msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';
-    setTimeout(()=>{closeEditPrice();},1200);
+    // reload ข้อมูล tab นี้
+    delete tabCache[curTab];
+    await loadTab(curTab);
+    msg.className='adm-msg ok';
+    msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';
+    setTimeout(()=>closeEditP(),1200);
   }catch(err){
-    msg.className='adm-msg err';msg.innerHTML='<i class="ti ti-alert-circle"></i> '+err.message;
+    msg.className='adm-msg err';
+    msg.innerHTML='<i class="ti ti-alert-circle"></i> '+err.message;
   }
-}
-
-/* ── CATALOG MANAGER ── */
-const CAT_ICONS={'iPhone':'ti-brand-apple','IPad':'ti-device-ipad','Samsung':'ti-device-mobile','TAB':'ti-device-tablet','จอพับ Filp-Fold':'ti-device-mobile-rotated','ViVo':'ti-device-mobile','OPPO':'ti-device-mobile','Huawei':'ti-device-mobile','Apple Watch ':'ti-device-watch','แพรชาร์จแท้แกะ':'ti-plug','สายแพร SAMSUNG Filp-Fold แท้':'ti-plug','กล้องหลังแท้แกะ':'ti-camera','แพร Face ID config ได้':'ti-scan','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'ti-battery-charging','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'ti-battery-charging-2','ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad'};
-const CAT_LABELS={'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB','จอพับ Filp-Fold':'จอพับ Flip-Fold','ViVo':'Vivo','OPPO':'OPPO','Huawei':'Huawei','Apple Watch ':'Apple Watch','แพรชาร์จแท้แกะ':'แพรชาร์จแท้แกะ','สายแพร SAMSUNG Filp-Fold แท้':'สายแพร Samsung Flip-Fold','กล้องหลังแท้แกะ':'กล้องหลังแท้แกะ','แพร Face ID config ได้':'Face ID','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'แบตแท้ Config (ขึ้นใช้แล้ว)','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'แบตแท้ Config (ของแท้)','ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad'};
-
-// รายการที่แสดงบนหน้าแรกปัจจุบัน (เก็บ tab keys)
-let activeCats=Object.keys(MK); // default = ทุก tab ที่มีใน MK
-
-function openCatManager(){
-  document.getElementById('catmov').style.display='flex';
-  renderCatManager();
-}
-function closeCatManager(){document.getElementById('catmov').style.display='none';}
-
-function renderCatManager(){
-  const body=document.getElementById('catmbody');
-  // รวม tabs จาก allTabs + MK keys
-  const allKeys=[...new Set([...Object.keys(MK),...(allTabs||[])])];
-  const inActive=allKeys.filter(k=>activeCats.includes(k));
-  const notActive=allKeys.filter(k=>!activeCats.includes(k));
-
-  body.innerHTML=`
-    <p style="font-size:12px;color:#64748b;margin-bottom:14px;line-height:1.6"><i class="ti ti-info-circle" style="color:#0ea5e9"></i> เปิด/ปิดแคตตาล็อกที่แสดงบนหน้าแรก อ้างอิงชื่อ Sheet จาก Google Sheets โดยตรง</p>
-    <div class="catm-section-title"><i class="ti ti-eye" style="font-size:11px"></i> กำลังแสดง (${inActive.length} รายการ)</div>
-    ${inActive.map(k=>catRowHTML(k,true)).join('')}
-    ${notActive.length?`<div class="catm-section-title" style="margin-top:16px"><i class="ti ti-eye-off" style="font-size:11px"></i> ซ่อนอยู่ (${notActive.length} รายการ)</div>${notActive.map(k=>catRowHTML(k,false)).join('')}`:''}
-  `;
-}
-
-function catRowHTML(tabKey,isOn){
-  const icon=CAT_ICONS[tabKey]||'ti-tag';
-  const label=CAT_LABELS[tabKey]||tabKey.trim();
-  const safeKey=encodeURIComponent(tabKey);
-  return `<div class="catm-row${isOn?' active-cat':''}" id="catrow-${safeKey}">
-    <i class="ti ${icon}" style="font-size:18px;color:${isOn?'#22c55e':'#94a3b8'};flex-shrink:0"></i>
-    <div class="catm-label">${label} <span class="catm-sublabel">· ${tabKey.trim()}</span></div>
-    <button class="catm-toggle${isOn?' on':''}" onclick="toggleCat('${safeKey}')" title="${isOn?'ซ่อน':'แสดง'}"></button>
-  </div>`;
-}
-
-function toggleCat(safeKey){
-  const tabKey=decodeURIComponent(safeKey);
-  if(activeCats.includes(tabKey)){
-    activeCats=activeCats.filter(k=>k!==tabKey);
-  } else {
-    activeCats=[...activeCats,tabKey];
-  }
-  renderCatManager();
-}
-
-function saveCatManager(){
-  // อัปเดต home-cats ทันที
-  rebuildHomeCats();
-  closeCatManager();
-  showAdminToast('บันทึกแคตตาล็อกแล้ว · แสดง '+activeCats.length+' รายการ');
-}
-
-function rebuildHomeCats(){
-  const wrap=document.querySelector('.home-cats');
-  if(!wrap)return;
-  wrap.innerHTML=activeCats.map(k=>{
-    const icon=CAT_ICONS[k]||'ti-tag';
-    const label=CAT_LABELS[k]||k.trim();
-    const safeTab=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    return `<div class="home-cat" onclick="goToTab('${safeTab}')"><i class="ti ${icon}"></i><span>${label}</span></div>`;
-  }).join('');
-}
-
-function showAdminToast(msg){
-  let t=document.getElementById('adm-toast');
-  if(!t){t=document.createElement('div');t.id='adm-toast';t.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0f172a;color:#fff;padding:10px 20px;border-radius:100px;font-size:12px;z-index:9999;box-shadow:0 4px 20px rgba(0,0,0,.3);white-space:nowrap;opacity:0;transition:opacity .2s';document.body.appendChild(t);}
-  t.textContent=msg;t.style.opacity='1';
-  clearTimeout(t._to);t._to=setTimeout(()=>{t.style.opacity='0';},3000);
-}
-
-/* ── ADDPRODUCT (ใช้ class ใหม่) ── */
-async function addProduct(){
-  const model=document.getElementById('f-model').value.trim();const col=document.getElementById('f-col').value;const price=document.getElementById('f-price').value;if(!model||!price)return;
-  const btn=document.getElementById('save-btn'),msg=document.getElementById('smsg');btn.disabled=true;msg.className='adm-msg wait';msg.innerHTML='<i class="ti ti-loader spin"></i> กำลังบันทึก...';const m=mk(curTab);
-  try{await fetch(GAS,{method:'POST',mode:'no-cors',body:JSON.stringify({action:'add',tab:curTab,modelKey:m,model,priceCol:col,price})});msg.innerHTML='<i class="ti ti-loader spin"></i> รอ Sheets...';await new Promise(r=>setTimeout(r,2000));delete tabCache[curTab];await loadTab(curTab);document.getElementById('f-model').value='';document.getElementById('f-price').value='';msg.className='adm-msg ok';msg.innerHTML='<i class="ti ti-circle-check"></i> บันทึกสำเร็จ';setTimeout(()=>{msg.innerHTML='';msg.className='adm-msg';},5000);}
-  catch(e){msg.className='adm-msg err';msg.innerHTML='<i class="ti ti-alert-circle"></i> '+e.message;}
   btn.disabled=false;
 }
 
