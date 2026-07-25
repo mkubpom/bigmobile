@@ -338,6 +338,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
           <button class="dd-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้น ของแท้) ')"><i class="ti ti-battery-charging-2"></i>แบตแท้ Config (ของแท้)</button>
           <button class="dd-item" onclick="goToTab('ฝาหลังแท้แกะ SAMSUNG')"><i class="ti ti-device-mobile"></i>ฝาหลังแท้</button>
           <button class="dd-item" onclick="goToTab('OCA + Touch IPad ')"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
+          <button class="dd-item" onclick="goToTab('SSD+RAM')"><i class="ti ti-device-laptop"></i>SSD + RAM</button>
+          <button class="dd-item" onclick="goToTab('IC IPHONE&Android')"><i class="ti ti-cpu"></i>IC iPhone & Android</button>
         </div>
       </div>
       <div class="nav-item"><button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')"><i class="ti ti-tag"></i><span> ราคา NOHON</span></button></div>
@@ -381,6 +383,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
   <button class="mob-item" onclick="goToTab('แบตแท้ Config ได้ (ขึ้น ของแท้) ');closeMobile()"><i class="ti ti-battery-charging-2"></i>แบตแท้ Config (ของแท้)</button>
   <button class="mob-item" onclick="goToTab('ฝาหลังแท้แกะ SAMSUNG');closeMobile()"><i class="ti ti-device-mobile"></i>ฝาหลังแท้</button>
   <button class="mob-item" onclick="goToTab('OCA + Touch IPad ');closeMobile()"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
+  <button class="mob-item" onclick="goToTab('SSD+RAM');closeMobile()"><i class="ti ti-device-laptop"></i>SSD + RAM</button>
+  <button class="mob-item" onclick="goToTab('IC IPHONE&Android');closeMobile()"><i class="ti ti-cpu"></i>IC iPhone & Android</button>
   <div class="mob-sep"></div>
   <button class="mob-item" id="mob-nohon" onclick="gotoPage('nohon');closeMobile()"><i class="ti ti-tag"></i>ราคา NOHON</button>
   <button class="mob-item" id="mob-warranty" onclick="gotoPage('warranty');closeMobile()"><i class="ti ti-shield-check"></i>การรับประกัน</button>
@@ -416,6 +420,8 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
       <div class="home-cat" onclick="goToTab('แบตแท้ Config ได้ (ขึ้น ของแท้) ')"><i class="ti ti-battery-charging-2"></i><span>แบตแท้ Config (ของแท้)</span></div>
       <div class="home-cat" onclick="goToTab('ฝาหลังแท้แกะ SAMSUNG')"><i class="ti ti-device-mobile"></i><span>ฝาหลังแท้</span></div>
       <div class="home-cat" onclick="goToTab('OCA + Touch IPad ')"><i class="ti ti-device-ipad"></i><span>OCA + Touch iPad</span></div>
+      <div class="home-cat" onclick="goToTab('SSD+RAM')"><i class="ti ti-device-laptop"></i><span>SSD + RAM</span></div>
+      <div class="home-cat" onclick="goToTab('IC IPHONE&Android')"><i class="ti ti-cpu"></i><span>IC iPhone & Android</span></div>
     </div>
   </div>
 </div>
@@ -595,7 +601,7 @@ const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41L
 const AU='admin',AP='bigmobile4503';
 const BASE_URL=window.location.origin+window.location.pathname;
 const HASH_PAGES=['nohon','warranty','contact'];
-const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น'};
+const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น','SSD+RAM':'รุ่น','IC IPHONE&Android':'รุ่น'};
 let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[],tabCache={},preloadDone=false;
 
 /* ── MOBILE MENU ── */
@@ -771,9 +777,49 @@ async function preloadAll(tabs){
   await Promise.all(tabs.map(tab=>fetch(GAS+'?tab='+encodeURIComponent(tab)).then(r=>r.json()).then(json=>{tabCache[tab]=parseTD(json,tab);done++;fill.style.width=Math.round((done/tabs.length)*100)+'%';}).catch(()=>{done++;fill.style.width=Math.round((done/tabs.length)*100)+'%';})));
   preloadDone=true;st.className='pstatus ready';st.innerHTML='<i class="ti ti-circle-check" style="font-size:11px"></i> โหลดครบ '+tabs.length+' Tab';
 }
+/* ── CATALOG MANAGER DATA (ต้องอยู่ก่อน init) ── */
+const CAT_ICON={
+  'iPhone':'ti-brand-apple','IPad':'ti-device-ipad','Samsung':'ti-device-mobile',
+  'TAB':'ti-device-tablet','จอพับ Filp-Fold':'ti-device-mobile-rotated',
+  'ViVo':'ti-device-mobile','OPPO':'ti-device-mobile','Huawei':'ti-device-mobile',
+  'Apple Watch ':'ti-device-watch','แพรชาร์จแท้แกะ':'ti-plug',
+  'สายแพร SAMSUNG Filp-Fold แท้':'ti-plug','กล้องหลังแท้แกะ':'ti-camera',
+  'แพร Face ID config ได้':'ti-scan',
+  'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'ti-battery-charging',
+  'แบตแท้ Config ได้ (ขึ้น ของแท้) ':'ti-battery-charging-2',
+  'ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad',
+  'SSD+RAM':'ti-device-laptop','IC IPHONE&Android':'ti-cpu'
+};
+const CAT_LABEL={
+  'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB',
+  'จอพับ Filp-Fold':'จอพับ Flip-Fold','ViVo':'Vivo','OPPO':'OPPO','Huawei':'Huawei',
+  'Apple Watch ':'Apple Watch','แพรชาร์จแท้แกะ':'แพรชาร์จแท้แกะ',
+  'สายแพร SAMSUNG Filp-Fold แท้':'สายแพร Samsung Flip-Fold',
+  'กล้องหลังแท้แกะ':'กล้องหลังแท้แกะ','แพร Face ID config ได้':'Face ID',
+  'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'แบตแท้ Config (ขึ้นใช้แล้ว)',
+  'แบตแท้ Config ได้ (ขึ้น ของแท้) ':'แบตแท้ Config (ของแท้)',
+  'ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad',
+  'SSD+RAM':'SSD + RAM','IC IPHONE&Android':'IC iPhone & Android'
+};
+// โหลดจาก localStorage — ถ้าไม่มีใช้ทั้งหมดใน CAT_LABEL
+let activeCats=JSON.parse(localStorage.getItem('bm_cats')||'null')||Object.keys(CAT_LABEL);
+
+function buildHomeCats(){
+  const wrap=document.querySelector('.home-cats');
+  if(!wrap)return;
+  // รวม allTabs จาก GAS (อาจยังว่างตอนเรียกครั้งแรก) กับ activeCats
+  const known=new Set([...activeCats,...Object.keys(CAT_LABEL),...(allTabs||[])]);
+  // แสดงเฉพาะที่อยู่ใน activeCats
+  wrap.innerHTML=activeCats.filter(k=>known.has(k)).map(k=>{
+    const ico=CAT_ICON[k]||'ti-tag';
+    const lbl=CAT_LABEL[k]||k.trim();
+    const safe=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    return `<div class="home-cat" onclick="goToTab('${safe}')"><i class="ti ${ico}"></i><span>${lbl}</span></div>`;
+  }).join('');
+}
+
 async function init(){
-  // สร้างแคตตาล็อกหน้าแรกจาก localStorage ก่อนเลย (เร็ว ไม่ต้องรอ GAS)
-  buildHomeCats();
+  buildHomeCats(); // เรียกได้เลยเพราะ define ก่อนแล้ว
   const initPage=getHash();if(initPage)showPageDirect(initPage);
   try{
     const res=await fetch(GAS+'?tab=iPhone');
@@ -781,8 +827,7 @@ async function init(){
     const tabs=json.tabs||[];
     buildTabs(tabs);
     tabCache['iPhone']=parseTD(json,'iPhone');
-    // rebuild หน้าแรกอีกครั้งหลังได้ allTabs จาก GAS
-    // เพื่อให้ชีตใหม่ที่ยังไม่อยู่ใน activeCats ปรากฏใน catalog manager
+    // rebuild อีกครั้งหลังได้ allTabs — ชีตใหม่จะปรากฏใน catalog manager
     buildHomeCats();
     preloadAll(tabs.filter(t=>t!=='iPhone'));
   }catch(e){console.error(e);}
@@ -893,28 +938,7 @@ async function delProd(idx){
   }catch(e){toast('❌ ลบไม่สำเร็จ: '+e.message);}
 }
 
-/* ── CATALOG MANAGER ── */
-// icon map สำหรับ tab ที่รู้จัก — tab ใหม่จาก Sheets จะใช้ icon default
-const CAT_ICON={'iPhone':'ti-brand-apple','IPad':'ti-device-ipad','Samsung':'ti-device-mobile','TAB':'ti-device-tablet','จอพับ Filp-Fold':'ti-device-mobile-rotated','ViVo':'ti-device-mobile','OPPO':'ti-device-mobile','Huawei':'ti-device-mobile','Apple Watch ':'ti-device-watch','แพรชาร์จแท้แกะ':'ti-plug','สายแพร SAMSUNG Filp-Fold แท้':'ti-plug','กล้องหลังแท้แกะ':'ti-camera','แพร Face ID config ได้':'ti-scan','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'ti-battery-charging','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'ti-battery-charging-2','ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad'};
-const CAT_LABEL={'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB','จอพับ Filp-Fold':'จอพับ Flip-Fold','ViVo':'Vivo','OPPO':'OPPO','Huawei':'Huawei','Apple Watch ':'Apple Watch','แพรชาร์จแท้แกะ':'แพรชาร์จแท้แกะ','สายแพร SAMSUNG Filp-Fold แท้':'สายแพร Samsung Flip-Fold','กล้องหลังแท้แกะ':'กล้องหลังแท้แกะ','แพร Face ID config ได้':'Face ID','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'แบตแท้ Config (ขึ้นใช้แล้ว)','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'แบตแท้ Config (ของแท้)','ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad'};
-
-// โหลด activeCats จาก localStorage — ถ้าไม่มีใช้ทั้งหมดที่รู้จัก
-let activeCats=JSON.parse(localStorage.getItem('bm_cats')||'null')||Object.keys(CAT_LABEL);
-
-// สร้างหน้าแรกจาก activeCats ทันทีตอนโหลด
-function buildHomeCats(){
-  const wrap=document.querySelector('.home-cats');
-  if(!wrap)return;
-  // รวม allTabs ที่ได้จาก GAS กับที่รู้จัก เพื่อให้ชีตใหม่โชว์ด้วย
-  const allKeys=[...new Set([...activeCats,...(allTabs||[])])];
-  // แสดงเฉพาะที่อยู่ใน activeCats
-  wrap.innerHTML=activeCats.map(k=>{
-    const ico=CAT_ICON[k]||'ti-tag';
-    const lbl=CAT_LABEL[k]||k.trim();
-    const safe=k.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
-    return `<div class="home-cat" onclick="goToTab('${safe}')"><i class="ti ${ico}"></i><span>${lbl}</span></div>`;
-  }).join('');
-}
+/* ── CATALOG MANAGER FUNCTIONS ── */
 
 function openCatMgr(){
   renderCatMgr();
