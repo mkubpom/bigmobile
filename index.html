@@ -340,6 +340,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
           <button class="dd-item" onclick="goToTab('OCA + Touch IPad ')"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
           <button class="dd-item" onclick="goToTab('SSD+RAM')"><i class="ti ti-device-laptop"></i>SSD + RAM</button>
           <button class="dd-item" onclick="goToTab('IC IPHONE&Android')"><i class="ti ti-cpu"></i>IC iPhone & Android</button>
+		  <button class="dd-item" onclick="goToTab('เลนส์กล้อง')"><i class="ti ti-camera"></i>เลนส์กล้อง iPhone</button>
         </div>
       </div>
       <div class="nav-item"><button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')"><i class="ti ti-tag"></i><span> ราคา NOHON</span></button></div>
@@ -385,6 +386,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
   <button class="mob-item" onclick="goToTab('OCA + Touch IPad ');closeMobile()"><i class="ti ti-device-ipad"></i>OCA + Touch iPad</button>
   <button class="mob-item" onclick="goToTab('SSD+RAM');closeMobile()"><i class="ti ti-device-laptop"></i>SSD + RAM</button>
   <button class="mob-item" onclick="goToTab('IC IPHONE&Android');closeMobile()"><i class="ti ti-cpu"></i>IC iPhone & Android</button>
+  <button class="mob-item" onclick="goToTab('เลนส์กล้อง');closeMobile()"><i class="ti ti-camera"></i>เลนส์กล้อง iPhone</button>
   <div class="mob-sep"></div>
   <button class="mob-item" id="mob-nohon" onclick="gotoPage('nohon');closeMobile()"><i class="ti ti-tag"></i>ราคา NOHON</button>
   <button class="mob-item" id="mob-warranty" onclick="gotoPage('warranty');closeMobile()"><i class="ti ti-shield-check"></i>การรับประกัน</button>
@@ -422,6 +424,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
       <div class="home-cat" onclick="goToTab('OCA + Touch IPad ')"><i class="ti ti-device-ipad"></i><span>OCA + Touch iPad</span></div>
       <div class="home-cat" onclick="goToTab('SSD+RAM')"><i class="ti ti-device-laptop"></i><span>SSD + RAM</span></div>
       <div class="home-cat" onclick="goToTab('IC IPHONE&Android')"><i class="ti ti-cpu"></i><span>IC iPhone & Android</span></div>
+	  <div class="home-cat" onclick="goToTab('เลนส์กล้อง')"><i class="ti ti-camera"></i><span>เลนส์กล้อง iPhone</span></div>
     </div>
   </div>
 </div>
@@ -601,7 +604,7 @@ const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41L
 const AU='admin',AP='bigmobile4503';
 const BASE_URL=window.location.origin+window.location.pathname;
 const HASH_PAGES=['nohon','warranty','contact'];
-const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น','SSD+RAM':'รุ่น','IC IPHONE&Android':'รุ่น'};
+const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น','SSD+RAM':'รุ่น','IC IPHONE&Android':'รุ่น','เลนส์กล้อง':'รุ่น'};
 let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[],tabCache={},preloadDone=false;
 
 /* ── MOBILE MENU ── */
@@ -799,7 +802,7 @@ const CAT_ICON={
   'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'ti-battery-charging',
   'แบตแท้ Config ได้ (ขึ้น ของแท้) ':'ti-battery-charging-2',
   'ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad',
-  'SSD+RAM':'ti-device-laptop','IC IPHONE&Android':'ti-cpu'
+  'SSD+RAM':'ti-device-laptop','IC IPHONE&Android':'ti-cpu','เลนส์กล้อง iPhone':'ti-camera'
 };
 const CAT_LABEL={
   'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB',
@@ -810,7 +813,7 @@ const CAT_LABEL={
   'แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'แบตแท้ Config (ขึ้นใช้แล้ว)',
   'แบตแท้ Config ได้ (ขึ้น ของแท้) ':'แบตแท้ Config (ของแท้)',
   'ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad',
-  'SSD+RAM':'SSD + RAM','IC IPHONE&Android':'IC iPhone & Android'
+  'SSD+RAM':'SSD + RAM','IC IPHONE&Android':'IC iPhone & Android','เลนส์กล้อง iPhone':'เลนส์กล้อง iPhone'
 };
 let activeCats=JSON.parse(localStorage.getItem('bm_cats')||'null')||Object.keys(CAT_LABEL);
 
