@@ -343,6 +343,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
 		  <button class="dd-item" onclick="goToTab('เลนส์กล้อง')"><i class="ti ti-camera"></i>เลนส์กล้อง iPhone</button>
           <button class="dd-item" onclick="goToTab('Tab Android Etc')"><i class="ti ti-device-tablet"></i>จอ Tab Android อื่นๆ</button>
           <button class="dd-item" onclick="goToTab('จอ Mi Honor Oneplus POCO')"><i class="ti ti-device-mobile"></i>จอ Mi Honor Oneplus POCO</button>
+          <button class="dd-item" onclick="goToTab('Bodyแท้แกะ')"><i class="ti ti-shield-check"></i>Body แท้แกะ</button>
         </div>
       </div>
       <div class="nav-item"><button class="nav-link" id="nl-nohon" onclick="gotoPage('nohon')"><i class="ti ti-tag"></i><span> ราคา NOHON</span></button></div>
@@ -391,6 +392,7 @@ body{font-family:'Sarabun',system-ui,sans-serif;background:#f8fafc}
   <button class="mob-item" onclick="goToTab('เลนส์กล้อง');closeMobile()"><i class="ti ti-camera"></i>เลนส์กล้อง iPhone</button>
   <button class="mob-item" onclick="goToTab('Tab Android Etc');closeMobile()"><i class="ti ti-device-tablet"></i>จอ Tab Android อื่นๆ</button>
   <button class="mob-item" onclick="goToTab('จอ Mi Honor Oneplus POCO');closeMobile()"><i class="ti ti-device-mobile"></i>จอ Mi Honor Oneplus POCO</button>
+  <button class="mob-item" onclick="goToTab('Bodyแท้แกะ');closeMobile()"><i class="ti ti-shield-check"></i>Body แท้แกะ</button>
   <div class="mob-sep"></div>
   <button class="mob-item" id="mob-nohon" onclick="gotoPage('nohon');closeMobile()"><i class="ti ti-tag"></i>ราคา NOHON</button>
   <button class="mob-item" id="mob-warranty" onclick="gotoPage('warranty');closeMobile()"><i class="ti ti-shield-check"></i>การรับประกัน</button>
@@ -610,7 +612,7 @@ const GAS='https://script.google.com/macros/s/AKfycbxYAezQkiysCWpeZz_j2p_-uZB41L
 const AU='admin',AP='bigmobile4503';
 const BASE_URL=window.location.origin+window.location.pathname;
 const HASH_PAGES=['nohon','warranty','contact'];
-const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น','SSD+RAM':'รุ่น','IC IPHONE&Android':'รุ่น','เลนส์กล้อง':'รุ่น','Tab Android Etc':'รุ่น','จอ Mi Honor Oneplus POCO':'รุ่น'};
+const MK={'iPhone':'รุ่น','IPad':'รุ่น','Apple Watch ':'รุ่น','Samsung':'รายการ/รุ่น','TAB':'รายการ/รุ่น','จอพับ Filp-Fold':'รายการ/รุ่น','ViVo':'รุ่น','OPPO':'รายการ/รุ่น','Huawei':'รุ่น','แพรชาร์จแท้แกะ':'รุ่น','สายแพร SAMSUNG Filp-Fold แท้':'รายการ/รุ่น','กล้องหลังแท้แกะ':'รุ่น','แพร Face ID config ได้':'รุ่น','แบตแท้ Config ได้ (ขึ้นใช้แล้ว)':'รายการ/รุ่น','แบตแท้ Config ได้ (ขึ้น ของแท้) ':'รายการ/รุ่น','ฝาหลังแท้แกะ SAMSUNG':'รุ่น','OCA + Touch IPad ':'รายการ/รุ่น','SSD+RAM':'รุ่น','IC IPHONE&Android':'รุ่น','เลนส์กล้อง':'รุ่น','Tab Android Etc':'รุ่น','จอ Mi Honor Oneplus POCO':'รุ่น','Bodyแท้แกะ':'รุ่น'};
 let isAdmin=false,curTab='',allTabs=[],products=[],curHeaders=[],tabCache={},preloadDone=false;
 
 /* ── MOBILE MENU ── */
@@ -785,8 +787,9 @@ async function loadTab(tab){
   curTab=tab;document.getElementById('tab-title').textContent=tab.trim();
   const ico=document.getElementById('ref-ico');ico.classList.add('spin');setSync('ld','กำลังโหลด '+tab.trim()+'...');
   try{
-    if(tabCache[tab]){curHeaders=tabCache[tab].headers;products=tabCache[tab].rows;}
-    else{const res=await fetch(GAS+'?tab='+encodeURIComponent(tab));const json=await res.json();if(json.tabs&&!allTabs.length)buildTabs(json.tabs);const d=parseTD(json,tab);tabCache[tab]=d;curHeaders=d.headers;products=d.rows;}
+    const CACHE_TTL=5*60*1000;
+    if(tabCache[tab]&&(Date.now()-tabCache[tab].ts)<CACHE_TTL){curHeaders=tabCache[tab].headers;products=tabCache[tab].rows;}
+    else{const res=await fetch(GAS+'?tab='+encodeURIComponent(tab));const json=await res.json();if(json.tabs&&!allTabs.length)buildTabs(json.tabs);const d=parseTD(json,tab);d.ts=Date.now();tabCache[tab]=d;curHeaders=d.headers;products=d.rows;}
     renderHeaders();renderTbl();setSync('ok','ซิงค์แล้ว · '+tab.trim()+' · '+new Date().toLocaleTimeString('th-TH'));
   }catch(e){setSync('err','โหลดไม่ได้: '+e.message);}
   ico.classList.remove('spin');
@@ -810,7 +813,8 @@ const CAT_ICON={
   'ฝาหลังแท้แกะ SAMSUNG':'ti-device-mobile','OCA + Touch IPad ':'ti-device-ipad',
   'SSD+RAM':'ti-device-laptop','IC IPHONE&Android':'ti-cpu',
   'เลนส์กล้อง':'ti-camera',
-  'Tab Android Etc':'ti-device-tablet','จอ Mi Honor Oneplus POCO':'ti-device-mobile'
+  'Tab Android Etc':'ti-device-tablet','จอ Mi Honor Oneplus POCO':'ti-device-mobile',
+  'Bodyแท้แกะ':'ti-shield-check'
 };
 const CAT_LABEL={
   'iPhone':'iPhone','IPad':'iPad','Samsung':'Samsung','TAB':'Samsung TAB',
@@ -823,9 +827,12 @@ const CAT_LABEL={
   'ฝาหลังแท้แกะ SAMSUNG':'ฝาหลังแท้แกะ Samsung','OCA + Touch IPad ':'OCA + Touch iPad',
   'SSD+RAM':'SSD + RAM','IC IPHONE&Android':'IC iPhone & Android',
   'เลนส์กล้อง':'เลนส์กล้อง iPhone',
-  'Tab Android Etc':'จอ Tab Android อื่นๆ','จอ Mi Honor Oneplus POCO':'จอ Mi Honor Oneplus POCO'
+  'Tab Android Etc':'จอ Tab Android อื่นๆ','จอ Mi Honor Oneplus POCO':'จอ Mi Honor Oneplus POCO',
+  'Bodyแท้แกะ':'Body แท้แกะ'
 };
-let activeCats=JSON.parse(localStorage.getItem('bm_cats')||'null')||Object.keys(CAT_LABEL);
+const _savedCats=JSON.parse(localStorage.getItem('bm_cats')||'null');
+const _allKnown=Object.keys(CAT_LABEL);
+let activeCats=_savedCats?[..._savedCats,..._allKnown.filter(k=>!_savedCats.includes(k))]:_allKnown;
 
 function buildHomeCats(){
   const wrap=document.querySelector('.home-cats');
@@ -846,9 +853,9 @@ async function init(){
     const json=await res.json();
     const tabs=json.tabs||[];
     buildTabs(tabs);
-    tabCache['iPhone']=parseTD(json,'iPhone');
+    const iPhoneData=parseTD(json,'iPhone');iPhoneData.ts=Date.now();tabCache['iPhone']=iPhoneData;
     buildHomeCats(); // rebuild หลังได้ allTabs — ชีตใหม่ปรากฏใน catalog manager
-    preloadAll(tabs.filter(t=>t!=='iPhone'));
+    // lazy load: ไม่ preload ทุก tab ล่วงหน้า — โหลดเฉพาะเมื่อผู้ใช้คลิก (ลด GAS quota)
   }catch(e){console.error(e);}
 }
 
